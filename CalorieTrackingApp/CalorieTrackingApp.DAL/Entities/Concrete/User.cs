@@ -1,4 +1,5 @@
 ﻿using CalorieTrackingApp.DAL.Entities.Abstract;
+using CalorieTrackingApp.DAL.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
         public string Password { get; set; }
         public string UserName { get; set; }
         public ICollection<DailyUserRecord> UserRecords { get; set; } = new List<DailyUserRecord>();
-
-        //Soru enum ve yaş aralığı tablo öğünler enum.
+        public AgeGap UserAgeGap { get; set; }
+        public Goal UserGoal { get; set; }
 
     }
 }
