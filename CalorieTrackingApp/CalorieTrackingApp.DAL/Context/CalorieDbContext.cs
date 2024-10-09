@@ -1,4 +1,5 @@
 ﻿using CalorieTrackingApp.DAL.Entities.Concrete;
+using CalorieTrackingApp.DAL.EntityConfiguration;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,10 @@ namespace CalorieTrackingApp.DAL.Context
             Database=CalorieTrackingDb;
             Trusted_Connection=true;
             Trustservercertificate=true";
+        string mustafaConnectionString= @"Server=DESKTOP-U76CSFK\ANK18MSSQLSERVER;
+            Database=CalorieTrackingDb;
+            Trusted_Connection=true;
+            Trustservercertificate=true";
         public DbSet<User> Users { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Beverage> Beverages { get; set; }
@@ -23,7 +28,14 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<Admin> Admins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(meltemConnectionString);
+            optionsBuilder.UseSqlServer(mustafaConnectionString);
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new AdminConfiguration());
         }
     }
 }

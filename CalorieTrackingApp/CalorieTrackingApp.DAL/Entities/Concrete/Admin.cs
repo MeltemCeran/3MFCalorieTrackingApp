@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace CalorieTrackingApp.DAL.Entities.Concrete
 {
     public class Admin : BaseEntity
+        // TODO: BaseEntitiyden kalıtım alamayacak bir bakılsın
     {
         public string AdminName { get; set; }
         public string Password { get; set; }
