@@ -20,6 +20,10 @@ namespace CalorieTrackingApp.DAL.Context
             Database=CalorieTrackingDb;
             Trusted_Connection=true;
             Trustservercertificate=true";
+        string merveConnectionString = @"server=DESKTOP-9TSVMB4;
+            database=CalorieTrackingDb;
+            trusted_connection=true;
+            trustservercertificate=true";
         public DbSet<User> Users { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Beverage> Beverages { get; set; }
@@ -28,7 +32,7 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<Admin> Admins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(mustafaConnectionString);
+            optionsBuilder.UseSqlServer(merveConnectionString);
 
         }
 
