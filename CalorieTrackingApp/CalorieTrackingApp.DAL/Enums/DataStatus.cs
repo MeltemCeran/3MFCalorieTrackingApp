@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CalorieTrackingApp.DAL.UnitOfWorkMustafa
+namespace CalorieTrackingApp.DAL.Enums
 {
-    internal class UnitOfWork
+    public enum DataStatus
     {
+        Inserted = 1,
+        Updated = 2,
+        Deleted = 3
     }
 }
