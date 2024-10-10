@@ -20,12 +20,5 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
 
         IQueryable<TEntity> GetAll();
 
-        TEntity GetById(int id);
-
-        IQueryable<TEntity> Search(Expression<Func<TEntity, bool>> searchCriteria);
-
-        public IQueryable<TEntity> GetAllWithIncludes();
-
-        public IQueryable<TEntity> GetAllWithIncludes(params string[] navigationProperties);
     }
 }

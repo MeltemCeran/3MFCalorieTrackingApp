@@ -23,16 +23,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
             _entities = _dbContext.Set<TEntity>();
         }
 
-        //ALP HOCANIN YAPTIĞI ? ARADAKİ FARK?
-        //private readonly CalorieDbContext _db;
-        //private DbSet<TEntity> _entities;
-
-        //public Repository(CalorieDbContext db)
-        //{
-        //    _db = db;
-        //    _entities = _db.Set<TEntity>();
-        //}
-
         public void Create(TEntity entity)
         {
             entity.DataStatus = DataStatus.Inserted;
@@ -74,73 +64,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
             return _entities.Where(e => e.DataStatus != DataStatus.Deleted).AsNoTracking();
         }
 
-        //İçerisine TEntity olarak gönderdiğimiz her ne olursa olsun, BÜTÜN navigation'larını include ETSİN.
-        public IQueryable<TEntity> GetAllWithIncludes()
-        {
-            IQueryable<TEntity> query = _dbContext.Set<TEntity>();
-
-            TEntity instance = new TEntity(); //Dinamik SORGU? Özelleştirilmiş SORGU?
-
-            Type type = instance.GetType();
-
-            var propertyInfos = type.GetProperties();
-
-            foreach (var propertyInfo in propertyInfos.Where(pi => pi.PropertyType.GetInterfaces().Where(i => i.Name == "IEntity" || i.Name == "IList").Any()).ToList())
-            {
-                if (propertyInfo.Name != "Denemeler")
-                    query = query.Include(propertyInfo.Name);
-            }
-            return query;
-        }
-
-        public IQueryable<TEntity> GetAllWithIncludes(params string[] navigationProperties)
-        {
-            IQueryable<TEntity> query = _dbContext.Set<TEntity>();
-
-            foreach (var navigationProperty in navigationProperties)
-            {
-                query = query.Include(navigationProperty);
-            }
-            return query;
-        }
-
-        public TEntity GetById(int id)
-        {
-            //return _entities.Find(id);
-            return _entities.AsNoTracking().FirstOrDefault(e => e.Id == id);
-        }
-
-        public IQueryable<TEntity> Search(Expression<Func<TEntity, bool>> searchCriteria)
-        {
-            var all = _entities.Where(e => e.DataStatus != DataStatus.Deleted);
-            return all.Where(searchCriteria);
-        }
-
-        public void Update(TEntity entity)
-        {
-            // bool isBeingTracked = false;
-            entity.DataStatus = entity.DataStatus != DataStatus.Deleted ?
-                DataStatus.Updated : DataStatus.Deleted;
-            entity.ModifiedDate = DateTime.Now;
-            entity.CreatedDate = GetById(entity.Id).CreatedDate;
-
-            //foreach (var item in _dbContext.ChangeTracker.Entries())
-            //{
-            //    if (item.Entity.GetType() == typeof(TEntity))
-            //    {
-            //        item.State = EntityState.Detached;
-            //        //  isBeingTracked = true;
-            //        // break;
-            //    }
-
-
-            //}
-
-
-            _entities.Update(entity);
-
-
-            _dbContext.SaveChanges();
-        }
+        
     }
 }
