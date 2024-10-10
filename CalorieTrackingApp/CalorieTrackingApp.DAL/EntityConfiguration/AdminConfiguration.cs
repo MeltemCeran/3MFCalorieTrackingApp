@@ -21,11 +21,14 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
                 Name = "Admin_Name",
                 Surname = "admin@example.com"
             });
-            builder.Property(a => a.AdminName)
-            .IsRequired()
-            .HasMaxLength(50); // KullaniciAdi alanı zorunlu ve maksimum 50 karakter
 
-            builder.Property(d => d.Password).IsRequired().HasColumnType("varchar(20)"); // Sifre alanı zorunlu ve maksimum 100 karakter// varchar olacak
+            builder.Property(a => a.AdminName)
+                .IsRequired()
+                .HasColumnType("varchar(30)");
+
+            builder.Property(d => d.Password)
+                .IsRequired()
+                .HasColumnType("varchar(20)");
 
             builder.Property(a => a.Name)
                 .IsRequired()
