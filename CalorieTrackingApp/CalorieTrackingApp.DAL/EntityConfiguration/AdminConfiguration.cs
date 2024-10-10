@@ -21,6 +21,82 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
                 Name = "Admin_Name",
                 Surname = "admin@example.com"
             });
+            builder.Property(a => a.AdminName)
+            .IsRequired()
+            .HasMaxLength(50); // KullaniciAdi alanı zorunlu ve maksimum 50 karakter
+
+            builder.Property(d => d.Password).IsRequired().HasColumnType("varchar(20)"); // Sifre alanı zorunlu ve maksimum 100 karakter// varchar olacak
+
+            builder.Property(a => a.Name)
+                .IsRequired()
+                .HasMaxLength(30);
+
+            builder.Property(a => a.Surname)
+                .IsRequired()
+                .HasMaxLength(30);
         }
     }
 }
+//protected override void OnModelCreating(ModelBuilder modelBuilder)
+//{
+//    //danısmanno pk oldu
+//    modelBuilder.Entity<Danisman>().HasKey(d => d.DanismanNo);
+
+//    //ad propertysi aynı kalacak ama karşılığı dbde Name olacak.
+//    modelBuilder.Entity<Danisman>().Property(d => d.Ad).HasColumnName("Name");
+
+//    //Danisman.cs sınıf ismi aynı kalsın ama kaşılık gelen tablo ismi advisors olsun.
+//    modelBuilder.Entity<Danisman>().ToTable("Advisors");
+
+//    //Ad kolonunun data tipini nvarchar(max) dan nvarchar(50) yapcaz
+//    modelBuilder.Entity<Danisman>().Property(d => d.Ad).HasMaxLength(50);
+
+//    //Soyad kolonunu varchar(60) olsun
+//    modelBuilder.Entity<Danisman>().Property(d => d.Soyad).HasColumnType("varchar(60)"); //Eğer nvarcar varchar gibi tip değiştireceksem hascolumntype diyorum ama sadece boyutu değiştireceksem üstteki
+
+//    //Deger propertysi için kolon oluşturulmasın
+//    modelBuilder.Entity<Danisman>().Ignore(d => d.Deger);
+
+//    //Unique key yapmak = sicilno
+//    modelBuilder.Entity<Danisman>().HasIndex(d => d.SicilNo).IsUnique();
+
+//    //1-1 ilişki için one.to.one
+
+//    //modelBuilder.Entity<Ogrenci>().HasOne(o => 
+//    //    o.Transcript).WithOne(t => 
+//    //    t.Ogrenci).HasForeignKey<Ogrenci>(o => 
+//    //    o.TranscriptNumarasi);
+
+//    modelBuilder.Entity<Transcript>().HasOne(t =>
+//        t.Ogrenci).WithOne(o =>
+//        o.Transcript).HasForeignKey<Ogrenci>(o =>
+//        o.TranscriptNumarasi);
+
+//    //üstteki ikisi aynı şey.
+
+//    //1-N ilişki için one.to.many
+
+//    //modelBuilder.Entity<Ogrenci>().HasOne(o 
+//    //    => o.Danisman).WithMany(d 
+//    //    => d.Ogrenciler).HasForeignKey(o 
+//    //    => o.DanismanNumarasi);
+
+//    modelBuilder.Entity<Danisman>().HasMany(d =>
+//    d.Ogrenciler).WithOne(o =>
+//    o.Danisman).HasForeignKey(o =>
+//    o.DanismanNumarasi);
+
+//    //m-n ilişkisi için many.to.many
+//    //Ogrencisi ve Dersi özelliklerini composite key olacağını belirtelim.
+
+//    modelBuilder.Entity<OgrenciDers>().HasKey(k => new { k.Ogrencisi, k.Dersi });
+
+//    modelBuilder.Entity<OgrenciDers>().HasOne(od =>
+//    od.Ogrenci).WithMany(o =>
+//    o.OgrenciDersler).HasForeignKey(od =>
+//    od.Ogrencisi);
+
+//    modelBuilder.Entity<OgrenciDers>().HasOne(od =>
+//    od.Ders).WithMany(o =>
+//    o.OgrenciDersler).HasForeignKey(od =>
+//    od.Dersi);
