@@ -15,5 +15,10 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
         {
 
         }
+
+        public ICollection<BeverageCategory> GetBeverageCategoryName(string name)
+        {
+            return _entities.Where(bcn => bcn.BeverageCategoryName == name).ToList();
+        }
     }
 }

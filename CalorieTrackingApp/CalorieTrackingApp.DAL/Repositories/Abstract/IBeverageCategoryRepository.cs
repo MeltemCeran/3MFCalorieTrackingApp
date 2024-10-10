@@ -9,5 +9,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
 {
     public interface IBeverageCategoryRepository : IReposıtory<BeverageCategory>, IDisposable
     {
+        public ICollection<BeverageCategory> GetBeverageCategoryName(string name);
     }
 }

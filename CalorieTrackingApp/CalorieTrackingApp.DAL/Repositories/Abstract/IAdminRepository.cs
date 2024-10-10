@@ -9,5 +9,10 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
 {
     public interface IAdminRepository : IReposıtory<Admin>, IDisposable
     {
+        public ICollection<Admin> GetAdminName(string adminName);
+
+        public ICollection<Admin> GetName(string name);
+
+        public ICollection<Admin> GetSurname(string surname);
     }
 }
