@@ -39,7 +39,17 @@ namespace CalorieTrackingApp.DAL.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            configurationReferance(modelBuilder);
+        }
+
+        private static void configurationReferance(ModelBuilder modelBuilder)
+        {
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
+            modelBuilder.ApplyConfiguration(new BeverageConfiguration());
+            modelBuilder.ApplyConfiguration(new BeverageCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new FoodConfiguration());
+            modelBuilder.ApplyConfiguration(new FoodCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }
