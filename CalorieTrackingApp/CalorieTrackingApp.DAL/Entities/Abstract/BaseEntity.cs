@@ -10,7 +10,7 @@ namespace CalorieTrackingApp.DAL.Entities.Abstract
     public class BaseEntity : IEntity
     {
         public int Id { get; set; }
-        public DateTime CreatedDate { get; set; } //buraya datetime.now lazım
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? ModifiedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
         public DataStatus DataStatus { get; set; }

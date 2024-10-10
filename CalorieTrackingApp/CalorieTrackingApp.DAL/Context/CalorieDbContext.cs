@@ -32,7 +32,7 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<Admin> Admins { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(merveConnectionString);
+            optionsBuilder.UseSqlServer(meltemConnectionString);
 
         }
 
