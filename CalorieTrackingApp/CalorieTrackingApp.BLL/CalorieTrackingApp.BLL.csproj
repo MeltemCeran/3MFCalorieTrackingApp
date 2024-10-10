@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Managers\" />
-    <Folder Include="Mapper\" />
+    <Compile Remove="Managers\**" />
+    <Compile Remove="Mapper\**" />
+    <EmbeddedResource Remove="Managers\**" />
+    <EmbeddedResource Remove="Mapper\**" />
+    <None Remove="Managers\**" />
+    <None Remove="Mapper\**" />
   </ItemGroup>
 
   <ItemGroup>

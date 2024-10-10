@@ -15,5 +15,20 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
         {
 
         }
+
+        public ICollection<Admin> GetAdminName(string adminName)
+        {
+            return _entities.Where(an => an.AdminName == adminName).ToList();
+        }
+
+        public ICollection<Admin> GetName(string name)
+        {
+            return _entities.Where(an => an.Name == name).ToList();
+        }
+
+        public ICollection<Admin> GetSurname(string surname)
+        {
+            return _entities.Where(an => an.Surname == surname).ToList();
+        }
     }
 }

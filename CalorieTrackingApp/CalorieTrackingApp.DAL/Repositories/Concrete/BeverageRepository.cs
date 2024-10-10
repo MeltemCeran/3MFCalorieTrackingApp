@@ -1,4 +1,5 @@
 ﻿using CalorieTrackingApp.DAL.Entities.Concrete;
+using CalorieTrackingApp.DAL.Enums;
 using CalorieTrackingApp.DAL.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,6 +15,31 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
         public BeverageRepository(DbContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public ICollection<Beverage> GetBeverageName(string name)
+        {
+            return _entities.Where(b => b.BeverageName == name).ToList();
+        }
+
+        public ICollection<Beverage> GetBeverageCalorie(float calorie)
+        {
+            return _entities.Where(b => b.BeverageCalorie == calorie).ToList();
+        }
+
+        public ICollection<Beverage> GetPortion(Portion portion)
+        {
+            return _entities.Where(b => b.Portion == portion).ToList();
+        }
+
+        public ICollection<Beverage> GetBeverageCategoryId(int id)
+        {
+            return _entities.Where(b => b.BeverageCategoryId == id).ToList();
+        }
+
+        public ICollection<Beverage> GetBeverageCategory(BeverageCategory beverageCategory)
+        {
+            return _entities.Where(b => b.BeverageCategory == beverageCategory).ToList();
         }
     }
 }
