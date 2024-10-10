@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.DAL.Repositories.Concrete
 {
-    public class DailyUserRecordRepository : Repository<DailyUserRecord>
+    public class DailyUserRecordRepository : Repository<DailyUserRecord>, IDailyUserRecordRepository
     {
         public DailyUserRecordRepository(DbContext dbContext) : base(dbContext)
         {

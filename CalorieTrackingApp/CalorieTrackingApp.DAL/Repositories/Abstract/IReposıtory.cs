@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.DAL.Repositories.Abstract
 {
-    public interface IReposıtory<TEntity> where TEntity : BaseEntity
+    public interface IReposıtory<TEntity> : IDisposable where TEntity : BaseEntity
     {
         void Create(TEntity entity);
 
@@ -19,6 +19,8 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
         void Delete(int id);
 
         IQueryable<TEntity> GetAll();
+        
+        public TEntity GetById(int id);
 
     }
 }

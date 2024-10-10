@@ -1,5 +1,6 @@
 ﻿using CalorieTrackingApp.DAL.Context;
 using CalorieTrackingApp.DAL.Entities.Abstract;
+using CalorieTrackingApp.DAL.Entities.Concrete;
 using CalorieTrackingApp.DAL.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,15 +37,13 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
                 DataStatus.Updated : DataStatus.Deleted;
             entity.ModifiedDate = DateTime.Now;
             _entities.Update(entity);
-
         }
 
         public void Delete(TEntity entity)
         {
             entity.DataStatus = DataStatus.Deleted;
             entity.DeletedDate = DateTime.Now;
-            _entities.Update(entity);
-            
+            _entities.Update(entity); 
         }
 
         public void Delete(int id)
@@ -54,16 +53,33 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
             Delete(entity);
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public IQueryable<TEntity> GetAll()
         {
             return _entities.Where(e => e.DataStatus != DataStatus.Deleted).AsNoTracking();
         }
 
-        
+        public TEntity GetById(int id)
+        {
+            return _entities.AsNoTracking().Where(e => e.Id == id).SingleOrDefault();
+        }
+        //Buraları alp hocanınkilerle karşılaştırıp datastatus ayarlarına bakalım.
+        //Datastatus güncellemeleri yapılacak.
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _dbContext.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

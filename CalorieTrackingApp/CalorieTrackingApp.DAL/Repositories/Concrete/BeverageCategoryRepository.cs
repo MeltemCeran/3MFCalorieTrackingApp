@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.DAL.Repositories.Concrete
 {
-    public class BeverageCategoryRepository : Repository<BeverageCategory>
+    public class BeverageCategoryRepository : Repository<BeverageCategory>, IBeverageCategoryRepository
     {
         public BeverageCategoryRepository(DbContext dbContext) : base(dbContext)
         {
