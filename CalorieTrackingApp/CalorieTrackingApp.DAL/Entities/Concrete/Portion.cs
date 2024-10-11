@@ -13,5 +13,6 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
         public decimal Value { get; set; }
         public virtual ICollection<Beverage> Beverages { get; set; } = new List<Beverage>();
         public virtual ICollection<Food> Foods { get; set; } = new List<Food>();
+        public string ProductType { get; set; }
     }
 }
