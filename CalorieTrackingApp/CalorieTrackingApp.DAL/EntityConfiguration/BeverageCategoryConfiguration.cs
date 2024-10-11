@@ -13,9 +13,7 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<BeverageCategory> builder)
         {
-            builder.Property(bc => bc.BeverageCategoryName)
-                .IsRequired()
-                .HasMaxLength(30);
+            builder.Property(bc => bc.BeverageCategoryName).HasMaxLength(30);
 
             builder.HasData(
                 new BeverageCategory

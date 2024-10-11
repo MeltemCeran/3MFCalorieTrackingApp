@@ -9,47 +9,69 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.DAL.EntityConfiguration
 {
-    public class FoodCategoryConfiguration : IEntityTypeConfiguration<FoodCategory>
+    public class PortionConfiguration : IEntityTypeConfiguration<Portion>
     {
-        public void Configure(EntityTypeBuilder<FoodCategory> builder)
+        public void Configure(EntityTypeBuilder<Portion> builder)
         {
-            builder.Property(fc => fc.FoodCategoryName).HasMaxLength(30).HasColumnType("nvarchar(30)");
+            builder.Property(p => p.PortionType)
+                .IsRequired()
+                .HasMaxLength(15);
+
+            builder.Property(p => p.Value)
+                .IsRequired()
+                .HasColumnType("decimal(2, 2)");
+
+            builder.Property(p => p.ProductType)
+                .IsRequired()
+                .HasMaxLength(15);
 
             builder.HasData(
-                new FoodCategory
+                new Portion
                 {
                     Id = 1,
-                    FoodCategoryName = "Çorba",
+                    PortionType = "Porsiyon",
+                    Value = 100,
+                    ProductType = "Yiyecek",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
-                new FoodCategory
+                new Portion
                 {
                     Id = 2,
-                    FoodCategoryName = "Salata",
+                    PortionType = "Tabak",
+                    Value = 1,
+                    ProductType = "Yiyecek",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
-                new FoodCategory
+                new Portion
                 {
                     Id = 3,
-                    FoodCategoryName = "Ana Yemek",
+                    PortionType = "Adet",
+                    Value = 1,
+                    ProductType = "",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
-                new FoodCategory
+                new Portion
                 {
                     Id = 4,
-                    FoodCategoryName = "Makarna",
+                    PortionType = "Dilim",
+                    Value = 1,
+                    ProductType = "",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
-                new FoodCategory
+                new Portion
                 {
                     Id = 5,
-                    FoodCategoryName = "Atıştırmalık",
+                    PortionType = "Fincan",
+                    Value = 1,
+                    ProductType = "",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
-                new FoodCategory
+                new Portion
                 {
                     Id = 6,
-                    FoodCategoryName = "Tatlı",
+                    PortionType = "Bardak(ml)",
+                    Value = 1,
+                    ProductType = "",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 });
         }
