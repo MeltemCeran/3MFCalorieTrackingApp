@@ -17,7 +17,6 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
         public virtual ICollection<DailyUserRecord> FoodRecords { get; set; } = new List<DailyUserRecord>();
         public int FoodCategoryId { get; set; }
         public virtual FoodCategory FoodCategory { get; set; }
-        public virtual ICollection<MealFood> MealFoods { get; set; } 
 
     }
 }

@@ -4,6 +4,7 @@ using CalorieTrackingApp.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalorieTrackingApp.DAL.Migrations
 {
     [DbContext(typeof(CalorieDbContext))]
-    partial class CalorieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241011140329_PortionAndDailyUserRecordFK")]
+    partial class PortionAndDailyUserRecordFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -365,6 +368,21 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.ToTable("Meals");
                 });
 
+            modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.MealFood", b =>
+                {
+                    b.Property<int>("MealId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FoodId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MealId", "FoodId");
+
+                    b.HasIndex("FoodId");
+
+                    b.ToTable("MealFoods");
+                });
+
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Portion", b =>
                 {
                     b.Property<int>("Id")
@@ -558,6 +576,25 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.Navigation("Portion");
                 });
 
+            modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.MealFood", b =>
+                {
+                    b.HasOne("CalorieTrackingApp.DAL.Entities.Concrete.Food", "Food")
+                        .WithMany("MealFoods")
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CalorieTrackingApp.DAL.Entities.Concrete.Meal", "Meal")
+                        .WithMany("MealFoods")
+                        .HasForeignKey("MealId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Food");
+
+                    b.Navigation("Meal");
+                });
+
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Beverage", b =>
                 {
                     b.Navigation("BeverageRecords");
@@ -571,6 +608,8 @@ namespace CalorieTrackingApp.DAL.Migrations
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Food", b =>
                 {
                     b.Navigation("FoodRecords");
+
+                    b.Navigation("MealFoods");
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.FoodCategory", b =>
@@ -580,6 +619,8 @@ namespace CalorieTrackingApp.DAL.Migrations
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Meal", b =>
                 {
+                    b.Navigation("MealFoods");
+
                     b.Navigation("MealsRecords");
                 });
 
