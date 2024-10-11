@@ -34,13 +34,15 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Portion> Portions { get; set; }
 
-
-
         //Buradan itibaren viewler olacak
-        public DbSet<UserMealDailyFoodRecord> UsersMealFoodRecords { get; set; }
+        public DbSet<TotalCalorie> TotalCalories { get; set; }
+        public DbSet<UserMealBeverageCalorieGroup> UserMealBeverageCalorieGroups { get; set; }
+        public DbSet<UserMealDailyBeverageRecord> UserMealDailyBeverageRecords { get; set; }
+        public DbSet<UserMealDailyFoodRecord> UsersMealDailyFoodRecords { get; set; }
+        public DbSet<UserMealFoodCalorieGroup> UserMealFoodCalorieGroups{ get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(merveConnectionString);
+            optionsBuilder.UseSqlServer(meltemConnectionString);
 
         }
 

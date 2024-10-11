@@ -4,6 +4,7 @@ using CalorieTrackingApp.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalorieTrackingApp.DAL.Migrations
 {
     [DbContext(typeof(CalorieDbContext))]
-    partial class CalorieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241011145551_CreateVwUserMealFoodRecord")]
+    partial class CreateVwUserMealFoodRecord
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -484,67 +487,10 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.TotalCalorie", b =>
-                {
-                    b.Property<string>("MealName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("RecordDate")
-                        .HasColumnType("date");
-
-                    b.Property<decimal>("TotalCalories")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.ToTable("TotalCalories");
-                });
-
-            modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealBeverageCalorieGroup", b =>
-                {
-                    b.Property<string>("MealName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("RecordDate")
-                        .HasColumnType("date");
-
-                    b.Property<int>("TotalBeverageCalorie")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.ToTable("UserMealBeverageCalorieGroups");
-                });
-
-            modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealDailyBeverageRecord", b =>
-                {
-                    b.Property<float>("BeverageCalorie")
-                        .HasColumnType("real");
-
-                    b.Property<string>("MealName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("RecordDate")
-                        .HasColumnType("date");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.ToTable("UserMealDailyBeverageRecords");
-                });
-
             modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealDailyFoodRecord", b =>
                 {
-                    b.Property<int>("FoodCalorie")
-                        .HasColumnType("int");
+                    b.Property<float>("FoodCalorie")
+                        .HasColumnType("real");
 
                     b.Property<string>("MealName")
                         .IsRequired()
@@ -562,24 +508,6 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.ToTable((string)null);
 
                     b.ToView("vwUserMealDailyFoodRecord", (string)null);
-                });
-
-            modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealFoodCalorieGroup", b =>
-                {
-                    b.Property<string>("MealName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("RecordDate")
-                        .HasColumnType("date");
-
-                    b.Property<int>("TotalFoodCalorie")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.ToTable("UserMealFoodCalorieGroups");
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Beverage", b =>

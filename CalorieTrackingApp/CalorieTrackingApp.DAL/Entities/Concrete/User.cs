@@ -26,5 +26,8 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
         [NotMapped]
         public DateOnly DailyUserRecordDate { get; set; }
 
+        [NotMapped]
+        public int MonthlyCalorieTotal { get; set; }
+
     }
 }

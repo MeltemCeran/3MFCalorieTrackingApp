@@ -17,54 +17,53 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
 
         }
 
-        public ICollection<User> GetUsers(int userId = default(int), DateOnly date = default(DateOnly))
-        {
-            //return (ICollection<User>)_entities.AsNoTracking().ToList(); //İllaki cast etmemi istedi neden olabilir?
-
-            IQueryable<DailyUserRecord> query = _entities.Include(dur => dur.Users);
-
-            if(userId != default(int))
-                query = query.Where(u => u.UserId == userId);
-
-            if (date != default(DateOnly))
-                query = query.Where(u => u.RecordDate == date);
-
-            return query
-                .GroupBy(g => new { g.Users, g.RecordDate })
-                .Select(s => new User { Name = s.Key.Users.Name, DailyUserRecordDate = s.Key.RecordDate, CountDailyUserRecord = s.Count() })
-                .ToList();
-        }
-        public ICollection<User> GetUserById(int userId)
-        {
-            return (ICollection<User>)_entities.AsNoTracking().Where(d => d.UserId == userId).ToList();
-        }
-
-        public ICollection<Meal> GetMeals(string name)
-        {
-            return (ICollection<Meal>)_entities.Include(d => d.Meals).Where(d => d.Meals.MealName == name).ToList();
-        }
-
-        public ICollection<Food> GetFoods()
-        {
-            return (ICollection<Food>)_entities.AsNoTracking().ToList();
-        }
-
-        public ICollection<Food> GetFoodById(int foodId)
-        {
-            return (ICollection<Food>)_entities.Where(d => d.FoodId == foodId).ToList();
-        }
-        public ICollection<Beverage> GetBeverages()
-        {
-            return (ICollection<Beverage>)_entities.AsNoTracking().ToList();
-        }
-        public ICollection<Beverage> GetBeverageById(int beverageId)
-        {
-            return (ICollection<Beverage>)_entities.Where(d => d.BeverageId == beverageId).ToList();
-        }
-
-        //public ICollection<DailyUserRecord> GetDailyReport(User user,Meal meal,Food food)
+        //public ICollection<User> GetUsersRecords(int userId = default(int), DateOnly date = default(DateOnly))
         //{
-        //    _dbContext.VwaaaT.
+        //    IQueryable<DailyUserRecord> query = _entities.Include(dur => dur.Users);
+
+        //    if(userId != default(int))
+        //        query = query.Where(u => u.UserId == userId);
+
+        //    if (date != default(DateOnly))
+        //        query = query.Where(u => u.RecordDate == date);
+
+        //    return query
+        //        .GroupBy(g => new { g.Users, g.RecordDate })
+        //        .Select(s => new User { Name = s.Key.Users.Name, DailyUserRecordDate = s.Key.RecordDate, CountDailyUserRecord = s.Count() })
+        //        .ToList();
+
+        //    //Bu metot, belirli bir kullanıcıya ve/veya tarihe göre DailyUserRecord kayıtlarını getirip,
+        //    //her kullanıcı ve gün için kaç tane kayıt bulunduğunu bir User nesnesi koleksiyonu olarak döner.
         //}
+
+        //public ICollection<User> GetUsersMontlyCalorie(int userId = default(int), int year = default(int), int month = default(int))
+        //{
+        //    IQueryable<DailyUserRecord> query = _entities.Include(dur => dur.Users)
+        //                                                  .Include(dur => dur.Foods); // Gıda bilgilerini de dahil et
+
+        //    // Kullanıcı ID'sine göre filtreleme
+        //    if (userId != default(int))
+        //        query = query.Where(u => u.UserId == userId);
+
+        //    // Yıl ve ay bazında filtreleme
+        //    if (year != default(int) && month != default(int))
+        //    {
+        //        var startDate = new DateOnly(year, month, 1); // Ayın ilk günü
+        //        var endDate = startDate.AddMonths(1).AddDays(-1); // Ayın son günü
+        //        query = query.Where(u => u.RecordDate >= startDate && u.RecordDate <= endDate);
+        //    }
+
+        //    return query
+        //        .GroupBy(g => new { g.Users, Year = g.RecordDate.Year, Month = g.RecordDate.Month })
+        //        .Select(s => new User
+        //        {
+        //            Name = s.Key.Users.Name,
+        //            Surname = s.Key.Users.Surname,
+        //            CountDailyUserRecord = s.Count(),
+        //            MonthlyCalorieTotal = s.Sum(dailyrecord => dailyrecord.FoodCalorie) // Aylık kalori toplamını hesapla
+        //        })
+        //        .ToList();
+        //}
+       
     }
 }

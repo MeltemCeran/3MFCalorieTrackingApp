@@ -10,12 +10,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
 {
     public interface IDailyUserRecordRepository : IReposıtory<DailyUserRecord>, IDisposable
     {
-        public ICollection<User> GetUsers(int userId, DateOnly date);
-        public ICollection<User> GetUserById(int userId);
-        public ICollection<Meal> GetMeals(string name);
-        public ICollection<Food> GetFoods();
-        public ICollection<Food> GetFoodById(int foodId);
-        public ICollection<Beverage> GetBeverages();
-        public ICollection<Beverage> GetBeverageById(int beverageId);
+        
     }
 }

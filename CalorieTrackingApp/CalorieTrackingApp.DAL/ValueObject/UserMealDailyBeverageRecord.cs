@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.DAL.ValueObject
 {
-    public class UserMealDailyFBeverageRecord
+    [Keyless]
+    public class UserMealDailyBeverageRecord
     {
         public int UserId { get; set; }
         public string MealName { get; set; }
