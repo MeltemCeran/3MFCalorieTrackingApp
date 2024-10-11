@@ -14,5 +14,6 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
         public virtual ICollection<Beverage> Beverages { get; set; } = new List<Beverage>();
         public virtual ICollection<Food> Foods { get; set; } = new List<Food>();
         public string ProductType { get; set; }
+        public virtual ICollection<DailyUserRecord> PortionRecords { get; set; } = new List<DailyUserRecord>();
     }
 }

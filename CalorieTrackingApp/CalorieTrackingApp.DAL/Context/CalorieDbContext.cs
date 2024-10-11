@@ -33,7 +33,6 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<Meal> Meals { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Portion> Portions { get; set; }
-        public DbSet<MealFood> MealFoods { get; set; }
 
 
 
@@ -49,9 +48,6 @@ namespace CalorieTrackingApp.DAL.Context
         {
             base.OnModelCreating(modelBuilder);
             configurationReferance(modelBuilder);
-
-            modelBuilder.Entity<MealFood>()
-                        .HasKey(mf => new { mf.MealId, mf.FoodId });
 
             modelBuilder.Entity<Food>()
                         .HasOne(f => f.Portion)

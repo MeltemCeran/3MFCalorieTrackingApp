@@ -22,6 +22,8 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
         public virtual Food Foods { get; set; }
         public virtual Beverage Beverages { get; set; }
         public DateOnly RecordDate { get; set; }
+        public int PortionId { get; set; }
+        public virtual Portion Portions { get; set; }
 
         //öğün tarihi eklenecek // eklendi
         //where baseentity yazan yerler IEntity olsun
