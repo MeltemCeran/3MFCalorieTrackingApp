@@ -19,7 +19,10 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
                 AdminName = "admin",
                 Password = "admin123",
                 Name = "Admin_Name",
-                Surname = "admin@example.com"
+                Surname = "admin@example.com",
+                CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                //Her çalıştığında create date i oluşturmaması için sabit bir değer koyduk bu değer üzerinden çalışacak.
+                //Her seferinde yeni seed data oluşturmasın diye.
             });
 
             builder.Property(a => a.AdminName)

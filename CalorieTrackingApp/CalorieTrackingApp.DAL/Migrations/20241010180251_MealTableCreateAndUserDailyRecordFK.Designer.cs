@@ -4,6 +4,7 @@ using CalorieTrackingApp.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalorieTrackingApp.DAL.Migrations
 {
     [DbContext(typeof(CalorieDbContext))]
-    partial class CalorieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241010180251_MealTableCreateAndUserDailyRecordFK")]
+    partial class MealTableCreateAndUserDailyRecordFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +72,7 @@ namespace CalorieTrackingApp.DAL.Migrations
                         {
                             Id = 1,
                             AdminName = "admin",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
+                            CreatedDate = new DateTime(2024, 10, 10, 21, 2, 50, 878, DateTimeKind.Local).AddTicks(7822),
                             DataStatus = 0,
                             Name = "Admin_Name",
                             Password = "admin123",
@@ -106,6 +109,9 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Portion")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -155,6 +161,9 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.Property<int>("BeverageId")
                         .HasColumnType("int");
 
+                    b.Property<int>("BeveragesPortions")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -165,6 +174,9 @@ namespace CalorieTrackingApp.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FoodId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FoodPortions")
                         .HasColumnType("int");
 
                     b.Property<int>("MealId")
@@ -223,7 +235,7 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PortionId")
+                    b.Property<int>("Portion")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -290,48 +302,6 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Meals");
-                });
-
-            modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Portion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BeverageId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DataStatus")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FoodId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PortionType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BeverageId");
-
-                    b.HasIndex("FoodId");
-
-                    b.ToTable("Portions");
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.User", b =>
@@ -444,29 +414,8 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.Navigation("FoodCategory");
                 });
 
-            modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Portion", b =>
-                {
-                    b.HasOne("CalorieTrackingApp.DAL.Entities.Concrete.Beverage", "Beverage")
-                        .WithMany("BeveragePortions")
-                        .HasForeignKey("BeverageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CalorieTrackingApp.DAL.Entities.Concrete.Food", "Food")
-                        .WithMany("FoodPortions")
-                        .HasForeignKey("FoodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Beverage");
-
-                    b.Navigation("Food");
-                });
-
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Beverage", b =>
                 {
-                    b.Navigation("BeveragePortions");
-
                     b.Navigation("BeverageRecords");
                 });
 
@@ -477,8 +426,6 @@ namespace CalorieTrackingApp.DAL.Migrations
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Food", b =>
                 {
-                    b.Navigation("FoodPortions");
-
                     b.Navigation("FoodRecords");
                 });
 

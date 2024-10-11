@@ -27,11 +27,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
             return _entities.Where(f => f.FoodCalorie == calorie).ToList();
         }
 
-        public ICollection<Food> GetPortion(Portion portion)
-        {
-            return _entities.Where(f => f.Portion == portion).ToList();
-        }
-
         public ICollection<Food> GetFoodCategoryId(int id)
         {
             return _entities.Where(f => f.FoodCategoryId == id).ToList();

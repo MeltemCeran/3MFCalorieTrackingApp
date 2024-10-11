@@ -14,8 +14,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
 
         public ICollection<Food> GetFoodCalorie(float calorie);
 
-        public ICollection<Food> GetPortion(Portion portion);
-
         public ICollection<Food> GetFoodCategoryId(int id);
 
         public ICollection<Food> GetFoodCategory(FoodCategory foodCategory);

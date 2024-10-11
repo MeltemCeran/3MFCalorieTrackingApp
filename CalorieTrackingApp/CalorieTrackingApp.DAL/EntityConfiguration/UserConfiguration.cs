@@ -32,9 +32,6 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
             builder.Property(u => u.UserName)
             .IsRequired()
             .HasColumnType("varchar(30)");
-
-
-
         }
     }
 }

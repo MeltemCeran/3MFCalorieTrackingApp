@@ -14,8 +14,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
 
         public ICollection<Beverage> GetBeverageCalorie(float calorie);
 
-        public ICollection <Beverage> GetPortion(Portion portion);
-
         public ICollection<Beverage> GetBeverageCategoryId(int id);
 
         public ICollection<Beverage> GetBeverageCategory(BeverageCategory beverageCategory);

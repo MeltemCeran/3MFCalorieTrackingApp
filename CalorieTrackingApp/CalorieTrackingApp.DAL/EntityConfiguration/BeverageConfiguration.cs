@@ -15,7 +15,7 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
         {
             builder.Property(b => b.BeverageName)
             .IsRequired()
-            .HasColumnType("varchar(30)");// nvarchar olacak
+            .HasColumnType("nvarchar(30)");// nvarchar olacak --yapıldı
 
         }
     }

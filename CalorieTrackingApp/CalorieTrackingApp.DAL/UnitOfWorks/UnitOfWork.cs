@@ -26,6 +26,8 @@ namespace CalorieTrackingApp.DAL.UnitOfWorks
             FoodCategories = new FoodCategoryRepository(_dbContext);
             Foods = new FoodRepository(_dbContext);
             Users = new UserRepository(_dbContext);
+            Meals = new MealRepository(_dbContext);
+            Portions = new PortionRepository(_dbContext);
         }
 
         public IAdminRepository Admins { get; private set; }
@@ -41,6 +43,10 @@ namespace CalorieTrackingApp.DAL.UnitOfWorks
         public IFoodRepository Foods { get; private set; }
 
         public IUserRepository Users { get; private set; }
+
+        public IMealRepository Meals { get; private set; }
+
+        public IPortionRepository Portions { get; private set; }
 
         public int Complete()
         {

@@ -17,34 +17,54 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
 
         }
 
-        public ICollection<DailyUserRecord> GetUsers(User user)
+        public ICollection<User> GetUsers(int userId = default(int), DateOnly date = default(DateOnly))
         {
-            return _entities.Where(d => d.Users == user).ToList();
+            //return (ICollection<User>)_entities.AsNoTracking().ToList(); //İllaki cast etmemi istedi neden olabilir?
+
+            IQueryable<DailyUserRecord> query = _entities.Include(dur => dur.Users);
+
+            if(userId != default(int))
+                query = query.Where(u => u.UserId == userId);
+
+            if (date != default(DateOnly))
+                query = query.Where(u => u.RecordDate == date);
+
+            return query
+                .GroupBy(g => new { g.Users, g.RecordDate })
+                .Select(s => new User { Name = s.Key.Users.Name, DailyUserRecordDate = s.Key.RecordDate, CountDailyUserRecord = s.Count() })
+                .ToList();
+        }
+        public ICollection<User> GetUserById(int userId)
+        {
+            return (ICollection<User>)_entities.AsNoTracking().Where(d => d.UserId == userId).ToList();
         }
 
-        public ICollection<DailyUserRecord> GetMeals(Meal meal)
+        public ICollection<Meal> GetMeals(string name)
         {
-            return _entities.Where(d => d.Meals == meal).ToList();
+            return (ICollection<Meal>)_entities.Include(d => d.Meals).Where(d => d.Meals.MealName == name).ToList();
         }
 
-        public ICollection<DailyUserRecord> GetFoods(Food food)
+        public ICollection<Food> GetFoods()
         {
-            return _entities.Where(d => d.Foods == food).ToList();
+            return (ICollection<Food>)_entities.AsNoTracking().ToList();
         }
 
-        public ICollection<DailyUserRecord> GetFoodPortions(Portion portion)
+        public ICollection<Food> GetFoodById(int foodId)
         {
-            return _entities.Where(d => d.FoodPortions == portion).ToList();
+            return (ICollection<Food>)_entities.Where(d => d.FoodId == foodId).ToList();
+        }
+        public ICollection<Beverage> GetBeverages()
+        {
+            return (ICollection<Beverage>)_entities.AsNoTracking().ToList();
+        }
+        public ICollection<Beverage> GetBeverageById(int beverageId)
+        {
+            return (ICollection<Beverage>)_entities.Where(d => d.BeverageId == beverageId).ToList();
         }
 
-        public ICollection<DailyUserRecord> GetBeverages(Beverage beverage)
-        {
-            return _entities.Where(d => d.Beverages == beverage).ToList();
-        }
-
-        public ICollection<DailyUserRecord> GetBeveragePortions(Portion portion)
-        {
-            return _entities.Where(d => d.BeveragesPortions == portion).ToList();
-        }
+        //public ICollection<DailyUserRecord> GetDailyReport(User user,Meal meal,Food food)
+        //{
+        //    _dbContext.VwaaaT.
+        //}
     }
 }

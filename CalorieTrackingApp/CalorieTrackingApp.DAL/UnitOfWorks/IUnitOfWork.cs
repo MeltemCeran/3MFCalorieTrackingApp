@@ -17,6 +17,8 @@ namespace CalorieTrackingApp.DAL.UnitOfWorks
         IFoodCategoryRepository FoodCategories { get; }
         IFoodRepository Foods { get; }
         IUserRepository Users { get; }
+        IMealRepository Meals { get; }
+        IPortionRepository Portions { get; }
 
         int Complete();
     }
