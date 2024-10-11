@@ -13,10 +13,11 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
         public string FoodName { get; set; }
         public float FoodCalorie { get; set; }
         public int PortionId { get; set; }
-        public virtual ICollection<Portion> FoodPortions { get; set; } = new List<Portion>();
+        public virtual Portion Portion { get; set; }
         public virtual ICollection<DailyUserRecord> FoodRecords { get; set; } = new List<DailyUserRecord>();
         public int FoodCategoryId { get; set; }
         public virtual FoodCategory FoodCategory { get; set; }
+        public virtual ICollection<MealFood> MealFoods { get; set; } 
 
     }
 }

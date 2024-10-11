@@ -4,6 +4,7 @@ using CalorieTrackingApp.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalorieTrackingApp.DAL.Migrations
 {
     [DbContext(typeof(CalorieDbContext))]
-    partial class CalorieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241011110538_MealFoodTableCreateAndFK")]
+    partial class MealFoodTableCreateAndFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,14 +110,9 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PortionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BeverageCategoryId");
-
-                    b.HasIndex("PortionId");
 
                     b.ToTable("Beverages");
                 });
@@ -235,8 +233,6 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasIndex("FoodCategoryId");
 
-                    b.HasIndex("PortionId");
-
                     b.ToTable("Foods");
                 });
 
@@ -322,6 +318,9 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BeverageId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -330,6 +329,9 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("FoodId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -342,6 +344,10 @@ namespace CalorieTrackingApp.DAL.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BeverageId");
+
+                    b.HasIndex("FoodId");
 
                     b.ToTable("Portions");
                 });
@@ -430,15 +436,7 @@ namespace CalorieTrackingApp.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CalorieTrackingApp.DAL.Entities.Concrete.Portion", "Portion")
-                        .WithMany("Beverages")
-                        .HasForeignKey("PortionId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.Navigation("BeverageCategory");
-
-                    b.Navigation("Portion");
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.DailyUserRecord", b =>
@@ -484,15 +482,7 @@ namespace CalorieTrackingApp.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CalorieTrackingApp.DAL.Entities.Concrete.Portion", "Portion")
-                        .WithMany("Foods")
-                        .HasForeignKey("PortionId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.Navigation("FoodCategory");
-
-                    b.Navigation("Portion");
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.MealFood", b =>
@@ -514,8 +504,29 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.Navigation("Meal");
                 });
 
+            modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Portion", b =>
+                {
+                    b.HasOne("CalorieTrackingApp.DAL.Entities.Concrete.Beverage", "Beverage")
+                        .WithMany("BeveragePortions")
+                        .HasForeignKey("BeverageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CalorieTrackingApp.DAL.Entities.Concrete.Food", "Food")
+                        .WithMany("FoodPortions")
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Beverage");
+
+                    b.Navigation("Food");
+                });
+
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Beverage", b =>
                 {
+                    b.Navigation("BeveragePortions");
+
                     b.Navigation("BeverageRecords");
                 });
 
@@ -526,6 +537,8 @@ namespace CalorieTrackingApp.DAL.Migrations
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Food", b =>
                 {
+                    b.Navigation("FoodPortions");
+
                     b.Navigation("FoodRecords");
 
                     b.Navigation("MealFoods");
@@ -541,13 +554,6 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.Navigation("MealFoods");
 
                     b.Navigation("MealsRecords");
-                });
-
-            modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Portion", b =>
-                {
-                    b.Navigation("Beverages");
-
-                    b.Navigation("Foods");
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.User", b =>

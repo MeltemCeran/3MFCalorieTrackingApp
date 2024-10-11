@@ -1,5 +1,6 @@
 ﻿using CalorieTrackingApp.DAL.Entities.Concrete;
 using CalorieTrackingApp.DAL.EntityConfiguration;
+using CalorieTrackingApp.DAL.ValueObject;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,12 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<Meal> Meals { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Portion> Portions { get; set; }
+        public DbSet<MealFood> MealFoods { get; set; }
+
+
+
+        //Buradan itibaren viewler olacak
+        public DbSet<UserMealDailyFoodRecord> UsersMealFoodRecords { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(meltemConnectionString);
@@ -42,6 +49,21 @@ namespace CalorieTrackingApp.DAL.Context
         {
             base.OnModelCreating(modelBuilder);
             configurationReferance(modelBuilder);
+
+            modelBuilder.Entity<MealFood>()
+                        .HasKey(mf => new { mf.MealId, mf.FoodId });
+
+            modelBuilder.Entity<Food>()
+                        .HasOne(f => f.Portion)
+                        .WithMany(p => p.Foods)
+                        .HasForeignKey(f => f.PortionId)
+                        .OnDelete(DeleteBehavior.NoAction); // Cascade silmeyi kapatıyoruz
+
+            modelBuilder.Entity<Beverage>()
+                        .HasOne(b => b.Portion)
+                        .WithMany(p => p.Beverages)
+                        .HasForeignKey(b => b.PortionId)
+                        .OnDelete(DeleteBehavior.NoAction); // Cascade silmeyi kapatıyoruz
         }
 
         private static void configurationReferance(ModelBuilder modelBuilder)
@@ -52,6 +74,8 @@ namespace CalorieTrackingApp.DAL.Context
             modelBuilder.ApplyConfiguration(new FoodConfiguration());
             modelBuilder.ApplyConfiguration(new FoodCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+
+            modelBuilder.Entity<UserMealDailyFoodRecord>().ToView("vwUserMealDailyFoodRecord");
         }
 
         /*
