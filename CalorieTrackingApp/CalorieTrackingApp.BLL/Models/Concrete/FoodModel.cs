@@ -1,4 +1,5 @@
-﻿using CalorieTrackingApp.DAL.Entities.Concrete;
+﻿using CalorieTrackingApp.BLL.Models.Abstract;
+using CalorieTrackingApp.DAL.Entities.Concrete;
 using CalorieTrackingApp.DAL.Enums;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CalorieTrackingApp.BLL.Models
+namespace CalorieTrackingApp.BLL.Models.Concrete
 {
-    public class FoodModel
+    public class FoodModel : BaseViewModel
     {
         public int Id { get; set; }
         public string FoodName { get; set; }
