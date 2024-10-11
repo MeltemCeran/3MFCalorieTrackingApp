@@ -16,6 +16,20 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
             builder.Property(bc => bc.BeverageCategoryName)
                 .IsRequired()
                 .HasMaxLength(30);
+
+            builder.HasData(
+                new BeverageCategory
+                {
+                    Id = 1,
+                    BeverageCategoryName = "Sıcak İçecek",
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                },
+                new BeverageCategory
+                {
+                    Id = 2,
+                    BeverageCategoryName = "Soğuk İçecek",
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                });
         }
     }
 }

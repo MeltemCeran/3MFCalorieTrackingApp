@@ -41,7 +41,7 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<UserMealDailyFoodRecord> UsersMealFoodRecords { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(meltemConnectionString);
+            optionsBuilder.UseSqlServer(merveConnectionString);
 
         }
 
@@ -71,8 +71,11 @@ namespace CalorieTrackingApp.DAL.Context
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
             modelBuilder.ApplyConfiguration(new BeverageConfiguration());
             modelBuilder.ApplyConfiguration(new BeverageCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new DailyUserRecordConfiguration());
             modelBuilder.ApplyConfiguration(new FoodConfiguration());
             modelBuilder.ApplyConfiguration(new FoodCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new MealConfiguration());
+            modelBuilder.ApplyConfiguration(new PortionConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
 
             modelBuilder.Entity<UserMealDailyFoodRecord>().ToView("vwUserMealDailyFoodRecord");
