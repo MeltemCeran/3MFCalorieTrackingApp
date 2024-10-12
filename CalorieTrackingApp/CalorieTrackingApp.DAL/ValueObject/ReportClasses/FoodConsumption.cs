@@ -12,6 +12,7 @@ namespace CalorieTrackingApp.DAL.ValueObject.ReportClasses
         public string FoodName { get; set; } 
         public int Quantity { get; set; } 
         public int TotalConsumed { get; set; }
-        public float TotalCalories { get; set; } 
+        public decimal TotalCalories { get; set; }
+        public string MealType { get; set; }
     }
 }

@@ -11,10 +11,10 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
 {
     public class FoodModel : BaseViewModel
     {
-        public int Id { get; set; }
         public string FoodName { get; set; }
-        public float FoodCalorie { get; set; }
-        public Portion Portion { get; set; }
+        public decimal FoodCalorie { get; set; }
+        public int PortionId { get; set; }
+        public virtual Portion Portion { get; set; }
         public virtual ICollection<DailyUserRecord> FoodRecords { get; set; } = new List<DailyUserRecord>();
         public int FoodCategoryId { get; set; }
         public virtual FoodCategory FoodCategory { get; set; }

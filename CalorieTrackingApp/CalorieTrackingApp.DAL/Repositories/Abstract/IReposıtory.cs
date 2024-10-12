@@ -11,15 +11,10 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
     public interface IReposıtory<TEntity> : IDisposable where TEntity : BaseEntity
     {
         void Create(TEntity entity);
-
         void Update(TEntity entity);
-
         void Delete(TEntity entity); //SOFT DELETE
-
         void Delete(int id);
-
         IQueryable<TEntity> GetAll();
-        
         public TEntity GetById(int id);
 
     }

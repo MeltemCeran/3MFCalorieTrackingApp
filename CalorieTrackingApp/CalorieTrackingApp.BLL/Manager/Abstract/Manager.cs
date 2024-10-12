@@ -42,16 +42,19 @@ namespace CalorieTrackingApp.BLL.Manager.Abstract
         {
             _service.Delete(id);
         }
-
-        
-
+        public ICollection<TModel> GetAll()
+        {
+            return _service.GetAll();
+        }
         public TModel GetById(int id)
         {
             return _service.GetById(id);
-        }
-        //Buraları alp hocanınkilerle karşılaştırıp datastatus ayarlarına bakalım.
-        //Datastatus güncellemeleri yapılacak.
 
+        }
+        public int Save()
+        {
+            return _service.Save();
+        }
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)
@@ -69,9 +72,5 @@ namespace CalorieTrackingApp.BLL.Manager.Abstract
             GC.SuppressFinalize(this);
         }
 
-        IQueryable<TModel> IManager<TModel>.GetAll()
-        {
-           return _service.GetAll().AsQueryable();
-        }
     }
 }

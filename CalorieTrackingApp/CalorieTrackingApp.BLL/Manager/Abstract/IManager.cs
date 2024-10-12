@@ -9,15 +9,12 @@ namespace CalorieTrackingApp.BLL.Manager.Abstract
 {
     public interface IManager<TModel> :IDisposable where TModel : class
     {
-        void Create(TModel entity);
-        void Update(TModel entity);
-
-        void Delete(TModel entity); //SOFT DELETE
-
+        void Create(TModel model);
+        void Update(TModel model);
+        void Delete(TModel model); //SOFT DELETE
         void Delete(int id);
-
-        IQueryable<TModel> GetAll();
-
+        ICollection<TModel> GetAll();
         public TModel GetById(int id);
+        int Save();
     }
 }

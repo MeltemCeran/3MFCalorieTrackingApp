@@ -11,12 +11,13 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
 {
     public class BeverageModel: BaseViewModel
     {
-        public int Id { get; set; }
         public string BeverageName { get; set; }
-        public float BeverageCalorie { get; set; }
-        public Portion Portion { get; set; }
+        public decimal BeverageCalorie { get; set; }
+        public virtual Portion Portion { get; set; }
+        public int PortionId { get; set; }
         public virtual ICollection<DailyUserRecord> BeverageRecords { get; set; } = new List<DailyUserRecord>();
         public int BeverageCategoryId { get; set; }
         public virtual BeverageCategory BeverageCategory { get; set; }
     }
+}
 }

@@ -22,7 +22,7 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
             return _entities.Where(f => f.FoodName == name).ToList();
         }
 
-        public ICollection<Food> GetFoodCalorie(float calorie)
+        public ICollection<Food> GetFoodCalorie(decimal calorie)
         {
             return _entities.Where(f => f.FoodCalorie == calorie).ToList();
         }

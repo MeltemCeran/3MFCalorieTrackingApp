@@ -20,14 +20,15 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
         public AgeGap UserAgeGap { get; set; }
         public Goal UserGoal { get; set; }
 
-        [NotMapped]
-        public int CountDailyUserRecord { get; set; }
+        //[NotMapped]
+        //public int CountDailyUserRecord { get; set; }
 
-        [NotMapped]
-        public DateOnly DailyUserRecordDate { get; set; }
+        //[NotMapped]
+        //public DateOnly DailyUserRecordDate { get; set; }
 
-        [NotMapped]
-        public int MonthlyCalorieTotal { get; set; }
+        //[NotMapped]
+        //public int MonthlyCalorieTotal { get; set; }
 
+        //Bu kısmı hiç kullanmamışım 
     }
 }

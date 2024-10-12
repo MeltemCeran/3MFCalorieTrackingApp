@@ -4,6 +4,7 @@ using CalorieTrackingApp.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalorieTrackingApp.DAL.Migrations
 {
     [DbContext(typeof(CalorieDbContext))]
-    partial class CalorieDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241012082515_FoodAndBeverageAlterColumnDecimal")]
+    partial class FoodAndBeverageAlterColumnDecimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -522,8 +525,8 @@ namespace CalorieTrackingApp.DAL.Migrations
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealDailyBeverageRecord", b =>
                 {
-                    b.Property<decimal>("BeverageCalorie")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("BeverageCalorie")
+                        .HasColumnType("real");
 
                     b.Property<string>("MealName")
                         .IsRequired()
@@ -545,10 +548,6 @@ namespace CalorieTrackingApp.DAL.Migrations
                 {
                     b.Property<int>("FoodCalorie")
                         .HasColumnType("int");
-
-                    b.Property<string>("FoodName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MealName")
                         .IsRequired()

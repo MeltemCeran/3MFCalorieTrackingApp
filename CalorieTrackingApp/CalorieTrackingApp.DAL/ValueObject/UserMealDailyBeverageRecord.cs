@@ -12,7 +12,8 @@ namespace CalorieTrackingApp.DAL.ValueObject
     {
         public int UserId { get; set; }
         public string MealName { get; set; }
-        public float BeverageCalorie { get; set; }
+        public string BeverageName  { get; set; }
+        public decimal BeverageCalorie { get; set; }
         public decimal Value { get; set; }
         public DateOnly RecordDate { get; set; }
     }

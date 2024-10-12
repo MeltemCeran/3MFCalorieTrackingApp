@@ -62,8 +62,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
         {
             return _entities.AsNoTracking().Where(e => e.Id == id).SingleOrDefault();
         }
-        //Buraları alp hocanınkilerle karşılaştırıp datastatus ayarlarına bakalım.
-        //Datastatus güncellemeleri yapılacak.
 
         protected virtual void Dispose(bool disposing)
         {

@@ -11,7 +11,7 @@ namespace CalorieTrackingApp.DAL.Entities.Concrete
     public class Food : BaseEntity
     {
         public string FoodName { get; set; }
-        public float FoodCalorie { get; set; }
+        public decimal FoodCalorie { get; set; }
         public int PortionId { get; set; }
         public virtual Portion Portion { get; set; }
         public virtual ICollection<DailyUserRecord> FoodRecords { get; set; } = new List<DailyUserRecord>();

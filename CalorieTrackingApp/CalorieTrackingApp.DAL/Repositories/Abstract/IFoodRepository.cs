@@ -12,7 +12,7 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
     {
         public ICollection<Food> GetFoodName(string name);
 
-        public ICollection<Food> GetFoodCalorie(float calorie);
+        public ICollection<Food> GetFoodCalorie(decimal calorie);
 
         public ICollection<Food> GetFoodCategoryId(int id);
 

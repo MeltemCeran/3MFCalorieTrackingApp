@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.BLL.Models.Concrete
 {
-    public class BeverageCategoryModel : BaseViewModel
+    public class MealModel : BaseViewModel
     {
-        public string BeverageCategoryName { get; set; }
-        public virtual ICollection<Beverage> Beverages { get; set; } = new List<Beverage>();
+        public string MealName { get; set; }
+        public virtual ICollection<DailyUserRecord> MealsRecords { get; set; } = new List<DailyUserRecord>();
     }
 }

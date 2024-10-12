@@ -11,14 +11,16 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
 {
     public class DailyUserRecordModel: BaseViewModel
     {
-        public int Id { get; set; }
-        public User Users { get; set; }
-        public Meal Meals { get; set; }
-        //public FoodCategory FoodCategories { get; set; }
-        public Food Foods { get; set; }
-        public Portion FoodPortions { get; set; }
-        //public BeverageCategory BeverageCetegories { get; set; }
-        public Beverage Beverages { get; set; }
-        public Portion BeveragesPortions { get; set; }
+        public int UserId { get; set; }
+        public int MealId { get; set; }
+        public int FoodId { get; set; }
+        public int BeverageId { get; set; }
+        public virtual User Users { get; set; }
+        public virtual Meal Meals { get; set; }
+        public virtual Food Foods { get; set; }
+        public virtual Beverage Beverages { get; set; }
+        public DateOnly RecordDate { get; set; }
+        public int PortionId { get; set; }
+        public virtual Portion Portions { get; set; }
     }
 }
