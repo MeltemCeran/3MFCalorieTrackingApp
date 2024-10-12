@@ -13,42 +13,48 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<FoodCategory> builder)
         {
-            builder.Property(fc => fc.FoodCategoryName).HasMaxLength(30).HasColumnType("nvarchar(30)");
+            builder.Property(fc => fc.FoodCategoryName).HasColumnType("nvarchar(20)");
 
             builder.HasData(
                 new FoodCategory
                 {
                     Id = 1,
-                    FoodCategoryName = "Çorba",
+                    FoodCategoryName = "Kahvaltılık",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
                 new FoodCategory
                 {
                     Id = 2,
-                    FoodCategoryName = "Salata",
+                    FoodCategoryName = "Çorba",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
                 new FoodCategory
                 {
                     Id = 3,
-                    FoodCategoryName = "Ana Yemek",
+                    FoodCategoryName = "Salata",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
                 new FoodCategory
                 {
                     Id = 4,
-                    FoodCategoryName = "Makarna",
+                    FoodCategoryName = "Ana Yemek",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
                 new FoodCategory
                 {
                     Id = 5,
-                    FoodCategoryName = "Atıştırmalık",
+                    FoodCategoryName = "Makarna",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 },
                 new FoodCategory
                 {
                     Id = 6,
+                    FoodCategoryName = "Atıştırmalık",
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                },
+                new FoodCategory
+                {
+                    Id = 7,
                     FoodCategoryName = "Tatlı",
                     CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
                 });

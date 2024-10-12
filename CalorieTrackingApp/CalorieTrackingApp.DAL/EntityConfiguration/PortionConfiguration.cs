@@ -13,66 +13,68 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Portion> builder)
         {
-            builder.Property(p => p.PortionType)
-                .IsRequired()
-                .HasMaxLength(15);
+            builder.Property(p => p.PortionType).HasColumnType("nvarchar(15)");
 
-            builder.Property(p => p.Value)
-                .IsRequired()
-                .HasColumnType("decimal(2, 2)");
+            builder.Property(p => p.Value).HasColumnType("decimal(2, 2)");
 
-            builder.Property(p => p.ProductType)
-                .IsRequired()
-                .HasMaxLength(15);
+            builder.Property(p => p.ProductType).HasColumnType("nvarchar(15)");
 
             builder.HasData(
                 new Portion
                 {
                     Id = 1,
-                    PortionType = "Porsiyon",
-                    Value = 100,
-                    ProductType = "Yiyecek",
-                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                    PortionType = "Porsiyon(gr)",
+                    Value = 125,
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
+                    ProductType = "Yiyecek"
                 },
                 new Portion
                 {
                     Id = 2,
-                    PortionType = "Tabak",
+                    PortionType = "Adet(tane)",
                     Value = 1,
-                    ProductType = "Yiyecek",
-                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
+                    ProductType = "Yiyecek"
                 },
                 new Portion
                 {
                     Id = 3,
-                    PortionType = "Adet",
+                    PortionType = "Dilim(tane)",
                     Value = 1,
-                    ProductType = "",
-                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
+                    ProductType = "Yiyecek"
                 },
                 new Portion
                 {
                     Id = 4,
-                    PortionType = "Dilim",
-                    Value = 1,
-                    ProductType = "",
-                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                    PortionType = "Fincan(ml)",
+                    Value = 100,
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
+                    ProductType = "İçecek"
                 },
                 new Portion
                 {
                     Id = 5,
-                    PortionType = "Fincan",
-                    Value = 1,
-                    ProductType = "",
-                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                    PortionType = "Kupa Bardak(ml)",
+                    Value = 200,
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
+                    ProductType = "İçecek"
                 },
                 new Portion
                 {
                     Id = 6,
-                    PortionType = "Bardak(ml)",
-                    Value = 1,
-                    ProductType = "",
-                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444)
+                    PortionType = "Kutu(ml)",
+                    Value = 330,
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
+                    ProductType = "İçecek"
+                },
+                new Portion
+                {
+                    Id = 7,
+                    PortionType = "Çay Kaşığı(gr)",
+                    Value = 5,
+                    CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
+                    ProductType = "Yiyecek"
                 });
         }
     }
