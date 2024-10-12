@@ -42,7 +42,7 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<UserMealFoodCalorieGroup> UserMealFoodCalorieGroups{ get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(meltemConnectionString);
+            optionsBuilder.UseSqlServer(mustafaConnectionString);
 
         }
 
