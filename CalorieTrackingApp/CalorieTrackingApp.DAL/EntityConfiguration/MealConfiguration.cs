@@ -13,9 +13,7 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Meal> builder)
         {
-            builder.Property(m => m.MealName)
-                .IsRequired()
-                .HasMaxLength(20);
+            builder.Property(m => m.MealName).HasColumnType("nvarchar(15)");
 
             builder.HasData(
                 new Meal
