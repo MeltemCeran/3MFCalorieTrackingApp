@@ -20,4 +20,4 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
         public virtual BeverageCategory BeverageCategory { get; set; }
     }
 }
-}
+

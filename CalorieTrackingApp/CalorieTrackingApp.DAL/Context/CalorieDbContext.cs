@@ -25,6 +25,10 @@ namespace CalorieTrackingApp.DAL.Context
             database=CalorieTrackingDb;
             trusted_connection=true;
             trustservercertificate=true";
+        string fatihConnectionString = @"server=FATIH;
+            database=CalorieTrackingDb;
+            trusted_connection=true;
+            trustservercertificate=true";
         public DbSet<User> Users { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Beverage> Beverages { get; set; }
@@ -42,7 +46,7 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<UserMealFoodCalorieGroup> UserMealFoodCalorieGroups{ get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(meltemConnectionString);
+            optionsBuilder.UseSqlServer(fatihConnectionString);
 
         }
 

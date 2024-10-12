@@ -48,6 +48,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Password")
@@ -56,11 +57,12 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<string>("Surname")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
 
                     b.HasData(
                         new
@@ -71,7 +73,7 @@ namespace CalorieTrackingApp.DAL.Migrations
                             DataStatus = 0,
                             Name = "Admin_Name",
                             Password = "admin123",
-                            Surname = "Admin_Surname"
+                            Surname = "admin@example.com"
                         });
                 });
 
@@ -84,7 +86,7 @@ namespace CalorieTrackingApp.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("BeverageCalorie")
-                        .HasColumnType("decimal(2, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("BeverageCategoryId")
                         .HasColumnType("int");
@@ -114,99 +116,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasIndex("PortionId");
 
-                    b.ToTable("Beverages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BeverageCalorie = 0m,
-                            BeverageCategoryId = 3,
-                            BeverageName = "Su",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 5
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BeverageCalorie = 2m,
-                            BeverageCategoryId = 1,
-                            BeverageName = "Sade Türk Kahvesi",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 4
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BeverageCalorie = 15m,
-                            BeverageCategoryId = 1,
-                            BeverageName = "Orta Türk Kahvesi",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 4
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BeverageCalorie = 25m,
-                            BeverageCategoryId = 1,
-                            BeverageName = "Şekerli Türk Kahvesi",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BeverageCalorie = 149m,
-                            BeverageCategoryId = 2,
-                            BeverageName = "Kola",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 6
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BeverageCalorie = 1m,
-                            BeverageCategoryId = 2,
-                            BeverageName = "Light veya Zero Kola",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BeverageCalorie = 60m,
-                            BeverageCategoryId = 2,
-                            BeverageName = "Soğuk Çay",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 6
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BeverageCalorie = 10m,
-                            BeverageCategoryId = 2,
-                            BeverageName = "Light veya Zero Soğuk Çay",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 6
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BeverageCalorie = 40m,
-                            BeverageCategoryId = 2,
-                            BeverageName = "Şalgam(Acılı)",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionId = 5
-                        });
+                    b.ToTable("Beverages", (string)null);
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.BeverageCategory", b =>
@@ -219,7 +129,8 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<string>("BeverageCategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -235,7 +146,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BeverageCategories");
+                    b.ToTable("BeverageCategories", (string)null);
 
                     b.HasData(
                         new
@@ -249,13 +160,6 @@ namespace CalorieTrackingApp.DAL.Migrations
                         {
                             Id = 2,
                             BeverageCategoryName = "Soğuk İçecek",
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BeverageCategoryName = "Su",
                             CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
                             DataStatus = 0
                         });
@@ -311,45 +215,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DailyUserRecord");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BeverageId = 2,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodId = 16,
-                            MealId = 1,
-                            PortionId = 3,
-                            RecordDate = new DateOnly(2024, 10, 10),
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BeverageId = 9,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodId = 10,
-                            MealId = 2,
-                            PortionId = 1,
-                            RecordDate = new DateOnly(2024, 10, 10),
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BeverageId = 7,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodId = 12,
-                            MealId = 4,
-                            PortionId = 1,
-                            RecordDate = new DateOnly(2024, 10, 10),
-                            UserId = 3
-                        });
+                    b.ToTable("DailyUserRecord", (string)null);
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Food", b =>
@@ -370,13 +236,14 @@ namespace CalorieTrackingApp.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("FoodCalorie")
-                        .HasColumnType("decimal(2, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("FoodCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("FoodName")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -391,179 +258,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasIndex("PortionId");
 
-                    b.ToTable("Foods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 6m,
-                            FoodCategoryId = 1,
-                            FoodName = "Zeytin",
-                            PortionId = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 85m,
-                            FoodCategoryId = 1,
-                            FoodName = "Beyaz Peynir",
-                            PortionId = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 17m,
-                            FoodCategoryId = 1,
-                            FoodName = "İncir Reçeli",
-                            PortionId = 7
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 55m,
-                            FoodCategoryId = 1,
-                            FoodName = "Tahin Pekmez",
-                            PortionId = 7
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 90m,
-                            FoodCategoryId = 2,
-                            FoodName = "Mercimek Çorba",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 80m,
-                            FoodCategoryId = 2,
-                            FoodName = "Ezogelin Çorba",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 50m,
-                            FoodCategoryId = 2,
-                            FoodName = "Domates Çorba",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 35m,
-                            FoodCategoryId = 3,
-                            FoodName = "Mevsim Salata",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 55m,
-                            FoodCategoryId = 3,
-                            FoodName = "Çoban Salata",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 300m,
-                            FoodCategoryId = 4,
-                            FoodName = "Adana Kebap",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 100m,
-                            FoodCategoryId = 4,
-                            FoodName = "Zeytinyağlı Kereviz",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 400m,
-                            FoodCategoryId = 4,
-                            FoodName = "Kayseri Yağlaması",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 250m,
-                            FoodCategoryId = 5,
-                            FoodName = "Fırın Makarna",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 350m,
-                            FoodCategoryId = 6,
-                            FoodName = "Patates Kızartması",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 145m,
-                            FoodCategoryId = 7,
-                            FoodName = "Sütlaç",
-                            PortionId = 1
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 225m,
-                            FoodCategoryId = 7,
-                            FoodName = "Antep Fıstıklı Baklava",
-                            PortionId = 3
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            FoodCalorie = 450m,
-                            FoodCategoryId = 7,
-                            FoodName = "Antep Fıstıklı Künefe",
-                            PortionId = 1
-                        });
+                    b.ToTable("Foods", (string)null);
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.FoodCategory", b =>
@@ -585,14 +280,15 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<string>("FoodCategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodCategories");
+                    b.ToTable("FoodCategories", (string)null);
 
                     b.HasData(
                         new
@@ -600,46 +296,39 @@ namespace CalorieTrackingApp.DAL.Migrations
                             Id = 1,
                             CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
                             DataStatus = 0,
-                            FoodCategoryName = "Kahvaltılık"
+                            FoodCategoryName = "Çorba"
                         },
                         new
                         {
                             Id = 2,
                             CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
                             DataStatus = 0,
-                            FoodCategoryName = "Çorba"
+                            FoodCategoryName = "Salata"
                         },
                         new
                         {
                             Id = 3,
                             CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
                             DataStatus = 0,
-                            FoodCategoryName = "Salata"
+                            FoodCategoryName = "Ana Yemek"
                         },
                         new
                         {
                             Id = 4,
                             CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
                             DataStatus = 0,
-                            FoodCategoryName = "Ana Yemek"
+                            FoodCategoryName = "Makarna"
                         },
                         new
                         {
                             Id = 5,
                             CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
                             DataStatus = 0,
-                            FoodCategoryName = "Makarna"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
                             FoodCategoryName = "Atıştırmalık"
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 6,
                             CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
                             DataStatus = 0,
                             FoodCategoryName = "Tatlı"
@@ -665,14 +354,15 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<string>("MealName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Meals");
+                    b.ToTable("Meals", (string)null);
 
                     b.HasData(
                         new
@@ -727,83 +417,18 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<string>("PortionType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("decimal(2, 2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Portions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionType = "Porsiyon(gr)",
-                            ProductType = "Yiyecek",
-                            Value = 125m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionType = "Adet(tane)",
-                            ProductType = "Yiyecek",
-                            Value = 1m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionType = "Dilim(tane)",
-                            ProductType = "Yiyecek",
-                            Value = 1m
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionType = "Fincan(ml)",
-                            ProductType = "İçecek",
-                            Value = 100m
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionType = "Kupa Bardak(ml)",
-                            ProductType = "İçecek",
-                            Value = 200m
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionType = "Kutu(ml)",
-                            ProductType = "İçecek",
-                            Value = 330m
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            PortionType = "Çay Kaşığı(gr)",
-                            ProductType = "Yiyecek",
-                            Value = 5m
-                        });
+                    b.ToTable("Portions", (string)null);
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.User", b =>
@@ -832,6 +457,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Password")
@@ -840,6 +466,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.Property<string>("Surname")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("UserAgeGap")
@@ -854,80 +481,74 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            Email = "kgkalyoncu@mail.com",
-                            Name = "Kazım Göksel",
-                            Password = "kgk*user",
-                            Surname = "Kalyoncu",
-                            UserAgeGap = 4,
-                            UserGoal = 2,
-                            UserName = "kgkalyoncu@mail.com"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            Email = "alpceyhan@mail.com",
-                            Name = "Alp",
-                            Password = "alp*user",
-                            Surname = "Ceyhan",
-                            UserAgeGap = 4,
-                            UserGoal = 2,
-                            UserName = "alpceyhan@mail.com"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            Email = "alkinbayrak@mail.com",
-                            Name = "Yahya Alkın",
-                            Password = "ayb*user",
-                            Surname = "Bayrak",
-                            UserAgeGap = 3,
-                            UserGoal = 3,
-                            UserName = "alkinbayrak@mail.com"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            Email = "minelk@mail.com",
-                            Name = "Minel",
-                            Password = "minelk*user",
-                            Surname = "Karakökçek",
-                            UserAgeGap = 2,
-                            UserGoal = 3,
-                            UserName = "minelk@mail.com"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedDate = new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444),
-                            DataStatus = 0,
-                            Email = "efnan@mail.com",
-                            Name = "Efnan",
-                            Password = "efnan*user",
-                            Surname = "Genç",
-                            UserAgeGap = 1,
-                            UserGoal = 3,
-                            UserName = "efnan@mail.com"
-                        });
+            modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.TotalCalorie", b =>
+                {
+                    b.Property<string>("MealName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("RecordDate")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("TotalCalories")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.ToTable("TotalCalories", (string)null);
+                });
+
+            modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealBeverageCalorieGroup", b =>
+                {
+                    b.Property<string>("MealName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("RecordDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("TotalBeverageCalorie")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.ToTable("UserMealBeverageCalorieGroups", (string)null);
+                });
+
+            modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealDailyBeverageRecord", b =>
+                {
+                    b.Property<decimal>("BeverageCalorie")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("MealName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("RecordDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.ToTable("UserMealDailyBeverageRecords", (string)null);
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealDailyFoodRecord", b =>
                 {
-                    b.Property<float>("FoodCalorie")
-                        .HasColumnType("real");
+                    b.Property<int>("FoodCalorie")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FoodName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MealName")
                         .IsRequired()
@@ -945,6 +566,24 @@ namespace CalorieTrackingApp.DAL.Migrations
                     b.ToTable((string)null);
 
                     b.ToView("vwUserMealDailyFoodRecord", (string)null);
+                });
+
+            modelBuilder.Entity("CalorieTrackingApp.DAL.ValueObject.UserMealFoodCalorieGroup", b =>
+                {
+                    b.Property<string>("MealName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("RecordDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("TotalFoodCalorie")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.ToTable("UserMealFoodCalorieGroups", (string)null);
                 });
 
             modelBuilder.Entity("CalorieTrackingApp.DAL.Entities.Concrete.Beverage", b =>
