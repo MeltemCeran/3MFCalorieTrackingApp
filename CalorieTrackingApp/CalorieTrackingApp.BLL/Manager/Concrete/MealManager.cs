@@ -12,8 +12,6 @@ namespace CalorieTrackingApp.BLL.Manager.Concrete
 {
     public class MealManager : Manager<MealModel, MealService<MealModel>>
     {
-        protected MealManager(DbContext dbContext) : base(dbContext)
-        {
-        }
+
     }
 }
