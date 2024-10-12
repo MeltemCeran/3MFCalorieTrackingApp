@@ -17,7 +17,6 @@ namespace CalorieTrackingApp.DAL.Services.ReportServices
             _context = new CalorieDbContext();
         }
 
-
         //view model eklenmeli misal dailysummaryreportmodel
         //Modellerde group by vs gibi özelleştirilmiş raporları ya da farklı bir şekilde 
         //managerda mapper dailysummaryreport olacak
