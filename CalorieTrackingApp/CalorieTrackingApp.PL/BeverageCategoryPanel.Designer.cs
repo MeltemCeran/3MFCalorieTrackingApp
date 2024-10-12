@@ -1,6 +1,6 @@
 ﻿namespace CalorieTrackingApp.PL
 {
-    partial class BevereagesCategoryPanel
+    partial class BeverageCategoryPanel
     {
         /// <summary>
         /// Required designer variable.
