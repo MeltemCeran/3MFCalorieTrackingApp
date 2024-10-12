@@ -13,8 +13,6 @@ namespace CalorieTrackingApp.BLL.Manager.Concrete
 {
     public class AdminManager : Manager<AdminModel, AdminService<AdminModel>>
     {
-        public AdminManager(DbContext dbContext) : base(dbContext)
-        {
-        }
+
     }
 }

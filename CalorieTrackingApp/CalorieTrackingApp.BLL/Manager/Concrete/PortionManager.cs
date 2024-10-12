@@ -12,8 +12,6 @@ namespace CalorieTrackingApp.BLL.Manager.Concrete
 {
     public class PortionManager : Manager<PortionModel, PortionService<PortionModel>>
     {
-        protected PortionManager(DbContext dbContext) : base(dbContext)
-        {
-        }
+        
     }
 }

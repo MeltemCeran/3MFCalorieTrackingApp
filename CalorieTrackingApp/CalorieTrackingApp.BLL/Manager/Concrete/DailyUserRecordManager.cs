@@ -12,8 +12,6 @@ namespace CalorieTrackingApp.BLL.Manager.Concrete
 {
     public class DailyUserRecordManager : Manager<DailyUserRecordModel, DailyUserRecordService<DailyUserRecordModel>>
     {
-        protected DailyUserRecordManager(DbContext dbContext) : base(dbContext)
-        {
-        }
+       
     }
 }

@@ -12,8 +12,6 @@ namespace CalorieTrackingApp.BLL.Manager.Concrete
 {
     public class UserManager : Manager<UserModel, UserService<UserModel>>
     {
-        protected UserManager(DbContext dbContext) : base(dbContext)
-        {
-        }
+
     }
 }
