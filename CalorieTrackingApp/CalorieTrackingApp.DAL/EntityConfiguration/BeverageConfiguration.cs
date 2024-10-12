@@ -15,7 +15,7 @@ namespace CalorieTrackingApp.DAL.EntityConfiguration
         {
             builder.Property(b => b.BeverageName).HasColumnType("nvarchar(30)");
 
-            builder.Property(b => b.BeverageCalorie).HasColumnType("decimal(2, 2)");
+            builder.Property(b => b.BeverageCalorie).HasColumnType("decimal(7, 2)");
 
             builder.HasData(
                 new Beverage
