@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CalorieTrackingApp.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class AllSeedDataAndFluentApiSettings : Migration
+    public partial class FluentApiAndSEEDDATA : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
