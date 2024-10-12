@@ -16,5 +16,20 @@ namespace CalorieTrackingApp.PL
         {
             InitializeComponent();
         }
+
+        private void btnMealAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MealPanel_Load(object sender, EventArgs e)
+        {
+            dgvGetData();
+        }
+
+        private void dgvGetData()
+        {
+            
+        }
     }
 }
