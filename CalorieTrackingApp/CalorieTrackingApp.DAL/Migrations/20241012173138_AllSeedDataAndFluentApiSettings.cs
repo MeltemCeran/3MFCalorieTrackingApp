@@ -8,15 +8,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CalorieTrackingApp.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateEntityConfigurations : Migration
+    public partial class AllSeedDataAndFluentApiSettings : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<string>(
+                name: "BeverageName",
+                table: "UserMealDailyBeverageRecords",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
+
             migrationBuilder.AlterColumn<decimal>(
                 name: "Value",
                 table: "Portions",
-                type: "decimal(18,2)",
+                type: "decimal(7,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
                 oldType: "decimal(18,2)");
@@ -43,16 +50,16 @@ namespace CalorieTrackingApp.DAL.Migrations
                 type: "nvarchar(15)",
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(30)",
-                oldMaxLength: 30);
+                oldType: "nvarchar(20)",
+                oldMaxLength: 20);
 
             migrationBuilder.AlterColumn<decimal>(
                 name: "FoodCalorie",
                 table: "Foods",
-                type: "decimal(18,2)",
+                type: "decimal(7,2)",
                 nullable: false,
-                oldClrType: typeof(float),
-                oldType: "real");
+                oldClrType: typeof(decimal),
+                oldType: "decimal(18,2)");
 
             migrationBuilder.AlterColumn<string>(
                 name: "FoodCategoryName",
@@ -66,10 +73,10 @@ namespace CalorieTrackingApp.DAL.Migrations
             migrationBuilder.AlterColumn<decimal>(
                 name: "BeverageCalorie",
                 table: "Beverages",
-                type: "decimal(18,2)",
+                type: "decimal(7,2)",
                 nullable: false,
-                oldClrType: typeof(float),
-                oldType: "real");
+                oldClrType: typeof(decimal),
+                oldType: "decimal(18,2)");
 
             migrationBuilder.AlterColumn<string>(
                 name: "BeverageCategoryName",
@@ -138,17 +145,6 @@ namespace CalorieTrackingApp.DAL.Migrations
                 table: "FoodCategories",
                 columns: new[] { "Id", "CreatedDate", "DataStatus", "DeletedDate", "FoodCategoryName", "ModifiedDate" },
                 values: new object[] { 7, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Tatlı", null });
-
-            migrationBuilder.InsertData(
-                table: "Meals",
-                columns: new[] { "Id", "CreatedDate", "DataStatus", "DeletedDate", "MealName", "ModifiedDate" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Kahvaltı", null },
-                    { 2, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Öğle Yemeği", null },
-                    { 3, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Ara Öğün", null },
-                    { 4, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Akşam Yemeği", null }
-                });
 
             migrationBuilder.InsertData(
                 table: "Portions",
@@ -346,11 +342,6 @@ namespace CalorieTrackingApp.DAL.Migrations
                 keyValue: 17);
 
             migrationBuilder.DeleteData(
-                table: "Meals",
-                keyColumn: "Id",
-                keyValue: 3);
-
-            migrationBuilder.DeleteData(
                 table: "Users",
                 keyColumn: "Id",
                 keyValue: 4);
@@ -394,21 +385,6 @@ namespace CalorieTrackingApp.DAL.Migrations
                 table: "Foods",
                 keyColumn: "Id",
                 keyValue: 16);
-
-            migrationBuilder.DeleteData(
-                table: "Meals",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Meals",
-                keyColumn: "Id",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Meals",
-                keyColumn: "Id",
-                keyValue: 4);
 
             migrationBuilder.DeleteData(
                 table: "Portions",
@@ -465,13 +441,17 @@ namespace CalorieTrackingApp.DAL.Migrations
                 keyColumn: "Id",
                 keyValue: 6);
 
+            migrationBuilder.DropColumn(
+                name: "BeverageName",
+                table: "UserMealDailyBeverageRecords");
+
             migrationBuilder.AlterColumn<decimal>(
                 name: "Value",
                 table: "Portions",
                 type: "decimal(18,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
-                oldType: "decimal(18,2)");
+                oldType: "decimal(7,2)");
 
             migrationBuilder.AlterColumn<string>(
                 name: "ProductType",
@@ -492,19 +472,19 @@ namespace CalorieTrackingApp.DAL.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "MealName",
                 table: "Meals",
-                type: "nvarchar(30)",
-                maxLength: 30,
+                type: "nvarchar(20)",
+                maxLength: 20,
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(15)");
 
-            migrationBuilder.AlterColumn<float>(
+            migrationBuilder.AlterColumn<decimal>(
                 name: "FoodCalorie",
                 table: "Foods",
-                type: "real",
+                type: "decimal(18,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
-                oldType: "decimal(18,2)");
+                oldType: "decimal(7,2)");
 
             migrationBuilder.AlterColumn<string>(
                 name: "FoodCategoryName",
@@ -515,13 +495,13 @@ namespace CalorieTrackingApp.DAL.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(20)");
 
-            migrationBuilder.AlterColumn<float>(
+            migrationBuilder.AlterColumn<decimal>(
                 name: "BeverageCalorie",
                 table: "Beverages",
-                type: "real",
+                type: "decimal(18,2)",
                 nullable: false,
                 oldClrType: typeof(decimal),
-                oldType: "decimal(18,2)");
+                oldType: "decimal(7,2)");
 
             migrationBuilder.AlterColumn<string>(
                 name: "BeverageCategoryName",
