@@ -11,7 +11,8 @@ namespace CalorieTrackingApp.PL
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new MealPanel());// þimdilik Meal Ekraný üzerine çalýþtýðýmdan ilk olarak bu sayfadan çalýþýr duruma getirdim
+            // ama bizim ilk sayfamýz normal þartlarda Form1().
         }
     }
 }

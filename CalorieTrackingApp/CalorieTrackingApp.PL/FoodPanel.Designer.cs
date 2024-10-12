@@ -29,18 +29,26 @@
         private void InitializeComponent()
         {
             grpbFood = new GroupBox();
+            cmbFoodCategory = new ComboBox();
+            txtFoodPortion = new TextBox();
+            txtFoodCalorie = new TextBox();
+            txtFoodName = new TextBox();
+            btnFoodCategoryAdd = new Button();
             btnFoodUpdate = new Button();
             btnFoodDelete = new Button();
             btnFoodAdd = new Button();
             lblAdminName = new Label();
             dgvFood = new DataGridView();
-            btnFoodCategoryAdd = new Button();
             grpbFood.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFood).BeginInit();
             SuspendLayout();
             // 
             // grpbFood
             // 
+            grpbFood.Controls.Add(cmbFoodCategory);
+            grpbFood.Controls.Add(txtFoodPortion);
+            grpbFood.Controls.Add(txtFoodCalorie);
+            grpbFood.Controls.Add(txtFoodName);
             grpbFood.Controls.Add(btnFoodCategoryAdd);
             grpbFood.Controls.Add(btnFoodUpdate);
             grpbFood.Controls.Add(btnFoodDelete);
@@ -49,33 +57,82 @@
             grpbFood.Controls.Add(dgvFood);
             grpbFood.Location = new Point(12, 12);
             grpbFood.Name = "grpbFood";
-            grpbFood.Size = new Size(932, 655);
+            grpbFood.Size = new Size(932, 528);
             grpbFood.TabIndex = 2;
             grpbFood.TabStop = false;
             // 
+            // cmbFoodCategory
+            // 
+            cmbFoodCategory.FormattingEnabled = true;
+            cmbFoodCategory.Location = new Point(22, 220);
+            cmbFoodCategory.Name = "cmbFoodCategory";
+            cmbFoodCategory.Size = new Size(227, 28);
+            cmbFoodCategory.TabIndex = 9;
+            // 
+            // txtFoodPortion
+            // 
+            txtFoodPortion.BorderStyle = BorderStyle.FixedSingle;
+            txtFoodPortion.Location = new Point(22, 172);
+            txtFoodPortion.Name = "txtFoodPortion";
+            txtFoodPortion.PlaceholderText = " Yemek Porsiyon";
+            txtFoodPortion.Size = new Size(227, 27);
+            txtFoodPortion.TabIndex = 8;
+            // 
+            // txtFoodCalorie
+            // 
+            txtFoodCalorie.BorderStyle = BorderStyle.FixedSingle;
+            txtFoodCalorie.Location = new Point(22, 124);
+            txtFoodCalorie.Name = "txtFoodCalorie";
+            txtFoodCalorie.PlaceholderText = " Yemek Kalori";
+            txtFoodCalorie.Size = new Size(227, 27);
+            txtFoodCalorie.TabIndex = 7;
+            // 
+            // txtFoodName
+            // 
+            txtFoodName.BorderStyle = BorderStyle.FixedSingle;
+            txtFoodName.Location = new Point(22, 76);
+            txtFoodName.Name = "txtFoodName";
+            txtFoodName.PlaceholderText = " Yemek Adı";
+            txtFoodName.Size = new Size(227, 27);
+            txtFoodName.TabIndex = 6;
+            // 
+            // btnFoodCategoryAdd
+            // 
+            btnFoodCategoryAdd.FlatStyle = FlatStyle.Flat;
+            btnFoodCategoryAdd.Location = new Point(22, 366);
+            btnFoodCategoryAdd.Name = "btnFoodCategoryAdd";
+            btnFoodCategoryAdd.Size = new Size(227, 50);
+            btnFoodCategoryAdd.TabIndex = 5;
+            btnFoodCategoryAdd.Text = "Yemek Kategorisi Ekle";
+            btnFoodCategoryAdd.UseVisualStyleBackColor = true;
+            // 
             // btnFoodUpdate
             // 
-            btnFoodUpdate.Location = new Point(724, 513);
+            btnFoodUpdate.FlatStyle = FlatStyle.Flat;
+            btnFoodUpdate.Location = new Point(22, 308);
             btnFoodUpdate.Name = "btnFoodUpdate";
-            btnFoodUpdate.Size = new Size(189, 29);
+            btnFoodUpdate.Size = new Size(227, 50);
             btnFoodUpdate.TabIndex = 4;
             btnFoodUpdate.Text = "Yemek Güncelle";
             btnFoodUpdate.UseVisualStyleBackColor = true;
+            btnFoodUpdate.Click += btnFoodUpdate_Click;
             // 
             // btnFoodDelete
             // 
-            btnFoodDelete.Location = new Point(602, 513);
+            btnFoodDelete.FlatStyle = FlatStyle.Flat;
+            btnFoodDelete.Location = new Point(144, 254);
             btnFoodDelete.Name = "btnFoodDelete";
-            btnFoodDelete.Size = new Size(105, 29);
+            btnFoodDelete.Size = new Size(105, 50);
             btnFoodDelete.TabIndex = 3;
             btnFoodDelete.Text = "Yemek Sil";
             btnFoodDelete.UseVisualStyleBackColor = true;
             // 
             // btnFoodAdd
             // 
-            btnFoodAdd.Location = new Point(471, 513);
+            btnFoodAdd.FlatStyle = FlatStyle.Flat;
+            btnFoodAdd.Location = new Point(22, 254);
             btnFoodAdd.Name = "btnFoodAdd";
-            btnFoodAdd.Size = new Size(105, 29);
+            btnFoodAdd.Size = new Size(105, 50);
             btnFoodAdd.TabIndex = 2;
             btnFoodAdd.Text = "Yemek Ekle";
             btnFoodAdd.UseVisualStyleBackColor = true;
@@ -85,34 +142,25 @@
             lblAdminName.AutoSize = true;
             lblAdminName.Location = new Point(6, 0);
             lblAdminName.Name = "lblAdminName";
-            lblAdminName.Size = new Size(79, 20);
+            lblAdminName.Size = new Size(75, 20);
             lblAdminName.TabIndex = 1;
-            lblAdminName.Text = "Merhaba : ";
+            lblAdminName.Text = "Merhaba: ";
             // 
             // dgvFood
             // 
             dgvFood.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFood.Location = new Point(280, 37);
+            dgvFood.Location = new Point(280, 40);
             dgvFood.Name = "dgvFood";
             dgvFood.RowHeadersWidth = 51;
             dgvFood.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvFood.Size = new Size(633, 420);
+            dgvFood.Size = new Size(630, 420);
             dgvFood.TabIndex = 0;
-            // 
-            // btnFoodCategoryAdd
-            // 
-            btnFoodCategoryAdd.Location = new Point(247, 513);
-            btnFoodCategoryAdd.Name = "btnFoodCategoryAdd";
-            btnFoodCategoryAdd.Size = new Size(199, 29);
-            btnFoodCategoryAdd.TabIndex = 5;
-            btnFoodCategoryAdd.Text = "Yemek Kategorisi Ekle";
-            btnFoodCategoryAdd.UseVisualStyleBackColor = true;
             // 
             // FoodPanel
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1072, 676);
+            ClientSize = new Size(982, 553);
             Controls.Add(grpbFood);
             Name = "FoodPanel";
             Text = "FoodPanel";
@@ -131,5 +179,9 @@
         private Label lblAdminName;
         private DataGridView dgvFood;
         private Button btnFoodCategoryAdd;
+        private TextBox txtFoodCalorie;
+        private TextBox txtFoodName;
+        private TextBox txtFoodPortion;
+        private ComboBox cmbFoodCategory;
     }
 }

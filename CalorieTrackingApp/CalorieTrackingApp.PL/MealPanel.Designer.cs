@@ -30,6 +30,7 @@
         {
             dgvMeal = new DataGridView();
             grpbMeal = new GroupBox();
+            txtMealName = new TextBox();
             btnMealUpdate = new Button();
             btnMealDelete = new Button();
             btnMealAdd = new Button();
@@ -41,15 +42,16 @@
             // dgvMeal
             // 
             dgvMeal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMeal.Location = new Point(261, 26);
+            dgvMeal.Location = new Point(280, 40);
             dgvMeal.Name = "dgvMeal";
             dgvMeal.RowHeadersWidth = 51;
             dgvMeal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMeal.Size = new Size(610, 420);
+            dgvMeal.Size = new Size(630, 420);
             dgvMeal.TabIndex = 0;
             // 
             // grpbMeal
             // 
+            grpbMeal.Controls.Add(txtMealName);
             grpbMeal.Controls.Add(btnMealUpdate);
             grpbMeal.Controls.Add(btnMealDelete);
             grpbMeal.Controls.Add(btnMealAdd);
@@ -57,54 +59,68 @@
             grpbMeal.Controls.Add(dgvMeal);
             grpbMeal.Location = new Point(12, 12);
             grpbMeal.Name = "grpbMeal";
-            grpbMeal.Size = new Size(890, 655);
+            grpbMeal.Size = new Size(932, 528);
             grpbMeal.TabIndex = 1;
             grpbMeal.TabStop = false;
             // 
+            // txtMealName
+            // 
+            txtMealName.BorderStyle = BorderStyle.FixedSingle;
+            txtMealName.Location = new Point(16, 135);
+            txtMealName.Name = "txtMealName";
+            txtMealName.PlaceholderText = " Öğün Adı";
+            txtMealName.Size = new Size(227, 27);
+            txtMealName.TabIndex = 5;
+            // 
             // btnMealUpdate
             // 
-            btnMealUpdate.Location = new Point(685, 465);
+            btnMealUpdate.FlatStyle = FlatStyle.Flat;
+            btnMealUpdate.Location = new Point(16, 289);
             btnMealUpdate.Name = "btnMealUpdate";
-            btnMealUpdate.Size = new Size(189, 44);
+            btnMealUpdate.Size = new Size(227, 50);
             btnMealUpdate.TabIndex = 4;
             btnMealUpdate.Text = "Öğün Güncelle";
             btnMealUpdate.UseVisualStyleBackColor = true;
             // 
             // btnMealDelete
             // 
-            btnMealDelete.Location = new Point(480, 465);
+            btnMealDelete.FlatStyle = FlatStyle.Flat;
+            btnMealDelete.Location = new Point(16, 233);
             btnMealDelete.Name = "btnMealDelete";
-            btnMealDelete.Size = new Size(105, 44);
+            btnMealDelete.Size = new Size(227, 50);
             btnMealDelete.TabIndex = 3;
             btnMealDelete.Text = "Öğün Sil";
             btnMealDelete.UseVisualStyleBackColor = true;
             // 
             // btnMealAdd
             // 
-            btnMealAdd.Location = new Point(261, 465);
+            btnMealAdd.FlatStyle = FlatStyle.Flat;
+            btnMealAdd.Location = new Point(16, 177);
             btnMealAdd.Name = "btnMealAdd";
-            btnMealAdd.Size = new Size(105, 44);
+            btnMealAdd.Size = new Size(227, 50);
             btnMealAdd.TabIndex = 2;
             btnMealAdd.Text = "Öğün Ekle";
             btnMealAdd.UseVisualStyleBackColor = true;
+            btnMealAdd.Click += btnMealAdd_Click;
             // 
             // lblAdminName
             // 
             lblAdminName.AutoSize = true;
             lblAdminName.Location = new Point(6, 0);
             lblAdminName.Name = "lblAdminName";
-            lblAdminName.Size = new Size(79, 20);
+            lblAdminName.Size = new Size(75, 20);
             lblAdminName.TabIndex = 1;
-            lblAdminName.Text = "Merhaba : ";
+            lblAdminName.Text = "Merhaba: ";
             // 
             // MealPanel
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(912, 679);
+            ClientSize = new Size(982, 553);
             Controls.Add(grpbMeal);
             Name = "MealPanel";
             Text = "Öğünler";
+            Load += MealPanel_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMeal).EndInit();
             grpbMeal.ResumeLayout(false);
             grpbMeal.PerformLayout();
@@ -119,5 +135,6 @@
         private Button btnMealAdd;
         private Button btnMealUpdate;
         private Button btnMealDelete;
+        private TextBox txtMealName;
     }
 }

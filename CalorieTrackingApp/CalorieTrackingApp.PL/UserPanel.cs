@@ -10,16 +10,13 @@ using System.Windows.Forms;
 
 namespace CalorieTrackingApp.PL
 {
-    public partial class BevereagesCategoryPanel : Form
+    public partial class UserPanel : Form
     {
-        public BevereagesCategoryPanel()
+        public UserPanel()
         {
             InitializeComponent();
         }
 
-        private void BevereagesCategoryPanel_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

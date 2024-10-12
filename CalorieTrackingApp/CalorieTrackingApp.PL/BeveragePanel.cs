@@ -16,5 +16,10 @@ namespace CalorieTrackingApp.PL
         {
             InitializeComponent();
         }
+
+        private void grpbBeverage_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
