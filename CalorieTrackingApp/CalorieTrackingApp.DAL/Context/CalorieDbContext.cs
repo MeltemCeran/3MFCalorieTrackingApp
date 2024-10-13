@@ -25,6 +25,11 @@ namespace CalorieTrackingApp.DAL.Context
             database=CalorieTrackingDb;
             trusted_connection=true;
             trustservercertificate=true";
+        string fatihConnectionString = @"server=FATIH;
+            database=CalorieTrackingDb;
+            trusted_connection=true;
+            trustservercertificate=true";
+
         public DbSet<User> Users { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Beverage> Beverages { get; set; }
@@ -42,7 +47,7 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<UserMealFoodCalorieGroup> UserMealFoodCalorieGroups{ get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(meltemConnectionString);
+            optionsBuilder.UseSqlServer(fatihConnectionString);
 
         }
 
@@ -66,7 +71,15 @@ namespace CalorieTrackingApp.DAL.Context
 
         private static void configurationReferance(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.ApplyConfiguration(new AdminConfiguration());
+            modelBuilder.ApplyConfiguration(new BeverageConfiguration());
+            modelBuilder.ApplyConfiguration(new BeverageCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new DailyUserRecordConfiguration());
+            modelBuilder.ApplyConfiguration(new FoodConfiguration());
+            modelBuilder.ApplyConfiguration(new FoodCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new MealConfiguration());
+            modelBuilder.ApplyConfiguration(new PortionConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
 
             modelBuilder.Entity<UserMealDailyFoodRecord>().ToView("vwUserMealDailyFoodRecord");
         }
