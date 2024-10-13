@@ -1,5 +1,6 @@
 ﻿using CalorieTrackingApp.DAL.Entities.Concrete;
 using CalorieTrackingApp.DAL.EntityConfiguration;
+using CalorieTrackingApp.DAL.Migrations;
 using CalorieTrackingApp.DAL.ValueObject;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -43,11 +44,11 @@ namespace CalorieTrackingApp.DAL.Context
         public DbSet<TotalCalorie> TotalCalories { get; set; }
         public DbSet<UserMealBeverageCalorieGroup> UserMealBeverageCalorieGroups { get; set; }
         public DbSet<UserMealDailyBeverageRecord> UserMealDailyBeverageRecords { get; set; }
-        public DbSet<UserMealDailyFoodRecord> UsersMealDailyFoodRecords { get; set; }
+        public DbSet<UserMealDailyFoodsRecord> UserMealDailyFoodRecords { get; set; }
         public DbSet<UserMealFoodCalorieGroup> UserMealFoodCalorieGroups{ get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(fatihConnectionString);
+            optionsBuilder.UseSqlServer(meltemConnectionString);
 
         }
 
@@ -81,8 +82,23 @@ namespace CalorieTrackingApp.DAL.Context
             modelBuilder.ApplyConfiguration(new PortionConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
 
-            modelBuilder.Entity<UserMealDailyFoodRecord>().ToView("vwUserMealDailyFoodRecord");
+
+            modelBuilder.Entity<TotalCalorie>().ToView("vwTotalCalorieView");
+            modelBuilder.Entity<UserMealBeverageCalorieGroup>().ToView("vwUserMealBeverageCalorieGroup");
+            modelBuilder.Entity<UserMealDailyBeverageRecord>().ToView("vwUserMealDailyBeverageRecord");
+            modelBuilder.Entity<UserMealDailyFoodsRecord>().ToView("vwUserMealDailyFoodRecord");
+            modelBuilder.Entity<UserMealFoodCalorieGroup>().ToView("vwUserMealFoodCalorieGroup");
         }
+
+
+        /*
+            YAPTIKLARIMIZ YAPACAKLARIMIZIN GARANTİSİDİR......
+            -Admin ve user girişlerinde bu kullanıcılar zaten dbde var mı kontrolü yapılacak!!!!!
+         
+         
+         */
+
+
 
         /*
          

@@ -27,7 +27,7 @@ namespace CalorieTrackingApp.BLL.Manager.ReportManagers
                 cfg.CreateMap<TotalCalorie, TotalCalorieModel>();
                 cfg.CreateMap<UserMealBeverageCalorieGroup, BeverageCalorieGroupModel>();
                 cfg.CreateMap<UserMealDailyBeverageRecord, DailyBeverageRecordModel>();
-                cfg.CreateMap<UserMealDailyFoodRecord, DailyFoodRecordModel>();
+                cfg.CreateMap<UserMealDailyFoodsRecord, DailyFoodRecordModel>();
                 cfg.CreateMap<UserMealFoodCalorieGroup, FoodCalorieGroupModel>();
                 //Ekstra sorgu viewleri için config ayarları
                 cfg.CreateMap<WeeklyCalorieReport, WeeklyCalorieReportModel>();

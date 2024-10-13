@@ -1,3 +1,6 @@
+using CalorieTrackingApp.BLL.Manager.Concrete;
+using CalorieTrackingApp.DAL.Context;
+
 namespace CalorieTrackingApp.PL
 {
     public partial class Form1 : Form
@@ -22,6 +25,13 @@ namespace CalorieTrackingApp.PL
 
             gBoxSignIn.Location = gBoxLogin.Location;
 
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            AdminLogin adminLogin = new AdminLogin();
+            adminLogin.ShowDialog();
+           
         }
     }
 }

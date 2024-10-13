@@ -29,7 +29,7 @@ namespace CalorieTrackingApp.DAL.Services.ReportServices
         {
             // Kullanıcının o gün yediği yemek kayıtlarını filtreliyoruz.
             // Kullanıcı ID'sine ve belirtilen tarihe göre yemek kayıtlarını getiriyoruz.
-            var foodRecords = _context.UsersMealDailyFoodRecords
+            var foodRecords = _context.UserMealDailyFoodRecords
                 .Where(r => r.UserId == userId && r.RecordDate.ToDateTime(TimeOnly.MinValue) == date.Date)  // Tarih ve kullanıcı filtrelemesi
                 .ToList();  // Sonuçları listeye çeviriyoruz
 
@@ -92,7 +92,7 @@ namespace CalorieTrackingApp.DAL.Services.ReportServices
             // Yemekler (UsersMealDailyFoodRecords view)
             // Belirtilen tarih aralığındaki yemek kayıtlarını filtreliyoruz.
             // 'RecordDate' tarihinin startDate ile endDate arasında olup olmadığını kontrol ediyoruz.
-            var foodConsumption = _context.UsersMealDailyFoodRecords
+            var foodConsumption = _context.UserMealDailyFoodRecords
                 .Where(r => r.RecordDate.ToDateTime(TimeOnly.MinValue) >= startDate && r.RecordDate.ToDateTime(TimeOnly.MinValue) <= endDate)  // Tarih filtresi
                 .GroupBy(r => r.MealName)  // Yemek ismine göre gruplama yapıyoruz.
                 .Select(g => new FoodConsumption

@@ -38,19 +38,22 @@
             // txtAdminName
             // 
             txtAdminName.BorderStyle = BorderStyle.FixedSingle;
-            txtAdminName.Location = new Point(35, 47);
+            txtAdminName.Location = new Point(31, 35);
+            txtAdminName.Margin = new Padding(3, 2, 3, 2);
             txtAdminName.Name = "txtAdminName";
             txtAdminName.PlaceholderText = " Kullanıcı Adı";
-            txtAdminName.Size = new Size(227, 27);
+            txtAdminName.Size = new Size(199, 23);
             txtAdminName.TabIndex = 1;
             // 
             // txtPassword
             // 
             txtPassword.BorderStyle = BorderStyle.FixedSingle;
-            txtPassword.Location = new Point(35, 90);
+            txtPassword.Location = new Point(31, 68);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.PlaceholderText = " Şifre";
-            txtPassword.Size = new Size(227, 27);
+            txtPassword.Size = new Size(199, 23);
             txtPassword.TabIndex = 2;
             // 
             // grpbAdminLogin
@@ -58,9 +61,11 @@
             grpbAdminLogin.Controls.Add(btnLogin);
             grpbAdminLogin.Controls.Add(txtAdminName);
             grpbAdminLogin.Controls.Add(txtPassword);
-            grpbAdminLogin.Location = new Point(342, 138);
+            grpbAdminLogin.Location = new Point(299, 104);
+            grpbAdminLogin.Margin = new Padding(3, 2, 3, 2);
             grpbAdminLogin.Name = "grpbAdminLogin";
-            grpbAdminLogin.Size = new Size(298, 213);
+            grpbAdminLogin.Padding = new Padding(3, 2, 3, 2);
+            grpbAdminLogin.Size = new Size(261, 160);
             grpbAdminLogin.TabIndex = 3;
             grpbAdminLogin.TabStop = false;
             grpbAdminLogin.Text = "Admin Giriş";
@@ -68,19 +73,21 @@
             // btnLogin
             // 
             btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Location = new Point(35, 133);
+            btnLogin.Location = new Point(31, 100);
+            btnLogin.Margin = new Padding(3, 2, 3, 2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(227, 50);
+            btnLogin.Size = new Size(199, 38);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "Giriş";
             btnLogin.UseVisualStyleBackColor = true;
             // 
             // AdminLogin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(982, 553);
+            ClientSize = new Size(859, 415);
             Controls.Add(grpbAdminLogin);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AdminLogin";
             Text = "AdminLogin";
             grpbAdminLogin.ResumeLayout(false);

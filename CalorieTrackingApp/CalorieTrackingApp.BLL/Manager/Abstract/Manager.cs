@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.BLL.Manager.Abstract
 {
-    public class Manager<TModel,TService>:IDisposable,IManager<TModel>
+    public abstract class Manager<TModel, TService> : IDisposable, IManager<TModel>
         where TModel : class 
         where TService : IService<TModel>,new()
     {

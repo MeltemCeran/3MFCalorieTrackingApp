@@ -203,12 +203,13 @@
             // 
             // btnAdmin
             // 
-            btnAdmin.Location = new Point(201, 35);
+            btnAdmin.Location = new Point(201, 13);
             btnAdmin.Name = "btnAdmin";
             btnAdmin.Size = new Size(75, 23);
             btnAdmin.TabIndex = 2;
             btnAdmin.Text = "Admin";
             btnAdmin.UseVisualStyleBackColor = true;
+            btnAdmin.Click += btnAdmin_Click;
             // 
             // gBoxSignIn
             // 

@@ -17,7 +17,7 @@ namespace CalorieTrackingApp.PL
     public partial class BeverageCategoryPanel : Form
     {
         BeverageCategoryManager beverageCategoryManager = new BeverageCategoryManager();
-        BeverageCategoryManager selectedCategory;
+        BeverageCategoryModel selectedCategory;
         public BeverageCategoryPanel()
         {
             InitializeComponent();
@@ -26,10 +26,10 @@ namespace CalorieTrackingApp.PL
 
         private void BevereagesCategoryPanel_Load(object sender, EventArgs e)
         {
-            getBeverageCategoryList();
+            GetBeverageCategoryList();
         }
 
-        private void getBeverageCategoryList()
+        private void GetBeverageCategoryList()
         {
             BeverageCategoryManager beverageCategoryManager = new BeverageCategoryManager();
             dgvBeveragesCategory.DataSource = beverageCategoryManager.GetAll();
@@ -48,15 +48,15 @@ namespace CalorieTrackingApp.PL
 
                 if (beverageCategoryManager.Save() > 0)
                 {
-                    lblMessage.Text = "İçecek Kategorisi Eklendi.";
-                    lblMessage.Visible = true;
-                    getBeverageCategoryList();
+                    lblBeverageMessage.Text = "İçecek Kategorisi Eklendi.";
+                    lblBeverageMessage.Visible = true;
+                    GetBeverageCategoryList();
                 }
                 else
                 {
-                    lblMessage.Text = "İçecek Kategorisi Oluşturulamadı!!";
-                    lblMessage.BackColor = Color.Red;
-                    lblMessage.Visible = true;
+                    lblBeverageMessage.Text = "İçecek Kategorisi Oluşturulamadı!!";
+                    lblBeverageMessage.BackColor = Color.Red;
+                    lblBeverageMessage.Visible = true;
                 }
                 FormClear();
             }
@@ -71,28 +71,21 @@ namespace CalorieTrackingApp.PL
         {
             using (BeverageCategoryManager beverageCategoryManager = new BeverageCategoryManager())
             {
-                //int id =
 
-
-                // SOR:  BeverageCategoryModel beverageCategoryModel = beverageCategoryManager.GetById(id);
-
-                //beverageCategoryModel = DateTime.Now;
-                //toDoModel.IsDeleted = true;
-
-                //beverageCategoryManager.Delete(selectedCategory);
+                beverageCategoryManager.Delete(selectedCategory);
 
                 if (beverageCategoryManager.Save() > 0)
                 {
-                    lblMessage.Text = "Remove ToDo Success";
-                    lblMessage.Visible = true;
+                    lblBeverageMessage.Text = "Eklendi";
+                    lblBeverageMessage.Visible = true;
 
-                    getBeverageCategoryList();
+                    GetBeverageCategoryList();
                 }
                 else
                 {
-                    lblMessage.Text = "Remove ToDo Failed!!";
-                    lblMessage.BackColor = Color.Red;
-                    lblMessage.Visible = true;
+                    lblBeverageMessage.Text = "Olmadı:(!!";
+                    lblBeverageMessage.BackColor = Color.Red;
+                    lblBeverageMessage.Visible = true;
                 }
 
                 FormClear();
@@ -102,7 +95,7 @@ namespace CalorieTrackingApp.PL
 
         private void dgvBeveragesCategory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedCategory = (BeverageCategoryManager)dgvBeveragesCategory.SelectedRows[0].DataBoundItem;
+            selectedCategory = (BeverageCategoryModel)dgvBeveragesCategory.SelectedRows[0].DataBoundItem;
             txtBeverageCatogoryName.Text = selectedCategory.ToString();
         }
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CalorieTrackingApp.BLL.Manager.Concrete;
+using CalorieTrackingApp.BLL.Models.Concrete;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,15 @@ namespace CalorieTrackingApp.PL
         public AdminLogin()
         {
             InitializeComponent();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            using (AdminManager adminManager = new AdminManager())
+            {
+                AdminModel adminModel = new AdminModel();
+
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
         //{
         //    IQueryable<DailyUserRecord> query = _entities.Include(dur => dur.Users);
 
-        //    if(userId != default(int))
+        //    if (userId != default(int))
         //        query = query.Where(u => u.UserId == userId);
 
         //    if (date != default(DateOnly))
@@ -64,6 +64,6 @@ namespace CalorieTrackingApp.DAL.Repositories.Concrete
         //        })
         //        .ToList();
         //}
-       
+
     }
 }
