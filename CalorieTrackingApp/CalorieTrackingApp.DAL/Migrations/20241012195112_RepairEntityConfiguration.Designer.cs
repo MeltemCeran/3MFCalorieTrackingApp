@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalorieTrackingApp.DAL.Migrations
 {
     [DbContext(typeof(CalorieDbContext))]
-    [Migration("20241012181246_FluentApiAndSEEDDATA")]
-    partial class FluentApiAndSEEDDATA
+    [Migration("20241012195112_RepairEntityConfiguration")]
+    partial class RepairEntityConfiguration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
