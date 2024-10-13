@@ -126,7 +126,7 @@ namespace CalorieTrackingApp.DAL.Services.ReportServices
             return combinedConsumption;  // Sonuçları döndürüyoruz.
         }
 
-        // Haftalık Kalori Raporu
+        // 4.Haftalık Kalori Raporu
         // Bu metot, belirtilen kullanıcı için belirtilen başlangıç tarihinden itibaren 7 gün boyunca toplam kalori tüketimini raporlar.
         public ICollection<WeeklyCalorieReport> GetWeeklyCalorieReport(int userId, DateTime startDate)
         {

@@ -42,5 +42,17 @@ namespace CalorieTrackingApp.BLL.Manager.ReportManagers
         {
             return _reportService.GetDailySummaryReports(userId, date);
         }
+        public ICollection<ComparisonReport> GetComparisonReports(DateTime startDate, DateTime endDate)
+        {
+            return _reportService.GetComparisonReports(startDate, endDate);
+        }
+        public ICollection<FoodConsumption> GetFoodAndDrinkConsumptionReport(DateTime startDate, DateTime endDate)
+        {
+            return _reportService.GetFoodAndDrinkConsumptionReport(startDate, endDate);
+        }
+        public ICollection<WeeklyCalorieReport> GetWeeklyCalorieReport(int userId, DateTime startDate)
+        {
+            return _reportService.GetWeeklyCalorieReport(userId, startDate);
+        }
     }
 }
