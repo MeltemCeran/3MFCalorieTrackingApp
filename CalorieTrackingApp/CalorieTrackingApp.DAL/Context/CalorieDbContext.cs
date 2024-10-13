@@ -66,15 +66,7 @@ namespace CalorieTrackingApp.DAL.Context
 
         private static void configurationReferance(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AdminConfiguration());
-            modelBuilder.ApplyConfiguration(new BeverageConfiguration());
-            modelBuilder.ApplyConfiguration(new BeverageCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new DailyUserRecordConfiguration());
-            modelBuilder.ApplyConfiguration(new FoodConfiguration());
-            modelBuilder.ApplyConfiguration(new FoodCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new MealConfiguration());
-            modelBuilder.ApplyConfiguration(new PortionConfiguration());
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            
 
             modelBuilder.Entity<UserMealDailyFoodRecord>().ToView("vwUserMealDailyFoodRecord");
         }
