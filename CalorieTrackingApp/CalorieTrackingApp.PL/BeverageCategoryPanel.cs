@@ -71,7 +71,7 @@ namespace CalorieTrackingApp.PL
         {
             using (BeverageCategoryManager beverageCategoryManager = new BeverageCategoryManager())
             {
-                int id =
+                //int id =
 
 
                 // SOR:  BeverageCategoryModel beverageCategoryModel = beverageCategoryManager.GetById(id);
@@ -79,7 +79,7 @@ namespace CalorieTrackingApp.PL
                 //beverageCategoryModel = DateTime.Now;
                 //toDoModel.IsDeleted = true;
 
-                beverageCategoryManager.Delete(selectedCategory);
+                //beverageCategoryManager.Delete(selectedCategory);
 
                 if (beverageCategoryManager.Save() > 0)
                 {
