@@ -194,16 +194,16 @@ namespace CalorieTrackingApp.DAL.Migrations
                     { 7, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Tatlı", null }
                 });
 
-            migrationBuilder.InsertData(
-                table: "Meals",
-                columns: new[] { "Id", "CreatedDate", "DataStatus", "DeletedDate", "MealName", "ModifiedDate" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Kahvaltı", null },
-                    { 2, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Öğle Yemeği", null },
-                    { 3, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Ara Öğün", null },
-                    { 4, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Akşam Yemeği", null }
-                });
+            //migrationBuilder.InsertData(
+            //    table: "Meals",
+            //    columns: new[] { "Id", "CreatedDate", "DataStatus", "DeletedDate", "MealName", "ModifiedDate" },
+            //    values: new object[,]
+            //    {
+            //        //{ 1, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Kahvaltı", null },
+            //        { 2, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Öğle Yemeği", null },
+            //        { 3, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Ara Öğün", null },
+            //        { 4, new DateTime(2024, 10, 10, 21, 34, 51, 585, DateTimeKind.Local).AddTicks(9444), 0, null, "Akşam Yemeği", null }
+            //    });
 
             migrationBuilder.InsertData(
                 table: "Portions",
