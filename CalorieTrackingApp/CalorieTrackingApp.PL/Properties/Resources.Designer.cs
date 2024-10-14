@@ -63,6 +63,16 @@ namespace CalorieTrackingApp.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Yeşil_Organik_Sağlıklı_Besin_Bilgilendirici_Instagram_Hikayesi {
             get {
                 object obj = ResourceManager.GetObject("Yeşil Organik Sağlıklı Besin Bilgilendirici Instagram Hikayesi", resourceCulture);
