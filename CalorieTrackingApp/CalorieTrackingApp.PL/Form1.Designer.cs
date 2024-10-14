@@ -32,6 +32,7 @@
             btnNextToLogin = new Button();
             gBoxStartScreen = new GroupBox();
             gBoxLogin = new GroupBox();
+            button1 = new Button();
             btnForgotPassword = new Button();
             btnCreateAccount = new Button();
             btnSignIn = new Button();
@@ -44,15 +45,12 @@
             label1 = new Label();
             btnAdmin = new Button();
             gBoxSignIn = new GroupBox();
-            txtPasswordAgain = new TextBox();
-            lblPasswordAgain = new Label();
+            btnExit = new Button();
+            txtUserPasswordAgain = new TextBox();
             txtUserPassword = new TextBox();
             lblUserPassword = new Label();
             txtUserEmail = new TextBox();
-            lblUserEmail = new Label();
-            button2 = new Button();
-            lblUserSurname = new Label();
-            lblUserName = new Label();
+            btnHesapOlustur = new Button();
             txtUserSurname = new TextBox();
             txtUserName = new TextBox();
             label5 = new Label();
@@ -92,6 +90,7 @@
             // 
             // gBoxLogin
             // 
+            gBoxLogin.Controls.Add(button1);
             gBoxLogin.Controls.Add(btnForgotPassword);
             gBoxLogin.Controls.Add(btnCreateAccount);
             gBoxLogin.Controls.Add(btnSignIn);
@@ -110,6 +109,17 @@
             gBoxLogin.TabStop = false;
             gBoxLogin.Text = "Giriş";
             gBoxLogin.Visible = false;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.Image = Properties.Resources.close;
+            button1.Location = new Point(254, 9);
+            button1.Name = "button1";
+            button1.Size = new Size(24, 24);
+            button1.TabIndex = 20;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // btnForgotPassword
             // 
@@ -138,6 +148,7 @@
             btnSignIn.TabIndex = 10;
             btnSignIn.Text = "OTURUM AÇ";
             btnSignIn.UseVisualStyleBackColor = true;
+            btnSignIn.Click += btnSignIn_Click;
             // 
             // ckBoxRemember
             // 
@@ -171,6 +182,7 @@
             // 
             txtPassword.Location = new Point(43, 229);
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(211, 23);
             txtPassword.TabIndex = 6;
             // 
@@ -203,7 +215,7 @@
             // 
             // btnAdmin
             // 
-            btnAdmin.Location = new Point(201, 13);
+            btnAdmin.Location = new Point(3, 22);
             btnAdmin.Name = "btnAdmin";
             btnAdmin.Size = new Size(75, 23);
             btnAdmin.TabIndex = 2;
@@ -213,15 +225,12 @@
             // 
             // gBoxSignIn
             // 
-            gBoxSignIn.Controls.Add(txtPasswordAgain);
-            gBoxSignIn.Controls.Add(lblPasswordAgain);
+            gBoxSignIn.Controls.Add(btnExit);
+            gBoxSignIn.Controls.Add(txtUserPasswordAgain);
             gBoxSignIn.Controls.Add(txtUserPassword);
             gBoxSignIn.Controls.Add(lblUserPassword);
             gBoxSignIn.Controls.Add(txtUserEmail);
-            gBoxSignIn.Controls.Add(lblUserEmail);
-            gBoxSignIn.Controls.Add(button2);
-            gBoxSignIn.Controls.Add(lblUserSurname);
-            gBoxSignIn.Controls.Add(lblUserName);
+            gBoxSignIn.Controls.Add(btnHesapOlustur);
             gBoxSignIn.Controls.Add(txtUserSurname);
             gBoxSignIn.Controls.Add(txtUserName);
             gBoxSignIn.Controls.Add(label5);
@@ -234,85 +243,67 @@
             gBoxSignIn.Text = "Üyelik Oluştur";
             gBoxSignIn.Visible = false;
             // 
-            // txtPasswordAgain
+            // btnExit
             // 
-            txtPasswordAgain.Location = new Point(39, 293);
-            txtPasswordAgain.Name = "txtPasswordAgain";
-            txtPasswordAgain.Size = new Size(211, 23);
-            txtPasswordAgain.TabIndex = 18;
+            btnExit.BackColor = Color.Transparent;
+            btnExit.Image = Properties.Resources.close;
+            btnExit.Location = new Point(254, 9);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(24, 24);
+            btnExit.TabIndex = 19;
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
             // 
-            // lblPasswordAgain
+            // txtUserPasswordAgain
             // 
-            lblPasswordAgain.AutoSize = true;
-            lblPasswordAgain.Location = new Point(39, 275);
-            lblPasswordAgain.Name = "lblPasswordAgain";
-            lblPasswordAgain.Size = new Size(64, 15);
-            lblPasswordAgain.TabIndex = 17;
-            lblPasswordAgain.Text = "Şifre Tekrar";
+            txtUserPasswordAgain.Location = new Point(39, 246);
+            txtUserPasswordAgain.Name = "txtUserPasswordAgain";
+            txtUserPasswordAgain.PasswordChar = '*';
+            txtUserPasswordAgain.PlaceholderText = "Şifre Tekrar";
+            txtUserPasswordAgain.Size = new Size(211, 23);
+            txtUserPasswordAgain.TabIndex = 18;
             // 
             // txtUserPassword
             // 
-            txtUserPassword.Location = new Point(39, 249);
+            txtUserPassword.Location = new Point(39, 202);
             txtUserPassword.Name = "txtUserPassword";
+            txtUserPassword.PasswordChar = '*';
+            txtUserPassword.PlaceholderText = "Şifre";
             txtUserPassword.Size = new Size(211, 23);
             txtUserPassword.TabIndex = 16;
             // 
             // lblUserPassword
             // 
             lblUserPassword.AutoSize = true;
-            lblUserPassword.Location = new Point(39, 231);
+            lblUserPassword.Location = new Point(39, 228);
             lblUserPassword.Name = "lblUserPassword";
-            lblUserPassword.Size = new Size(30, 15);
+            lblUserPassword.Size = new Size(113, 15);
             lblUserPassword.TabIndex = 15;
-            lblUserPassword.Text = "Şifre";
+            lblUserPassword.Text = "Lütfen ... şifre giriniz";
             // 
             // txtUserEmail
             // 
-            txtUserEmail.Location = new Point(39, 205);
+            txtUserEmail.Location = new Point(39, 173);
             txtUserEmail.Name = "txtUserEmail";
+            txtUserEmail.PlaceholderText = "Email";
             txtUserEmail.Size = new Size(211, 23);
             txtUserEmail.TabIndex = 14;
             // 
-            // lblUserEmail
+            // btnHesapOlustur
             // 
-            lblUserEmail.AutoSize = true;
-            lblUserEmail.Location = new Point(39, 186);
-            lblUserEmail.Name = "lblUserEmail";
-            lblUserEmail.Size = new Size(36, 15);
-            lblUserEmail.TabIndex = 13;
-            lblUserEmail.Text = "Email";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(39, 324);
-            button2.Name = "button2";
-            button2.Size = new Size(206, 23);
-            button2.TabIndex = 11;
-            button2.Text = "Hesabımı Oluştur";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // lblUserSurname
-            // 
-            lblUserSurname.AutoSize = true;
-            lblUserSurname.Location = new Point(39, 141);
-            lblUserSurname.Name = "lblUserSurname";
-            lblUserSurname.Size = new Size(57, 15);
-            lblUserSurname.TabIndex = 8;
-            lblUserSurname.Text = "Soyadınız";
-            // 
-            // lblUserName
-            // 
-            lblUserName.AutoSize = true;
-            lblUserName.Location = new Point(39, 97);
-            lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(40, 15);
-            lblUserName.TabIndex = 7;
-            lblUserName.Text = "Adınız";
+            btnHesapOlustur.Location = new Point(39, 297);
+            btnHesapOlustur.Name = "btnHesapOlustur";
+            btnHesapOlustur.Size = new Size(211, 45);
+            btnHesapOlustur.TabIndex = 11;
+            btnHesapOlustur.Text = "Hesabımı Oluştur";
+            btnHesapOlustur.UseVisualStyleBackColor = true;
+            btnHesapOlustur.Click += btnHesapOlustur_Click;
             // 
             // txtUserSurname
             // 
-            txtUserSurname.Location = new Point(39, 159);
+            txtUserSurname.Location = new Point(39, 144);
             txtUserSurname.Name = "txtUserSurname";
+            txtUserSurname.PlaceholderText = "Soyadınız";
             txtUserSurname.Size = new Size(211, 23);
             txtUserSurname.TabIndex = 6;
             // 
@@ -320,6 +311,7 @@
             // 
             txtUserName.Location = new Point(39, 115);
             txtUserName.Name = "txtUserName";
+            txtUserName.PlaceholderText = "Adınız ";
             txtUserName.Size = new Size(211, 23);
             txtUserName.TabIndex = 5;
             // 
@@ -329,9 +321,9 @@
             label5.AutoSize = true;
             label5.Location = new Point(39, 65);
             label5.Name = "label5";
-            label5.Size = new Size(118, 15);
+            label5.Size = new Size(126, 15);
             label5.TabIndex = 4;
-            label5.Text = "Hesabını Oluşturalım";
+            label5.Text = "Hesabınızı Oluşturalım";
             // 
             // label6
             // 
@@ -347,7 +339,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(789, 788);
+            ClientSize = new Size(707, 648);
             Controls.Add(gBoxLogin);
             Controls.Add(gBoxSignIn);
             Controls.Add(gBoxStartScreen);
@@ -379,18 +371,16 @@
         private TextBox txtEmail;
         private Button btnForgotPassword;
         private GroupBox gBoxSignIn;
-        private Button button2;
-        private Label lblUserSurname;
-        private Label lblUserName;
+        private Button btnHesapOlustur;
         private TextBox txtUserSurname;
         private TextBox txtUserName;
         private Label label5;
         private Label label6;
-        private TextBox txtPasswordAgain;
-        private Label lblPasswordAgain;
+        private TextBox txtUserPasswordAgain;
         private TextBox txtUserPassword;
         private Label lblUserPassword;
         private TextBox txtUserEmail;
-        private Label lblUserEmail;
+        private Button btnExit;
+        private Button button1;
     }
 }
