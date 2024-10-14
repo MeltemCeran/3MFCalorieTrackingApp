@@ -44,6 +44,7 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
             entity.DataStatus = DataStatus.Deleted;
             entity.DeletedDate = DateTime.Now;
             _entities.Update(entity); 
+            
         }
 
         public void Delete(int id)
@@ -55,7 +56,7 @@ namespace CalorieTrackingApp.DAL.Repositories.Abstract
 
         public IQueryable<TEntity> GetAll()
         {
-            return _entities.Where(e => e.DataStatus != DataStatus.Deleted).AsNoTracking();
+            return _entities.AsNoTracking();
         }
 
         public TEntity GetById(int id)

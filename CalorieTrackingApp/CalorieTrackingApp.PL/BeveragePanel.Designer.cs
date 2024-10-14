@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             grpbBeverage = new GroupBox();
-            comboBox1 = new ComboBox();
+            lblBeverageCategory = new Label();
             txtBeveragePortion = new TextBox();
             txtBeverageCalorie = new TextBox();
             txtBeverageName = new TextBox();
@@ -39,13 +39,15 @@
             btnBeverageAdd = new Button();
             lblAdminName = new Label();
             dgvBeverage = new DataGridView();
+            txtBeverageCategory = new TextBox();
             grpbBeverage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBeverage).BeginInit();
             SuspendLayout();
             // 
             // grpbBeverage
             // 
-            grpbBeverage.Controls.Add(comboBox1);
+            grpbBeverage.Controls.Add(txtBeverageCategory);
+            grpbBeverage.Controls.Add(lblBeverageCategory);
             grpbBeverage.Controls.Add(txtBeveragePortion);
             grpbBeverage.Controls.Add(txtBeverageCalorie);
             grpbBeverage.Controls.Add(txtBeverageName);
@@ -55,54 +57,62 @@
             grpbBeverage.Controls.Add(btnBeverageAdd);
             grpbBeverage.Controls.Add(lblAdminName);
             grpbBeverage.Controls.Add(dgvBeverage);
-            grpbBeverage.Location = new Point(12, 12);
+            grpbBeverage.Location = new Point(10, 9);
+            grpbBeverage.Margin = new Padding(3, 2, 3, 2);
             grpbBeverage.Name = "grpbBeverage";
-            grpbBeverage.Size = new Size(932, 528);
+            grpbBeverage.Padding = new Padding(3, 2, 3, 2);
+            grpbBeverage.Size = new Size(816, 396);
             grpbBeverage.TabIndex = 3;
             grpbBeverage.TabStop = false;
-            grpbBeverage.Enter += grpbBeverage_Enter;
+            
             // 
-            // comboBox1
+            // lblBeverageCategory
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(22, 220);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(227, 28);
-            comboBox1.TabIndex = 9;
+            lblBeverageCategory.FlatStyle = FlatStyle.Flat;
+            lblBeverageCategory.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblBeverageCategory.Location = new Point(19, 357);
+            lblBeverageCategory.Name = "lblBeverageCategory";
+            lblBeverageCategory.Size = new Size(777, 28);
+            lblBeverageCategory.TabIndex = 10;
+            lblBeverageCategory.Text = "Durum:";
             // 
             // txtBeveragePortion
             // 
             txtBeveragePortion.BorderStyle = BorderStyle.FixedSingle;
-            txtBeveragePortion.Location = new Point(22, 172);
+            txtBeveragePortion.Location = new Point(19, 129);
+            txtBeveragePortion.Margin = new Padding(3, 2, 3, 2);
             txtBeveragePortion.Name = "txtBeveragePortion";
             txtBeveragePortion.PlaceholderText = " İçecek Porsiyon";
-            txtBeveragePortion.Size = new Size(227, 27);
+            txtBeveragePortion.Size = new Size(199, 23);
             txtBeveragePortion.TabIndex = 8;
             // 
             // txtBeverageCalorie
             // 
             txtBeverageCalorie.BorderStyle = BorderStyle.FixedSingle;
-            txtBeverageCalorie.Location = new Point(22, 124);
+            txtBeverageCalorie.Location = new Point(19, 93);
+            txtBeverageCalorie.Margin = new Padding(3, 2, 3, 2);
             txtBeverageCalorie.Name = "txtBeverageCalorie";
             txtBeverageCalorie.PlaceholderText = " İçecek Kalori";
-            txtBeverageCalorie.Size = new Size(227, 27);
+            txtBeverageCalorie.Size = new Size(199, 23);
             txtBeverageCalorie.TabIndex = 7;
             // 
             // txtBeverageName
             // 
             txtBeverageName.BorderStyle = BorderStyle.FixedSingle;
-            txtBeverageName.Location = new Point(22, 76);
+            txtBeverageName.Location = new Point(19, 57);
+            txtBeverageName.Margin = new Padding(3, 2, 3, 2);
             txtBeverageName.Name = "txtBeverageName";
             txtBeverageName.PlaceholderText = " İçecek Adı";
-            txtBeverageName.Size = new Size(227, 27);
+            txtBeverageName.Size = new Size(199, 23);
             txtBeverageName.TabIndex = 6;
             // 
             // btnBeverageCategoryAdd
             // 
             btnBeverageCategoryAdd.FlatStyle = FlatStyle.Flat;
-            btnBeverageCategoryAdd.Location = new Point(22, 366);
+            btnBeverageCategoryAdd.Location = new Point(19, 274);
+            btnBeverageCategoryAdd.Margin = new Padding(3, 2, 3, 2);
             btnBeverageCategoryAdd.Name = "btnBeverageCategoryAdd";
-            btnBeverageCategoryAdd.Size = new Size(227, 50);
+            btnBeverageCategoryAdd.Size = new Size(199, 38);
             btnBeverageCategoryAdd.TabIndex = 5;
             btnBeverageCategoryAdd.Text = "İçecek Kategorisi Ekle";
             btnBeverageCategoryAdd.UseVisualStyleBackColor = true;
@@ -110,9 +120,10 @@
             // btnBeverageUpdate
             // 
             btnBeverageUpdate.FlatStyle = FlatStyle.Flat;
-            btnBeverageUpdate.Location = new Point(22, 308);
+            btnBeverageUpdate.Location = new Point(19, 231);
+            btnBeverageUpdate.Margin = new Padding(3, 2, 3, 2);
             btnBeverageUpdate.Name = "btnBeverageUpdate";
-            btnBeverageUpdate.Size = new Size(227, 50);
+            btnBeverageUpdate.Size = new Size(199, 38);
             btnBeverageUpdate.TabIndex = 4;
             btnBeverageUpdate.Text = "İçecek Güncelle";
             btnBeverageUpdate.UseVisualStyleBackColor = true;
@@ -121,9 +132,10 @@
             // 
             btnBeverageDelete.BackColor = Color.Red;
             btnBeverageDelete.FlatStyle = FlatStyle.Flat;
-            btnBeverageDelete.Location = new Point(144, 254);
+            btnBeverageDelete.Location = new Point(126, 190);
+            btnBeverageDelete.Margin = new Padding(3, 2, 3, 2);
             btnBeverageDelete.Name = "btnBeverageDelete";
-            btnBeverageDelete.Size = new Size(105, 50);
+            btnBeverageDelete.Size = new Size(92, 38);
             btnBeverageDelete.TabIndex = 3;
             btnBeverageDelete.Text = "İçecek Sil";
             btnBeverageDelete.UseVisualStyleBackColor = false;
@@ -132,38 +144,50 @@
             // 
             btnBeverageAdd.BackColor = Color.LightGreen;
             btnBeverageAdd.FlatStyle = FlatStyle.Flat;
-            btnBeverageAdd.Location = new Point(22, 254);
+            btnBeverageAdd.Location = new Point(19, 190);
+            btnBeverageAdd.Margin = new Padding(3, 2, 3, 2);
             btnBeverageAdd.Name = "btnBeverageAdd";
-            btnBeverageAdd.Size = new Size(105, 50);
+            btnBeverageAdd.Size = new Size(92, 38);
             btnBeverageAdd.TabIndex = 2;
             btnBeverageAdd.Text = "İçecek Ekle";
             btnBeverageAdd.UseVisualStyleBackColor = false;
+            btnBeverageAdd.Click += btnBeverageAdd_Click;
             // 
             // lblAdminName
             // 
             lblAdminName.AutoSize = true;
-            lblAdminName.Location = new Point(6, 0);
+            lblAdminName.Location = new Point(5, 0);
             lblAdminName.Name = "lblAdminName";
-            lblAdminName.Size = new Size(75, 20);
+            lblAdminName.Size = new Size(60, 15);
             lblAdminName.TabIndex = 1;
             lblAdminName.Text = "Merhaba: ";
             // 
             // dgvBeverage
             // 
             dgvBeverage.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBeverage.Location = new Point(280, 40);
+            dgvBeverage.Location = new Point(245, 30);
+            dgvBeverage.Margin = new Padding(3, 2, 3, 2);
             dgvBeverage.Name = "dgvBeverage";
             dgvBeverage.RowHeadersWidth = 51;
             dgvBeverage.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvBeverage.Size = new Size(630, 420);
+            dgvBeverage.Size = new Size(551, 315);
             dgvBeverage.TabIndex = 0;
+            // 
+            // txtBeverageCategory
+            // 
+            txtBeverageCategory.Location = new Point(19, 160);
+            txtBeverageCategory.Name = "txtBeverageCategory";
+            txtBeverageCategory.PlaceholderText = "İçecek Kategori";
+            txtBeverageCategory.Size = new Size(199, 23);
+            txtBeverageCategory.TabIndex = 11;
             // 
             // BeveragePanel
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(982, 553);
+            ClientSize = new Size(859, 415);
             Controls.Add(grpbBeverage);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "BeveragePanel";
             Text = "BeveragePanel";
             grpbBeverage.ResumeLayout(false);
@@ -184,6 +208,7 @@
         private TextBox txtBeverageName;
         private TextBox txtBeverageCalorie;
         private TextBox txtBeveragePortion;
-        private ComboBox comboBox1;
+        private Label lblBeverageCategory;
+        private TextBox txtBeverageCategory;
     }
 }

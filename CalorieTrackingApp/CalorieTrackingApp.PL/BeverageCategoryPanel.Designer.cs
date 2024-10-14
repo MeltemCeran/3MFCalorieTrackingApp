@@ -30,7 +30,7 @@
         {
             gBoxFoodCategory = new GroupBox();
             lblBeverageMessage = new Label();
-            txtBeverageCatogoryName = new TextBox();
+            txtBeverageCategoryName = new TextBox();
             btnBeveragesCategoryUpdate = new Button();
             btnBeveragesCategoryDelete = new Button();
             btnBeveragesCategoryAdd = new Button();
@@ -43,7 +43,7 @@
             // gBoxFoodCategory
             // 
             gBoxFoodCategory.Controls.Add(lblBeverageMessage);
-            gBoxFoodCategory.Controls.Add(txtBeverageCatogoryName);
+            gBoxFoodCategory.Controls.Add(txtBeverageCategoryName);
             gBoxFoodCategory.Controls.Add(btnBeveragesCategoryUpdate);
             gBoxFoodCategory.Controls.Add(btnBeveragesCategoryDelete);
             gBoxFoodCategory.Controls.Add(btnBeveragesCategoryAdd);
@@ -65,15 +65,15 @@
             lblBeverageMessage.Text = "Durum:";
             lblBeverageMessage.Visible = false;
             // 
-            // txtBeverageCatogoryName
+            // txtBeverageCategoryName
             // 
-            txtBeverageCatogoryName.BorderStyle = BorderStyle.FixedSingle;
-            txtBeverageCatogoryName.Location = new Point(14, 101);
-            txtBeverageCatogoryName.Margin = new Padding(3, 2, 3, 2);
-            txtBeverageCatogoryName.Name = "txtBeverageCatogoryName";
-            txtBeverageCatogoryName.PlaceholderText = " İçecek Kategori Adı";
-            txtBeverageCatogoryName.Size = new Size(199, 23);
-            txtBeverageCatogoryName.TabIndex = 5;
+            txtBeverageCategoryName.BorderStyle = BorderStyle.FixedSingle;
+            txtBeverageCategoryName.Location = new Point(14, 101);
+            txtBeverageCategoryName.Margin = new Padding(3, 2, 3, 2);
+            txtBeverageCategoryName.Name = "txtBeverageCategoryName";
+            txtBeverageCategoryName.PlaceholderText = " İçecek Kategori Adı";
+            txtBeverageCategoryName.Size = new Size(199, 23);
+            txtBeverageCategoryName.TabIndex = 5;
             // 
             // btnBeveragesCategoryUpdate
             // 
@@ -84,6 +84,7 @@
             btnBeveragesCategoryUpdate.TabIndex = 4;
             btnBeveragesCategoryUpdate.Text = "İçecek Kategori Güncelle";
             btnBeveragesCategoryUpdate.UseVisualStyleBackColor = true;
+            btnBeveragesCategoryUpdate.Click += btnBeveragesCategoryUpdate_Click;
             // 
             // btnBeveragesCategoryDelete
             // 
@@ -150,7 +151,7 @@
         private Button btnBeveragesCategoryAdd;
         private DataGridView dgvBeveragesCategory;
         private Label lblAdminName;
-        private TextBox txtBeverageCatogoryName;
+        private TextBox txtBeverageCategoryName;
         private Label lblBeverageMessage;
     }
 }

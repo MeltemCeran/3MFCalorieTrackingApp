@@ -62,6 +62,15 @@ namespace CalorieTrackingApp.DAL.UnitOfWorks
                 {
                     _dbContext.Dispose();
                     Admins.Dispose();
+                    BeverageCategories.Dispose();
+                    Beverages.Dispose();
+                    DailyUserRecords.Dispose();
+                    FoodCategories.Dispose();
+                    Foods.Dispose();
+                    Meals.Dispose();
+                    Portions.Dispose();
+                    Users.Dispose();
+
                 }
             }
         }

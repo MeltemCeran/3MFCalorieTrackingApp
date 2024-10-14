@@ -106,24 +106,15 @@ namespace CalorieTrackingApp.PL
          //Update çalışmıyor!!!!!
         private void btnMealUpdate_Click(object sender, EventArgs e)
         {
-            using (MealManager mealManager = new MealManager())
+            if (dgvMeal.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(txtMealName.Text))
             {
-                mealManager.Update(selectedMeal);
-                if (mealManager.Save() > 0)
-                {
-                    txtMealName.Text = selectedMeal.MealName;
-                    GetMealList();
-                    lblMealMessage.Text = "Güncellendi";
-                    lblMealMessage.Visible = true;
-                }
-                else
-                {
-                    lblMealMessage.Text = "Olmadı:(!!";
-                    lblMealMessage.BackColor = Color.Red;
-                    lblMealMessage.Visible = true;
-                }
-
-                FormClear();
+                dgvMeal.SelectedRows[0].Cells[0].Value = txtMealName.Text;  // Seçilen satırın verisini günceller
+                lblMealMessage.Text = "Durum: Öğün Güncellendi";
+                txtMealName.Clear();
+            }
+            else
+            {
+                lblMealMessage.Text = "Durum: Güncellemek için bir öğün seçin ve yeni öğün adı girin.";
             }
         }
     }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.DAL.Repositories.Concrete
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository, IDisposable
     {
         public UserRepository(DbContext dbContext) : base(dbContext)
         {

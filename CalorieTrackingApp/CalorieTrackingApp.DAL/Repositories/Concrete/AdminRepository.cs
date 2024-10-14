@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CalorieTrackingApp.DAL.Repositories.Concrete
 {
-    public class AdminRepository : Repository<Admin>, IAdminRepository
+    public class AdminRepository : Repository<Admin>, IAdminRepository,IDisposable
     {
         public AdminRepository(DbContext dbContext) : base(dbContext)
         {
