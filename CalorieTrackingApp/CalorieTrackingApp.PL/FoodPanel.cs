@@ -48,90 +48,158 @@ namespace CalorieTrackingApp.PL
         {
             selectedFood = (FoodModel)dgvFood.SelectedRows[0].DataBoundItem;
             txtFoodName.Text = selectedFood.FoodName;
+
         }
 
         private void btnFoodAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFoodName.Text))           //kalori porsiyon ve id kontrolü yaz!!!
+            if (string.IsNullOrWhiteSpace(txtFoodName.Text))
             {
                 MessageBox.Show("Lütfen 'Yemek Adı' kısmınızı doldurunuz.");
                 return;
             }
-            else
-            {
-                using (FoodManager foodManager = new FoodManager())
-                {
-                    FoodModel foodModel = new FoodModel();
-                    foodModel.FoodName = txtFoodName.Text;
-                    foodModel.CreatedDate = DateTime.Now;
-                    foodModel.DataStatus = DataStatus.Inserted;
-                    foodManager.Create(foodModel);
 
-                    if (foodManager.Save() > 0)
-                    {
-                        lblFood.Text = "Yemek Eklendi.";
-                        lblFood.BackColor = Color.Green;
-                        lblFood.ForeColor = Color.White;
-                        lblFood.Visible = true;
-                        GetFoodList();
-                    }
-                    else
-                    {
-                        lblFood.Text = "Yemek Eklenemedi.";
-                        lblFood.BackColor = Color.Red;
-                        lblFood.ForeColor= Color.White;
-                        lblFood.Visible = true;
-                    }
-                    FormClear();
-                }
+            if (!decimal.TryParse(txtFoodCalorie.Text, out decimal foodCalorie))
+            {
+                MessageBox.Show("Lütfen geçerli bir 'Kalori' değeri giriniz.");
+                return;
             }
+
+            if (!int.TryParse(txtFoodPortionId.Text, out int portionId))
+            {
+                MessageBox.Show("Lütfen geçerli bir 'Porsiyon ID' değeri giriniz.");
+                return;
+            }
+
+            if (!int.TryParse(txtFoodCategoryId.Text, out int categoryId))
+            {
+                MessageBox.Show("Lütfen geçerli bir 'Kategori ID' değeri giriniz.");
+                return;
+            }
+
+            using (FoodManager foodManager = new FoodManager())
+            {
+                FoodModel foodModel = new FoodModel();
+                foodModel.FoodName = txtFoodName.Text;
+                foodModel.FoodCalorie = Convert.ToDecimal(txtFoodCalorie.Text);
+                foodModel.PortionId = Convert.ToInt32(txtFoodPortionId.Text);
+                foodModel.FoodCategoryId = Convert.ToInt32(txtFoodCategoryId.Text);
+                foodModel.CreatedDate = DateTime.Now;
+                foodModel.DataStatus = DataStatus.Inserted;
+                foodManager.Create(foodModel);
+
+                if (foodManager.Save() > 0)
+                {
+                    lblFood.Text = "Yemek Eklendi.";
+                    lblFood.BackColor = Color.Green;
+                    lblFood.ForeColor = Color.White;
+                    lblFood.Visible = true;
+                    GetFoodList();
+                }
+                else
+                {
+                    lblFood.Text = "Yemek Eklenemedi.";
+                    lblFood.BackColor = Color.Red;
+                    lblFood.ForeColor = Color.White;
+                    lblFood.Visible = true;
+                }
+                FormClear();
+            }
+
         }
 
         private void btnFoodDelete_Click(object sender, EventArgs e)
         {
             using (FoodManager foodManager = new FoodManager())
             {
-
-                foodManager.Delete(selectedFood);
-
-                if (foodManager.Save() > 0)
+                if (selectedFood != null)
                 {
-                    lblFood.Text = "Yemek Silindi.";
-                    lblFood.BackColor = Color.Green;
-                    lblFood.ForeColor = Color.White;
-                    selectedFood = null;
-                    lblFood.Visible = true;
+                    foodManager.Delete(selectedFood);
 
-                    GetFoodList();
+                    if (foodManager.Save() > 0)
+                    {
+                        lblFood.Text = "Yemek Silindi.";
+                        lblFood.BackColor = Color.Green;
+                        lblFood.ForeColor = Color.White;
+                        selectedFood = null;
+                        lblFood.Visible = true;
+
+                        GetFoodList();
+                    }
+                    else
+                    {
+                        lblFood.Text = "Yemek Silinemedi.";
+                        lblFood.BackColor = Color.Red;
+                        lblFood.ForeColor = Color.White;
+                        lblFood.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblFood.Text = "Yemek Silinemedi.";
+                    lblFood.Text = "Silmek için bir Yemek seçiniz.";
                     lblFood.BackColor = Color.Red;
                     lblFood.ForeColor = Color.White;
                     lblFood.Visible = true;
                 }
-
                 FormClear();
-
             }
         }
+
         private void btnFoodUpdate_Click(object sender, EventArgs e)
         {
             using (FoodManager foodManager = new FoodManager())
             {
-                string newFoodName = txtFoodName.Text;
-
-                if (dgvFood.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(newFoodName))
+                if (selectedFood != null)
                 {
+                    string newFoodName = txtFoodName.Text;
+                    
+                    if (string.IsNullOrWhiteSpace(newFoodName))
+                    {
+                        lblFood.Text = "Lütfen 'Yemek Adı' kısmını doldurunuz.";
+                        lblFood.BackColor = Color.Red;
+                        lblFood.ForeColor = Color.White;
+                        lblFood.Visible = true;
+                        return;
+                    }
+
+                    if (!decimal.TryParse(txtFoodCalorie.Text, out decimal newFoodCalorie))
+                    {
+                        lblFood.Text = "Lütfen geçerli bir 'Kalori' değeri giriniz.";
+                        lblFood.BackColor = Color.Red;
+                        lblFood.ForeColor = Color.White;
+                        lblFood.Visible = true;
+                        return;
+                    }
+
+                    if (!int.TryParse(txtFoodPortionId.Text, out int newFoodPortionId))
+                    {
+                        lblFood.Text = "Lütfen geçerli bir 'Porsiyon ID' değeri giriniz.";
+                        lblFood.BackColor = Color.Red;
+                        lblFood.ForeColor = Color.White;
+                        lblFood.Visible = true;
+                        return;
+                    }
+
+                    if (!int.TryParse(txtFoodCategoryId.Text, out int newFoodCategoryId))
+                    {
+                        lblFood.Text = "Lütfen geçerli bir 'Kategori ID' değeri giriniz.";
+                        lblFood.BackColor = Color.Red;
+                        lblFood.ForeColor = Color.White;
+                        lblFood.Visible = true;
+                        return;
+                    }
+
                     selectedFood.FoodName = newFoodName;
+                    selectedFood.FoodCalorie = newFoodCalorie;
+                    selectedFood.PortionId = newFoodPortionId;
+                    selectedFood.FoodCategoryId = newFoodCategoryId;
 
                     foodManager.Update(selectedFood);
 
                     if (foodManager.Save() > 0)
                     {
                         GetFoodList(); // Listeyi yenile
-                        lblFood.Text = "İçecek Kategorisi Güncellendi";
+                        lblFood.Text = "Yemek Güncellendi";
                         lblFood.BackColor = Color.Green; // Başarılı güncelleme için yeşil arka plan
                         lblFood.ForeColor = Color.White;
                     }
@@ -144,9 +212,11 @@ namespace CalorieTrackingApp.PL
                 }
                 else
                 {
-                    lblFood.Text = "Güncellemek için bir İçecek Kategorisi seçiniz.";
+                    lblFood.Text = "Güncellemek için bir Yemek seçiniz.";
                     lblFood.BackColor = Color.Red;
                     lblFood.ForeColor = Color.White;
+                    lblFood.Visible = true;
+                    return;
                 }
 
                 lblFood.Visible = true;
@@ -159,7 +229,5 @@ namespace CalorieTrackingApp.PL
             FoodCategoryPanel foodCategoryPanel = new FoodCategoryPanel();
             foodCategoryPanel.ShowDialog();
         }
-
-        
     }
 }
