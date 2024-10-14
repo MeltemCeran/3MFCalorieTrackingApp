@@ -89,25 +89,34 @@ namespace CalorieTrackingApp.PL
         {
             using (MealManager mealManager = new MealManager())
             {
-                mealManager.Delete(selectedMeal);
-
-                if (mealManager.Save() > 0)
+                if (selectedMeal != null)
                 {
-                    lblMeal.Text = "Öğün Silindi.";
-                    lblMeal.BackColor = Color.Green;
-                    lblMeal.ForeColor = Color.White;
-                    lblMeal.Visible = true;
+                    mealManager.Delete(selectedMeal);
 
-                    GetMealList();
+                    if (mealManager.Save() > 0)
+                    {
+                        lblMeal.Text = "Öğün Silindi.";
+                        lblMeal.BackColor = Color.Green;
+                        lblMeal.ForeColor = Color.White;
+                        lblMeal.Visible = true;
+
+                        GetMealList();
+                    }
+                    else
+                    {
+                        lblMeal.Text = "Öğün Silinemedi.";
+                        lblMeal.BackColor = Color.Red;
+                        lblMeal.ForeColor = Color.White;
+                        lblMeal.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblMeal.Text = "Öğün Silinemedi.";
+                    lblMeal.Text = "Silmek için bir Yemek seçiniz.";
                     lblMeal.BackColor = Color.Red;
                     lblMeal.ForeColor = Color.White;
                     lblMeal.Visible = true;
                 }
-
                 FormClear();
             }
         }

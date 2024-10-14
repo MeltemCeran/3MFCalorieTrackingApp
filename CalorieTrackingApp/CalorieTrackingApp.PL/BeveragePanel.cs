@@ -39,7 +39,7 @@ namespace CalorieTrackingApp.PL
         {
             using (BeverageManager beverageManager = new BeverageManager())
             {
-                dgvBeverage.DataSource = beverageManager.GetAll().ToList();
+                dgvBeverage.DataSource = beverageManager.GetAll();
             }
         }
 
@@ -51,69 +51,93 @@ namespace CalorieTrackingApp.PL
 
         private void btnBeverageAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtBeverageName.Text))           //kalori porsiyon ve id kontrolü yaz!!!
+            if (string.IsNullOrWhiteSpace(txtBeverageName.Text))
             {
                 MessageBox.Show("Lütfen 'İçecek Adı' kısmınızı doldurunuz.");
                 return;
             }
-            else
+            if (!decimal.TryParse(txtBeverageCalorie.Text, out decimal beverageCalorie))
             {
-                using (BeverageManager beverageManager = new BeverageManager())
-                {
-                    BeverageModel beverageModel = new BeverageModel();
-                    beverageModel.BeverageName = txtBeverageName.Text;
-                    beverageModel.BeverageCalorie = Convert.ToDecimal(txtBeverageCalorie.Text);
-                    beverageModel.PortionId = Convert.ToInt32(txtBeveragePortionId.Text);
-                    beverageModel.BeverageCategoryId = Convert.ToInt32(txtBeverageCategoryId.Text);
-                    beverageModel.CreatedDate = DateTime.Now;
-                    beverageModel.DataStatus = DataStatus.Inserted;
-                    beverageManager.Create(beverageModel);
-
-                    if (beverageManager.Save() > 0)
-                    {
-                        lblBeverage.Text = "İçecek Eklendi.";
-                        lblBeverage.BackColor = Color.Green;
-                        lblBeverage.ForeColor = Color.White;
-                        lblBeverage.Visible = true;
-                        GetBeverageList();
-                    }
-                    else
-                    {
-                        lblBeverage.Text = "İçecek Eklenemedi.";
-                        lblBeverage.BackColor = Color.Red;
-                        lblBeverage.ForeColor = Color.White;
-                        lblBeverage.Visible = true;
-                    }
-                    FormClear();
-                }
+                MessageBox.Show("Lütfen geçerli bir 'Kalori' değeri giriniz.");
+                return;
             }
+
+            if (!int.TryParse(txtBeveragePortionId.Text, out int portionId))
+            {
+                MessageBox.Show("Lütfen geçerli bir 'Porsiyon ID' değeri giriniz.");
+                return;
+            }
+
+            if (!int.TryParse(txtBeverageCategoryId.Text, out int categoryId))
+            {
+                MessageBox.Show("Lütfen geçerli bir 'Kategori ID' değeri giriniz.");
+                return;
+            }
+
+            using (BeverageManager beverageManager = new BeverageManager())
+            {
+                BeverageModel beverageModel = new BeverageModel();
+                beverageModel.BeverageName = txtBeverageName.Text;
+                beverageModel.BeverageCalorie = Convert.ToDecimal(txtBeverageCalorie.Text);
+                beverageModel.PortionId = Convert.ToInt32(txtBeveragePortionId.Text);
+                beverageModel.BeverageCategoryId = Convert.ToInt32(txtBeverageCategoryId.Text);
+                beverageModel.CreatedDate = DateTime.Now;
+                beverageModel.DataStatus = DataStatus.Inserted;
+                beverageManager.Create(beverageModel);
+
+                if (beverageManager.Save() > 0)
+                {
+                    lblBeverage.Text = "İçecek Eklendi.";
+                    lblBeverage.BackColor = Color.Green;
+                    lblBeverage.ForeColor = Color.White;
+                    lblBeverage.Visible = true;
+                    GetBeverageList();
+                }
+                else
+                {
+                    lblBeverage.Text = "İçecek Eklenemedi.";
+                    lblBeverage.BackColor = Color.Red;
+                    lblBeverage.ForeColor = Color.White;
+                    lblBeverage.Visible = true;
+                }
+                FormClear();
+            }
+
         }
 
         private void btnBeverageDelete_Click(object sender, EventArgs e)
         {
             using (BeverageManager beverageManager = new BeverageManager())
             {
-
-                beverageManager.Delete(selectedBeverage);
-
-                if (beverageManager.Save() > 0)
+                if (selectedBeverage != null)
                 {
-                    lblBeverage.Text = "İçecek Silindi.";
-                    lblBeverage.BackColor = Color.Green;
-                    lblBeverage.ForeColor = Color.White;
-                    selectedBeverage = null;
-                    lblBeverage.Visible = true;
+                    beverageManager.Delete(selectedBeverage);
 
-                    GetBeverageList();
+                    if (beverageManager.Save() > 0)
+                    {
+                        lblBeverage.Text = "İçecek Silindi.";
+                        lblBeverage.BackColor = Color.Green;
+                        lblBeverage.ForeColor = Color.White;
+                        selectedBeverage = null;
+                        lblBeverage.Visible = true;
+
+                        GetBeverageList();
+                    }
+                    else
+                    {
+                        lblBeverage.Text = "İçecek Silinemedi.";
+                        lblBeverage.BackColor = Color.Red;
+                        lblBeverage.ForeColor = Color.White;
+                        lblBeverage.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblBeverage.Text = "İçecek Silinemedi.";
+                    lblBeverage.Text = "Silmek için bir İçecek seçiniz.";
                     lblBeverage.BackColor = Color.Red;
                     lblBeverage.ForeColor = Color.White;
                     lblBeverage.Visible = true;
                 }
-
                 FormClear();
 
             }
@@ -123,13 +147,50 @@ namespace CalorieTrackingApp.PL
         {
             using (BeverageManager beverageManager = new BeverageManager())
             {
-                string newBeverageName = txtBeverageName.Text;
-
-                if (dgvBeverage.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(newBeverageName))
+                if (selectedBeverage != null)
                 {
-                    selectedBeverage.BeverageName = newBeverageName;
+                    string newBeverageName = txtBeverageName.Text;
 
-                    // Güncelleme işlemini gerçekleştir
+                    if (string.IsNullOrWhiteSpace(newBeverageName))
+                    {
+                        lblBeverage.Text = "Lütfen 'İçecek Adı' kısmını doldurunuz.";
+                        lblBeverage.BackColor = Color.Red;
+                        lblBeverage.ForeColor = Color.White;
+                        lblBeverage.Visible = true;
+                        return;
+                    }
+
+                    if (!decimal.TryParse(txtBeverageCalorie.Text, out decimal newBeverageCalorie))
+                    {
+                        lblBeverage.Text = "Lütfen geçerli bir 'Kalori' değeri giriniz.";
+                        lblBeverage.BackColor = Color.Red;
+                        lblBeverage.ForeColor = Color.White;
+                        lblBeverage.Visible = true;
+                        return;
+                    }
+
+                    if (!int.TryParse(txtBeveragePortionId.Text, out int newBeveragePortionId))
+                    {
+                        lblBeverage.Text = "Lütfen geçerli bir 'Porsiyon ID' değeri giriniz.";
+                        lblBeverage.BackColor = Color.Red;
+                        lblBeverage.ForeColor = Color.White;
+                        lblBeverage.Visible = true;
+                        return;
+                    }
+
+                    if (!int.TryParse(txtBeverageCategoryId.Text, out int newBeverageCategoryId))
+                    {
+                        lblBeverage.Text = "Lütfen geçerli bir 'Kategori ID' değeri giriniz.";
+                        lblBeverage.BackColor = Color.Red;
+                        lblBeverage.ForeColor = Color.White;
+                        lblBeverage.Visible = true;
+                        return;
+                    }
+                    selectedBeverage.BeverageName = newBeverageName;
+                    selectedBeverage.BeverageCalorie = newBeverageCalorie;
+                    selectedBeverage.PortionId = newBeveragePortionId;
+                    selectedBeverage.BeverageCategoryId = newBeverageCategoryId;
+
                     beverageManager.Update(selectedBeverage);
 
                     if (beverageManager.Save() > 0)
@@ -145,6 +206,7 @@ namespace CalorieTrackingApp.PL
                         lblBeverage.BackColor = Color.Red; // Hata durumu için kırmızı arka plan
                         lblBeverage.ForeColor = Color.White;
                     }
+
                 }
                 else
                 {
