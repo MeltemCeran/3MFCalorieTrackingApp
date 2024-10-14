@@ -19,5 +19,10 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
         public virtual ICollection<DailyUserRecord> UserRecords { get; set; } = new List<DailyUserRecord>();
         public AgeGap UserAgeGap { get; set; }
         public Goal UserGoal { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

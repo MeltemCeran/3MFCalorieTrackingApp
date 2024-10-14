@@ -7,6 +7,7 @@ namespace CalorieTrackingApp.PL
 {
     public partial class Form1 : Form
     {
+        int userId;
         public Form1()
         {
             InitializeComponent();
@@ -69,8 +70,10 @@ namespace CalorieTrackingApp.PL
                     userManager.Create(userModel);
                     userManager.Save();
 
+                    int createAccountUserId = userModel.Id;
                     MessageBox.Show("Kayýt Yapýlmýþtýr");
-                    this.Close();
+                    UserPanel userPanel = new UserPanel(userId);
+                    userPanel.ShowDialog();
                 }
                 else
                 {
@@ -97,7 +100,7 @@ namespace CalorieTrackingApp.PL
                 {
                     if (userModel.Email == email && userModel.Password == password)
                     {
-                        UserPanel userPanel = new UserPanel();
+                        UserPanel userPanel = new UserPanel(userId);
                         userPanel.ShowDialog();
                     }
                 }

@@ -18,5 +18,10 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
         public virtual ICollection<DailyUserRecord> BeverageRecords { get; set; } = new List<DailyUserRecord>();
         public int BeverageCategoryId { get; set; }
         public virtual BeverageCategory BeverageCategory { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

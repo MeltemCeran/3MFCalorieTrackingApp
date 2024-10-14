@@ -21,10 +21,21 @@ namespace CalorieTrackingApp.PL
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            string adminName = txtAdminName.Text;
+            string adminPassword = txtAdminPassword.Text;
+
             using (AdminManager adminManager = new AdminManager())
             {
-                AdminModel adminModel = new AdminModel();
+                var adminModels = adminManager.GetAll().ToList();
 
+                foreach (var adminModel in adminModels)
+                {
+                    if (adminModel.AdminName == adminName && adminModel.Password == adminPassword)
+                    {
+                       AdminPanel adminPanel = new AdminPanel();
+                       adminPanel.ShowDialog();
+                    }
+                }
             }
         }
     }

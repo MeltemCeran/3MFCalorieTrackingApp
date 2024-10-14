@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             txtAdminName = new TextBox();
-            txtPassword = new TextBox();
+            txtAdminPassword = new TextBox();
             grpbAdminLogin = new GroupBox();
             btnLogin = new Button();
             grpbAdminLogin.SuspendLayout();
@@ -45,22 +45,22 @@
             txtAdminName.Size = new Size(199, 23);
             txtAdminName.TabIndex = 1;
             // 
-            // txtPassword
+            // txtAdminPassword
             // 
-            txtPassword.BorderStyle = BorderStyle.FixedSingle;
-            txtPassword.Location = new Point(31, 68);
-            txtPassword.Margin = new Padding(3, 2, 3, 2);
-            txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '*';
-            txtPassword.PlaceholderText = " Şifre";
-            txtPassword.Size = new Size(199, 23);
-            txtPassword.TabIndex = 2;
+            txtAdminPassword.BorderStyle = BorderStyle.FixedSingle;
+            txtAdminPassword.Location = new Point(31, 68);
+            txtAdminPassword.Margin = new Padding(3, 2, 3, 2);
+            txtAdminPassword.Name = "txtAdminPassword";
+            txtAdminPassword.PasswordChar = '*';
+            txtAdminPassword.PlaceholderText = " Şifre";
+            txtAdminPassword.Size = new Size(199, 23);
+            txtAdminPassword.TabIndex = 2;
             // 
             // grpbAdminLogin
             // 
             grpbAdminLogin.Controls.Add(btnLogin);
             grpbAdminLogin.Controls.Add(txtAdminName);
-            grpbAdminLogin.Controls.Add(txtPassword);
+            grpbAdminLogin.Controls.Add(txtAdminPassword);
             grpbAdminLogin.Location = new Point(299, 104);
             grpbAdminLogin.Margin = new Padding(3, 2, 3, 2);
             grpbAdminLogin.Name = "grpbAdminLogin";
@@ -80,6 +80,7 @@
             btnLogin.TabIndex = 3;
             btnLogin.Text = "Giriş";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // AdminLogin
             // 
@@ -97,7 +98,7 @@
 
         #endregion
         private TextBox txtAdminName;
-        private TextBox txtPassword;
+        private TextBox txtAdminPassword;
         private GroupBox grpbAdminLogin;
         private Button btnLogin;
     }

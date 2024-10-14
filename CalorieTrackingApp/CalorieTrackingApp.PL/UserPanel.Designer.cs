@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             grpbUserPanel = new GroupBox();
+            groupBox2 = new GroupBox();
+            cmbBeveragePortion = new ComboBox();
+            groupBox1 = new GroupBox();
+            cmbFoodPortion = new ComboBox();
             btnUpdate = new Button();
             btnDeleteUserPanel = new Button();
-            btnAddUserPanel = new Button();
+            btnAddFood = new Button();
             btnMonthlyRecord = new Button();
             btnWeeklyRecord = new Button();
             btnDailyRecord = new Button();
             dtpUserPanel = new DateTimePicker();
-            grbBeveragePortionAdd = new GroupBox();
-            cmbBeveragePortionAddUserPanel = new ComboBox();
             grpbBeverageAdd = new GroupBox();
             cmbBeverageAddUserPanel = new ComboBox();
             grpbFoodAdd = new GroupBox();
@@ -46,97 +48,146 @@
             cmbBeverageCategoryAddUserPanel = new ComboBox();
             grpbFoodCategoryAdd = new GroupBox();
             cmbFoodCategoryAddUserPanel = new ComboBox();
-            grpbFoodPortionAdd = new GroupBox();
-            cmbFoodPortionAddUserPanel = new ComboBox();
             grpbMealAdd = new GroupBox();
             cmbMealAddUserPanel = new ComboBox();
             lblUserName = new Label();
-            dataGridView1 = new DataGridView();
+            dgvUserRecord = new DataGridView();
             grpbUserPanel.SuspendLayout();
-            grbBeveragePortionAdd.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox1.SuspendLayout();
             grpbBeverageAdd.SuspendLayout();
             grpbFoodAdd.SuspendLayout();
             grpbBeverageCategoryAdd.SuspendLayout();
             grpbFoodCategoryAdd.SuspendLayout();
-            grpbFoodPortionAdd.SuspendLayout();
             grpbMealAdd.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUserRecord).BeginInit();
             SuspendLayout();
             // 
             // grpbUserPanel
             // 
+            grpbUserPanel.Controls.Add(groupBox2);
+            grpbUserPanel.Controls.Add(groupBox1);
             grpbUserPanel.Controls.Add(btnUpdate);
             grpbUserPanel.Controls.Add(btnDeleteUserPanel);
-            grpbUserPanel.Controls.Add(btnAddUserPanel);
+            grpbUserPanel.Controls.Add(btnAddFood);
             grpbUserPanel.Controls.Add(btnMonthlyRecord);
             grpbUserPanel.Controls.Add(btnWeeklyRecord);
             grpbUserPanel.Controls.Add(btnDailyRecord);
             grpbUserPanel.Controls.Add(dtpUserPanel);
-            grpbUserPanel.Controls.Add(grbBeveragePortionAdd);
             grpbUserPanel.Controls.Add(grpbBeverageAdd);
             grpbUserPanel.Controls.Add(grpbFoodAdd);
             grpbUserPanel.Controls.Add(grpbBeverageCategoryAdd);
             grpbUserPanel.Controls.Add(grpbFoodCategoryAdd);
-            grpbUserPanel.Controls.Add(grpbFoodPortionAdd);
             grpbUserPanel.Controls.Add(grpbMealAdd);
             grpbUserPanel.Controls.Add(lblUserName);
-            grpbUserPanel.Controls.Add(dataGridView1);
-            grpbUserPanel.Location = new Point(12, 12);
+            grpbUserPanel.Controls.Add(dgvUserRecord);
+            grpbUserPanel.Location = new Point(10, 9);
+            grpbUserPanel.Margin = new Padding(3, 2, 3, 2);
             grpbUserPanel.Name = "grpbUserPanel";
-            grpbUserPanel.Size = new Size(932, 606);
+            grpbUserPanel.Padding = new Padding(3, 2, 3, 2);
+            grpbUserPanel.Size = new Size(816, 454);
             grpbUserPanel.TabIndex = 0;
             grpbUserPanel.TabStop = false;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(cmbBeveragePortion);
+            groupBox2.Location = new Point(664, 241);
+            groupBox2.Margin = new Padding(3, 2, 3, 2);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(3, 2, 3, 2);
+            groupBox2.Size = new Size(115, 47);
+            groupBox2.TabIndex = 10;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Porsiyon";
+            // 
+            // cmbBeveragePortion
+            // 
+            cmbBeveragePortion.FormattingEnabled = true;
+            cmbBeveragePortion.Location = new Point(10, 20);
+            cmbBeveragePortion.Margin = new Padding(3, 2, 3, 2);
+            cmbBeveragePortion.Name = "cmbBeveragePortion";
+            cmbBeveragePortion.Size = new Size(99, 23);
+            cmbBeveragePortion.TabIndex = 4;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(cmbFoodPortion);
+            groupBox1.Location = new Point(670, 71);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(115, 47);
+            groupBox1.TabIndex = 9;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Porsiyon";
+            // 
+            // cmbFoodPortion
+            // 
+            cmbFoodPortion.FormattingEnabled = true;
+            cmbFoodPortion.Location = new Point(10, 20);
+            cmbFoodPortion.Margin = new Padding(3, 2, 3, 2);
+            cmbFoodPortion.Name = "cmbFoodPortion";
+            cmbFoodPortion.Size = new Size(99, 23);
+            cmbFoodPortion.TabIndex = 4;
+            // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(767, 538);
+            btnUpdate.Location = new Point(545, 388);
+            btnUpdate.Margin = new Padding(3, 2, 3, 2);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(131, 50);
+            btnUpdate.Size = new Size(115, 38);
             btnUpdate.TabIndex = 20;
             btnUpdate.Text = "Güncelle";
             btnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnDeleteUserPanel
             // 
-            btnDeleteUserPanel.Location = new Point(515, 537);
+            btnDeleteUserPanel.Location = new Point(424, 388);
+            btnDeleteUserPanel.Margin = new Padding(3, 2, 3, 2);
             btnDeleteUserPanel.Name = "btnDeleteUserPanel";
-            btnDeleteUserPanel.Size = new Size(131, 50);
+            btnDeleteUserPanel.Size = new Size(115, 38);
             btnDeleteUserPanel.TabIndex = 19;
             btnDeleteUserPanel.Text = "Sil";
             btnDeleteUserPanel.UseVisualStyleBackColor = true;
             // 
-            // btnAddUserPanel
+            // btnAddFood
             // 
-            btnAddUserPanel.Location = new Point(268, 537);
-            btnAddUserPanel.Name = "btnAddUserPanel";
-            btnAddUserPanel.Size = new Size(131, 50);
-            btnAddUserPanel.TabIndex = 18;
-            btnAddUserPanel.Text = "Ekle";
-            btnAddUserPanel.UseVisualStyleBackColor = true;
+            btnAddFood.Location = new Point(566, 309);
+            btnAddFood.Margin = new Padding(3, 2, 3, 2);
+            btnAddFood.Name = "btnAddFood";
+            btnAddFood.Size = new Size(155, 36);
+            btnAddFood.TabIndex = 18;
+            btnAddFood.Text = "Ekle";
+            btnAddFood.UseVisualStyleBackColor = true;
+            btnAddFood.Click += btnAddFood_Click;
             // 
             // btnMonthlyRecord
             // 
-            btnMonthlyRecord.Location = new Point(766, 26);
+            btnMonthlyRecord.Location = new Point(147, 323);
+            btnMonthlyRecord.Margin = new Padding(3, 2, 3, 2);
             btnMonthlyRecord.Name = "btnMonthlyRecord";
-            btnMonthlyRecord.Size = new Size(131, 50);
+            btnMonthlyRecord.Size = new Size(115, 38);
             btnMonthlyRecord.TabIndex = 16;
             btnMonthlyRecord.Text = "Aylık Rapor";
             btnMonthlyRecord.UseVisualStyleBackColor = true;
             // 
             // btnWeeklyRecord
             // 
-            btnWeeklyRecord.Location = new Point(520, 26);
+            btnWeeklyRecord.Location = new Point(213, 281);
+            btnWeeklyRecord.Margin = new Padding(3, 2, 3, 2);
             btnWeeklyRecord.Name = "btnWeeklyRecord";
-            btnWeeklyRecord.Size = new Size(131, 50);
+            btnWeeklyRecord.Size = new Size(115, 38);
             btnWeeklyRecord.TabIndex = 15;
             btnWeeklyRecord.Text = "Haftalık Rapor";
             btnWeeklyRecord.UseVisualStyleBackColor = true;
             // 
             // btnDailyRecord
             // 
-            btnDailyRecord.Location = new Point(274, 26);
+            btnDailyRecord.Location = new Point(78, 281);
+            btnDailyRecord.Margin = new Padding(3, 2, 3, 2);
             btnDailyRecord.Name = "btnDailyRecord";
-            btnDailyRecord.Size = new Size(131, 50);
+            btnDailyRecord.Size = new Size(115, 38);
             btnDailyRecord.TabIndex = 14;
             btnDailyRecord.Text = "Günlük Rapor";
             btnDailyRecord.UseVisualStyleBackColor = true;
@@ -144,35 +195,21 @@
             // dtpUserPanel
             // 
             dtpUserPanel.Format = DateTimePickerFormat.Short;
-            dtpUserPanel.Location = new Point(17, 66);
+            dtpUserPanel.Location = new Point(16, 37);
+            dtpUserPanel.Margin = new Padding(3, 2, 3, 2);
             dtpUserPanel.Name = "dtpUserPanel";
-            dtpUserPanel.Size = new Size(222, 27);
-            dtpUserPanel.TabIndex = 13;
-            // 
-            // grbBeveragePortionAdd
-            // 
-            grbBeveragePortionAdd.Controls.Add(cmbBeveragePortionAddUserPanel);
-            grbBeveragePortionAdd.Location = new Point(6, 524);
-            grbBeveragePortionAdd.Name = "grbBeveragePortionAdd";
-            grbBeveragePortionAdd.Size = new Size(233, 63);
-            grbBeveragePortionAdd.TabIndex = 12;
-            grbBeveragePortionAdd.TabStop = false;
-            grbBeveragePortionAdd.Text = "İçecek Porsiyon Ekle";
-            // 
-            // cmbBeveragePortionAddUserPanel
-            // 
-            cmbBeveragePortionAddUserPanel.FormattingEnabled = true;
-            cmbBeveragePortionAddUserPanel.Location = new Point(11, 26);
-            cmbBeveragePortionAddUserPanel.Name = "cmbBeveragePortionAddUserPanel";
-            cmbBeveragePortionAddUserPanel.Size = new Size(216, 28);
-            cmbBeveragePortionAddUserPanel.TabIndex = 1;
+            dtpUserPanel.Size = new Size(156, 23);
+            dtpUserPanel.TabIndex = 1;
+            dtpUserPanel.ValueChanged += dtpUserPanel_ValueChanged;
             // 
             // grpbBeverageAdd
             // 
             grpbBeverageAdd.Controls.Add(cmbBeverageAddUserPanel);
-            grpbBeverageAdd.Location = new Point(6, 450);
+            grpbBeverageAdd.Location = new Point(424, 241);
+            grpbBeverageAdd.Margin = new Padding(3, 2, 3, 2);
             grpbBeverageAdd.Name = "grpbBeverageAdd";
-            grpbBeverageAdd.Size = new Size(233, 63);
+            grpbBeverageAdd.Padding = new Padding(3, 2, 3, 2);
+            grpbBeverageAdd.Size = new Size(204, 47);
             grpbBeverageAdd.TabIndex = 11;
             grpbBeverageAdd.TabStop = false;
             grpbBeverageAdd.Text = "İçecek Ekle";
@@ -180,35 +217,41 @@
             // cmbBeverageAddUserPanel
             // 
             cmbBeverageAddUserPanel.FormattingEnabled = true;
-            cmbBeverageAddUserPanel.Location = new Point(11, 26);
+            cmbBeverageAddUserPanel.Location = new Point(10, 20);
+            cmbBeverageAddUserPanel.Margin = new Padding(3, 2, 3, 2);
             cmbBeverageAddUserPanel.Name = "cmbBeverageAddUserPanel";
-            cmbBeverageAddUserPanel.Size = new Size(216, 28);
+            cmbBeverageAddUserPanel.Size = new Size(190, 23);
             cmbBeverageAddUserPanel.TabIndex = 1;
             // 
             // grpbFoodAdd
             // 
             grpbFoodAdd.Controls.Add(cmbFoodAddUserPanel);
-            grpbFoodAdd.Location = new Point(6, 243);
+            grpbFoodAdd.Location = new Point(424, 71);
+            grpbFoodAdd.Margin = new Padding(3, 2, 3, 2);
             grpbFoodAdd.Name = "grpbFoodAdd";
-            grpbFoodAdd.Size = new Size(233, 63);
+            grpbFoodAdd.Padding = new Padding(3, 2, 3, 2);
+            grpbFoodAdd.Size = new Size(204, 47);
             grpbFoodAdd.TabIndex = 8;
             grpbFoodAdd.TabStop = false;
-            grpbFoodAdd.Text = "Yemek Ekle";
+            grpbFoodAdd.Text = "Yemek Seçiniz";
             // 
             // cmbFoodAddUserPanel
             // 
             cmbFoodAddUserPanel.FormattingEnabled = true;
-            cmbFoodAddUserPanel.Location = new Point(11, 26);
+            cmbFoodAddUserPanel.Location = new Point(10, 20);
+            cmbFoodAddUserPanel.Margin = new Padding(3, 2, 3, 2);
             cmbFoodAddUserPanel.Name = "cmbFoodAddUserPanel";
-            cmbFoodAddUserPanel.Size = new Size(216, 28);
-            cmbFoodAddUserPanel.TabIndex = 1;
+            cmbFoodAddUserPanel.Size = new Size(190, 23);
+            cmbFoodAddUserPanel.TabIndex = 4;
             // 
             // grpbBeverageCategoryAdd
             // 
             grpbBeverageCategoryAdd.Controls.Add(cmbBeverageCategoryAddUserPanel);
-            grpbBeverageCategoryAdd.Location = new Point(6, 381);
+            grpbBeverageCategoryAdd.Location = new Point(424, 190);
+            grpbBeverageCategoryAdd.Margin = new Padding(3, 2, 3, 2);
             grpbBeverageCategoryAdd.Name = "grpbBeverageCategoryAdd";
-            grpbBeverageCategoryAdd.Size = new Size(233, 63);
+            grpbBeverageCategoryAdd.Padding = new Padding(3, 2, 3, 2);
+            grpbBeverageCategoryAdd.Size = new Size(204, 47);
             grpbBeverageCategoryAdd.TabIndex = 10;
             grpbBeverageCategoryAdd.TabStop = false;
             grpbBeverageCategoryAdd.Text = "İçecek Kategori Ekle";
@@ -216,17 +259,20 @@
             // cmbBeverageCategoryAddUserPanel
             // 
             cmbBeverageCategoryAddUserPanel.FormattingEnabled = true;
-            cmbBeverageCategoryAddUserPanel.Location = new Point(11, 35);
+            cmbBeverageCategoryAddUserPanel.Location = new Point(8, 20);
+            cmbBeverageCategoryAddUserPanel.Margin = new Padding(3, 2, 3, 2);
             cmbBeverageCategoryAddUserPanel.Name = "cmbBeverageCategoryAddUserPanel";
-            cmbBeverageCategoryAddUserPanel.Size = new Size(216, 28);
-            cmbBeverageCategoryAddUserPanel.TabIndex = 1;
+            cmbBeverageCategoryAddUserPanel.Size = new Size(190, 23);
+            cmbBeverageCategoryAddUserPanel.TabIndex = 6;
             // 
             // grpbFoodCategoryAdd
             // 
             grpbFoodCategoryAdd.Controls.Add(cmbFoodCategoryAddUserPanel);
-            grpbFoodCategoryAdd.Location = new Point(6, 174);
+            grpbFoodCategoryAdd.Location = new Point(424, 20);
+            grpbFoodCategoryAdd.Margin = new Padding(3, 2, 3, 2);
             grpbFoodCategoryAdd.Name = "grpbFoodCategoryAdd";
-            grpbFoodCategoryAdd.Size = new Size(233, 63);
+            grpbFoodCategoryAdd.Padding = new Padding(3, 2, 3, 2);
+            grpbFoodCategoryAdd.Size = new Size(204, 47);
             grpbFoodCategoryAdd.TabIndex = 7;
             grpbFoodCategoryAdd.TabStop = false;
             grpbFoodCategoryAdd.Text = "Yemek Kategori Ekle";
@@ -234,90 +280,79 @@
             // cmbFoodCategoryAddUserPanel
             // 
             cmbFoodCategoryAddUserPanel.FormattingEnabled = true;
-            cmbFoodCategoryAddUserPanel.Location = new Point(11, 26);
+            cmbFoodCategoryAddUserPanel.Location = new Point(10, 20);
+            cmbFoodCategoryAddUserPanel.Margin = new Padding(3, 2, 3, 2);
             cmbFoodCategoryAddUserPanel.Name = "cmbFoodCategoryAddUserPanel";
-            cmbFoodCategoryAddUserPanel.Size = new Size(216, 28);
-            cmbFoodCategoryAddUserPanel.TabIndex = 1;
-            // 
-            // grpbFoodPortionAdd
-            // 
-            grpbFoodPortionAdd.Controls.Add(cmbFoodPortionAddUserPanel);
-            grpbFoodPortionAdd.Location = new Point(6, 312);
-            grpbFoodPortionAdd.Name = "grpbFoodPortionAdd";
-            grpbFoodPortionAdd.Size = new Size(233, 63);
-            grpbFoodPortionAdd.TabIndex = 9;
-            grpbFoodPortionAdd.TabStop = false;
-            grpbFoodPortionAdd.Text = "Yemek Porsiyon Ekle";
-            // 
-            // cmbFoodPortionAddUserPanel
-            // 
-            cmbFoodPortionAddUserPanel.FormattingEnabled = true;
-            cmbFoodPortionAddUserPanel.Location = new Point(11, 26);
-            cmbFoodPortionAddUserPanel.Name = "cmbFoodPortionAddUserPanel";
-            cmbFoodPortionAddUserPanel.Size = new Size(216, 28);
-            cmbFoodPortionAddUserPanel.TabIndex = 1;
+            cmbFoodCategoryAddUserPanel.Size = new Size(190, 23);
+            cmbFoodCategoryAddUserPanel.TabIndex = 3;
             // 
             // grpbMealAdd
             // 
             grpbMealAdd.Controls.Add(cmbMealAddUserPanel);
-            grpbMealAdd.Location = new Point(6, 105);
+            grpbMealAdd.Location = new Point(213, 20);
+            grpbMealAdd.Margin = new Padding(3, 2, 3, 2);
             grpbMealAdd.Name = "grpbMealAdd";
-            grpbMealAdd.Size = new Size(233, 63);
+            grpbMealAdd.Padding = new Padding(3, 2, 3, 2);
+            grpbMealAdd.Size = new Size(204, 47);
             grpbMealAdd.TabIndex = 6;
             grpbMealAdd.TabStop = false;
-            grpbMealAdd.Text = "Öğün Ekle";
+            grpbMealAdd.Text = "Öğün Seçiniz";
             // 
             // cmbMealAddUserPanel
             // 
             cmbMealAddUserPanel.FormattingEnabled = true;
-            cmbMealAddUserPanel.Location = new Point(11, 26);
+            cmbMealAddUserPanel.Location = new Point(10, 20);
+            cmbMealAddUserPanel.Margin = new Padding(3, 2, 3, 2);
             cmbMealAddUserPanel.Name = "cmbMealAddUserPanel";
-            cmbMealAddUserPanel.Size = new Size(216, 28);
-            cmbMealAddUserPanel.TabIndex = 1;
+            cmbMealAddUserPanel.Size = new Size(190, 23);
+            cmbMealAddUserPanel.TabIndex = 2;
             // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
-            lblUserName.Location = new Point(6, 0);
+            lblUserName.Location = new Point(5, 0);
             lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(71, 20);
+            lblUserName.Size = new Size(57, 15);
             lblUserName.TabIndex = 3;
             lblUserName.Text = "Merhaba:";
             // 
-            // dataGridView1
+            // dgvUserRecord
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(268, 93);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(630, 420);
-            dataGridView1.TabIndex = 0;
+            dgvUserRecord.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUserRecord.Location = new Point(16, 91);
+            dgvUserRecord.Margin = new Padding(3, 2, 3, 2);
+            dgvUserRecord.Name = "dgvUserRecord";
+            dgvUserRecord.RowHeadersWidth = 51;
+            dgvUserRecord.Size = new Size(381, 146);
+            dgvUserRecord.TabIndex = 0;
             // 
             // UserPanel
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(982, 630);
+            ClientSize = new Size(859, 472);
             Controls.Add(grpbUserPanel);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "UserPanel";
             Text = "UserPanel";
+            Load += UserPanel_Load;
             grpbUserPanel.ResumeLayout(false);
             grpbUserPanel.PerformLayout();
-            grbBeveragePortionAdd.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
             grpbBeverageAdd.ResumeLayout(false);
             grpbFoodAdd.ResumeLayout(false);
             grpbBeverageCategoryAdd.ResumeLayout(false);
             grpbFoodCategoryAdd.ResumeLayout(false);
-            grpbFoodPortionAdd.ResumeLayout(false);
             grpbMealAdd.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUserRecord).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private GroupBox grpbUserPanel;
-        private DataGridView dataGridView1;
+        private DataGridView dgvUserRecord;
         private ComboBox cmbMealAddUserPanel;
         private Label lblMealUserPanel;
         private Label lblUserName;
@@ -332,16 +367,16 @@
         private ComboBox cmbBeverageAddUserPanel;
         private GroupBox grpbBeverageCategoryAdd;
         private ComboBox cmbBeverageCategoryAddUserPanel;
-        private GroupBox grpbFoodPortionAdd;
-        private ComboBox cmbFoodPortionAddUserPanel;
-        private GroupBox grbBeveragePortionAdd;
-        private ComboBox cmbBeveragePortionAddUserPanel;
         private DateTimePicker dtpUserPanel;
         private Button btnWeeklyRecord;
         private Button btnDailyRecord;
         private Button btnMonthlyRecord;
         private Button btnUpdate;
         private Button btnDeleteUserPanel;
-        private Button btnAddUserPanel;
+        private Button btnAddFood;
+        private GroupBox groupBox1;
+        private ComboBox cmbFoodPortion;
+        private GroupBox groupBox2;
+        private ComboBox cmbBeveragePortion;
     }
 }

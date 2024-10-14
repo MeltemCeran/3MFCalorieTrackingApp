@@ -30,13 +30,17 @@ namespace CalorieTrackingApp.DAL.Services.ReportServices
             // Kullanıcının o gün yediği yemek kayıtlarını filtreliyoruz.
             // Kullanıcı ID'sine ve belirtilen tarihe göre yemek kayıtlarını getiriyoruz.
             var foodRecords = _context.UserMealDailyFoodRecords
-                .Where(r => r.UserId == userId && r.RecordDate.ToDateTime(TimeOnly.MinValue) == date.Date)  // Tarih ve kullanıcı filtrelemesi
+                .Where(u => u.UserId == userId)
+                .ToList()
+                .Where(r => r.RecordDate.ToDateTime(TimeOnly.MinValue) == date.Date)  // Tarih ve kullanıcı filtrelemesi
                 .ToList();  // Sonuçları listeye çeviriyoruz
 
             // Kullanıcının o gün içtiği içecek kayıtlarını filtreliyoruz.
             // Kullanıcı ID'sine ve belirtilen tarihe göre içecek kayıtlarını getiriyoruz.
             var beverageRecords = _context.UserMealDailyBeverageRecords
-                .Where(r => r.UserId == userId && r.RecordDate.ToDateTime(TimeOnly.MinValue) == date.Date)  // Tarih ve kullanıcı filtrelemesi
+                .Where(u => u.UserId == userId)
+                .ToList()
+                .Where(r => r.RecordDate.ToDateTime(TimeOnly.MinValue) == date.Date)  // Tarih ve kullanıcı filtrelemesi
                 .ToList();  // Sonuçları listeye çeviriyoruz
 
             // Toplam kalori hesaplaması yapılıyor.

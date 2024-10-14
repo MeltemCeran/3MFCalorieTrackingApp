@@ -1,5 +1,7 @@
 ﻿using CalorieTrackingApp.BLL.Manager.Abstract;
 using CalorieTrackingApp.BLL.Models.Concrete;
+using CalorieTrackingApp.DAL.Entities.Concrete;
+using CalorieTrackingApp.DAL.Services.Abstract;
 using CalorieTrackingApp.DAL.Services.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,6 +14,6 @@ namespace CalorieTrackingApp.BLL.Manager.Concrete
 {
     public class FoodCategoryManager : Manager<FoodCategoryModel, FoodCategoryService<FoodCategoryModel>>
     {
-        
+
     }
 }

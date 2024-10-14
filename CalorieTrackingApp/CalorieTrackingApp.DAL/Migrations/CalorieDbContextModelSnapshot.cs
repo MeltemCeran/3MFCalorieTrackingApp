@@ -60,7 +60,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
 
                     b.HasData(
                         new
@@ -114,7 +114,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasIndex("PortionId");
 
-                    b.ToTable("Beverages");
+                    b.ToTable("Beverages", (string)null);
 
                     b.HasData(
                         new
@@ -235,7 +235,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BeverageCategories");
+                    b.ToTable("BeverageCategories", (string)null);
 
                     b.HasData(
                         new
@@ -311,7 +311,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("DailyUserRecord");
+                    b.ToTable("DailyUserRecord", (string)null);
 
                     b.HasData(
                         new
@@ -391,7 +391,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasIndex("PortionId");
 
-                    b.ToTable("Foods");
+                    b.ToTable("Foods", (string)null);
 
                     b.HasData(
                         new
@@ -592,7 +592,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FoodCategories");
+                    b.ToTable("FoodCategories", (string)null);
 
                     b.HasData(
                         new
@@ -672,7 +672,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Meals");
+                    b.ToTable("Meals", (string)null);
 
                     b.HasData(
                         new
@@ -738,7 +738,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Portions");
+                    b.ToTable("Portions", (string)null);
 
                     b.HasData(
                         new
@@ -854,7 +854,7 @@ namespace CalorieTrackingApp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new

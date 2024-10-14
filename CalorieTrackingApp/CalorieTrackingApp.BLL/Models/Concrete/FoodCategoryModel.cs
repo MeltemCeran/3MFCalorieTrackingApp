@@ -12,5 +12,10 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
     {
         public string FoodCategoryName { get; set; }
         public virtual ICollection<Food> Foods { get; set; } = new List<Food>();
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

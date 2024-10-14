@@ -16,5 +16,10 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
         public virtual ICollection<Food> Foods { get; set; } = new List<Food>();
         public string ProductType { get; set; }
         public virtual ICollection<DailyUserRecord> PortionRecords { get; set; } = new List<DailyUserRecord>();
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

@@ -15,8 +15,14 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
         public decimal FoodCalorie { get; set; }
         public int PortionId { get; set; }
         public virtual Portion Portion { get; set; }
+        public string PortionName { get; set; }
         public virtual ICollection<DailyUserRecord> FoodRecords { get; set; } = new List<DailyUserRecord>();
         public int FoodCategoryId { get; set; }
         public virtual FoodCategory FoodCategory { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

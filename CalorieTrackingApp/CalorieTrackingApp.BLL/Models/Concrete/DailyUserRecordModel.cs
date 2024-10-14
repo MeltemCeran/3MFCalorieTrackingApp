@@ -22,5 +22,10 @@ namespace CalorieTrackingApp.BLL.Models.Concrete
         public DateOnly RecordDate { get; set; }
         public int PortionId { get; set; }
         public virtual Portion Portions { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
