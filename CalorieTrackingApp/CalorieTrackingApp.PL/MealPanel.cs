@@ -18,11 +18,35 @@ namespace CalorieTrackingApp.PL
     public partial class MealPanel : Form
     {
         MealModel selectedMeal;
+
         public MealPanel()
         {
             InitializeComponent();
         }
 
+        private void MealPanel_Load(object sender, EventArgs e)
+        {
+            GetMealList();
+        }
+
+        public void FormClear()
+        {
+            txtMealName.Clear();
+        }
+
+        public void GetMealList()
+        {
+            using (MealManager mealManager = new MealManager())
+            {
+                dgvMeal.DataSource = mealManager.GetAll();
+            }
+        }
+        
+        private void dgvMeal_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedMeal = (MealModel)dgvMeal.SelectedRows[0].DataBoundItem;
+            txtMealName.Text = selectedMeal.MealName;
+        }
 
         private void btnMealAdd_Click(object sender, EventArgs e)
         {
@@ -43,43 +67,24 @@ namespace CalorieTrackingApp.PL
 
                     if (mealManager.Save() > 0)
                     {
-                        lblMealMessage.Text = "Öğün Kategorisi Eklendi.";
-                        lblMealMessage.Visible = true;
+                        lblMeal.Text = "Öğün Eklendi.";
+                        lblMeal.BackColor = Color.Green;
+                        lblMeal.ForeColor = Color.White;
+                        lblMeal.Visible = true;
                         GetMealList();
                     }
                     else
                     {
-                        lblMealMessage.Text = "Öğün Kategorisi Oluşturulamadı!!";
-                        lblMealMessage.BackColor = Color.Red;
-                        lblMealMessage.Visible = true;
+                        lblMeal.Text = "Öğün Eklenemedi.";
+                        lblMeal.BackColor = Color.Red;
+                        lblMeal.ForeColor = Color.White;
+                        lblMeal.Visible = true;
                     }
                     FormClear();
                 }
             }
         }
-        private void FormClear()
-        {
-            txtMealName.Clear();
-        }
-
-        private void MealPanel_Load(object sender, EventArgs e)
-        {
-            GetMealList();
-        }
-
-        private void GetMealList()
-        {
-            using (MealManager mealManager = new MealManager())
-            {
-                dgvMeal.DataSource = mealManager.GetAll();
-            }
-        }
-        private void dgvMeal_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            selectedMeal = (MealModel)dgvMeal.SelectedRows[0].DataBoundItem;
-            lblMealMessage.Text = selectedMeal.MealName;
-            txtMealName.Text = selectedMeal.MealName;
-        }
+        
         private void btnMealDelete_Click(object sender, EventArgs e)
         {
             using (MealManager mealManager = new MealManager())
@@ -88,33 +93,61 @@ namespace CalorieTrackingApp.PL
 
                 if (mealManager.Save() > 0)
                 {
-                    lblMealMessage.Text = "Eklendi";
-                    lblMealMessage.Visible = true;
+                    lblMeal.Text = "Öğün Silindi.";
+                    lblMeal.BackColor = Color.Green;
+                    lblMeal.ForeColor = Color.White;
+                    lblMeal.Visible = true;
 
                     GetMealList();
                 }
                 else
                 {
-                    lblMealMessage.Text = "Olmadı:(!!";
-                    lblMealMessage.BackColor = Color.Red;
-                    lblMealMessage.Visible = true;
+                    lblMeal.Text = "Öğün Silinemedi.";
+                    lblMeal.BackColor = Color.Red;
+                    lblMeal.ForeColor = Color.White;
+                    lblMeal.Visible = true;
                 }
 
                 FormClear();
             }
         }
-         //Update çalışmıyor!!!!!
+
         private void btnMealUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvMeal.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(txtMealName.Text))
+            using (MealManager mealManager = new MealManager())
             {
-                dgvMeal.SelectedRows[0].Cells[0].Value = txtMealName.Text;  // Seçilen satırın verisini günceller
-                lblMealMessage.Text = "Durum: Öğün Güncellendi";
-                txtMealName.Clear();
-            }
-            else
-            {
-                lblMealMessage.Text = "Durum: Güncellemek için bir öğün seçin ve yeni öğün adı girin.";
+                string newMealName = txtMealName.Text;
+
+                if (dgvMeal.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(newMealName))
+                {
+                    selectedMeal.MealName = newMealName;
+
+                    // Güncelleme işlemini gerçekleştir
+                    mealManager.Update(selectedMeal);
+
+                    if (mealManager.Save() > 0)
+                    {
+                        GetMealList(); // Listeyi yenile
+                        lblMeal.Text = "Öğün Güncellendi.";
+                        lblMeal.BackColor = Color.Green; // Başarılı güncelleme için yeşil arka plan
+                        lblMeal.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        lblMeal.Text = "Güncelleme sırasında bir hata oluştu.";
+                        lblMeal.BackColor = Color.Red; // Hata durumu için kırmızı arka plan
+                        lblMeal.ForeColor = Color.White;
+                    }
+                }
+                else
+                {
+                    lblMeal.Text = "Güncellemek için lütfen bir öğün seçiniz.";
+                    lblMeal.BackColor = Color.Red;
+                    lblMeal.ForeColor = Color.White;
+                }
+
+                lblMeal.Visible = true;
+                FormClear(); // Formu temizle
             }
         }
     }

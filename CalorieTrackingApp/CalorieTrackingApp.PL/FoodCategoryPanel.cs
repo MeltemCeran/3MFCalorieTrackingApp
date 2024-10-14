@@ -15,8 +15,8 @@ namespace CalorieTrackingApp.PL
 {
     public partial class FoodCategoryPanel : Form
     {
-        FoodCategoryManager beverageCategoryManager = new FoodCategoryManager();
         FoodCategoryModel selectedFoodCategory;
+
         public FoodCategoryPanel()
         {
             InitializeComponent();
@@ -27,32 +27,30 @@ namespace CalorieTrackingApp.PL
             GetFoodCategoryList();
         }
 
-        private void GetFoodCategoryList()
+        public void FormClear()
+        {
+            txtFoodCategoryName.Clear();
+        }
+
+        public void GetFoodCategoryList()
         {
             using (FoodCategoryManager foodCategoryManager = new FoodCategoryManager())
             {
                 dgvFoodCategory.DataSource = foodCategoryManager.GetAll();
             }
-
-
-        }
-
-        private void FormClear()
-        {
-            txtFoodCategoryName.Clear();
         }
 
         private void dgvFoodCategory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             selectedFoodCategory = (FoodCategoryModel)dgvFoodCategory.SelectedRows[0].DataBoundItem;
-            lblDurum.Text = selectedFoodCategory.FoodCategoryName;
             txtFoodCategoryName.Text = selectedFoodCategory.FoodCategoryName;
         }
+
         private void btnFoodCategoryAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtFoodCategoryName.Text))
             {
-                MessageBox.Show("Lütfen 'Yemek Kategorisi Adı' kısmınızı doldurunuz.");
+                MessageBox.Show("Lütfen 'Yemek Kategori Adı' kısmınızı doldurunuz.");
                 return;
             }
             else
@@ -67,15 +65,18 @@ namespace CalorieTrackingApp.PL
 
                     if (foodCategoryManager.Save() > 0)
                     {
-                        lblDurum.Text = "Yemek Kategorisi Eklendi.";
-                        lblDurum.Visible = true;
+                        lblFoodCategory.Text = "Yemek Kategorisi Eklendi.";
+                        lblFoodCategory.BackColor = Color.Green;
+                        lblFoodCategory.ForeColor = Color.White;
+                        lblFoodCategory.Visible = true;
                         GetFoodCategoryList();
                     }
                     else
                     {
-                        lblDurum.Text = "Yemek Kategorisi Oluşturulamadı!!";
-                        lblDurum.BackColor = Color.Red;
-                        lblDurum.Visible = true;
+                        lblFoodCategory.Text = "Yemek Kategorisi Eklenemedi.";
+                        lblFoodCategory.BackColor = Color.Red;
+                        lblFoodCategory.ForeColor= Color.White;
+                        lblFoodCategory.Visible = true;
                     }
                     FormClear();
                 }
@@ -92,17 +93,20 @@ namespace CalorieTrackingApp.PL
                 if (foodCategoryManager.Save() > 0)
                 {
                     GetFoodCategoryList();
-                    lblDurum.Text = "İçecek Kategorisi Eklendi";
+                    lblFoodCategory.Text = "Yemek Kategorisi Silindi.";
+                    lblFoodCategory.BackColor = Color.Green;
+                    lblFoodCategory.ForeColor = Color.White;
                     selectedFoodCategory = null;
-                    lblDurum.Visible = true;
+                    lblFoodCategory.Visible = true;
 
                     
                 }
                 else
                 {
-                    lblDurum.Text = "İçecek Kategorisi Olmadı:(!!";
-                    lblDurum.BackColor = Color.Red;
-                    lblDurum.Visible = true;
+                    lblFoodCategory.Text = "Yemek Kategorisi Silinemedi.";
+                    lblFoodCategory.BackColor = Color.Red;
+                    lblFoodCategory.ForeColor = Color.White;
+                    lblFoodCategory.Visible = true;
                 }
 
                 FormClear();
@@ -112,15 +116,42 @@ namespace CalorieTrackingApp.PL
 
         private void btnFoodCategoryUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvFoodCategory.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(txtFoodCategoryName.Text))
+            using (FoodCategoryManager foodCategoryManager = new FoodCategoryManager())
             {
-                dgvFoodCategory.SelectedRows[0].Cells[0].Value = txtFoodCategoryName.Text;  // Seçilen satırın verisini günceller
-                lblDurum.Text = "Durum: Öğün Güncellendi";
-                txtFoodCategoryName.Clear();
-            }
-            else
-            {
-                lblDurum.Text = "Durum: Güncellemek için bir öğün seçin ve yeni öğün adı girin.";
+                // Kullanıcıdan alınan yeni kategori adı
+                string newFoodCategoryName = txtFoodCategoryName.Text;
+
+                if (dgvFoodCategory.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(newFoodCategoryName))
+                {
+                    // Seçilen kategori üzerinde güncellemeler yapılıyor
+                    selectedFoodCategory.FoodCategoryName = newFoodCategoryName; // Var olan kategori nesnesini güncelle
+
+                    // Güncelleme işlemini gerçekleştir
+                    foodCategoryManager.Update(selectedFoodCategory);
+
+                    if (foodCategoryManager.Save() > 0)
+                    {
+                        GetFoodCategoryList(); // Listeyi yenile
+                        lblFoodCategory.Text = "Yemek Kategorisi Güncellendi";
+                        lblFoodCategory.BackColor = Color.Green; // Başarılı güncelleme için yeşil arka plan
+                        lblFoodCategory.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        lblFoodCategory.Text = "Güncelleme sırasında bir hata oluştu.";
+                        lblFoodCategory.BackColor = Color.Red; // Hata durumu için kırmızı arka plan
+                        lblFoodCategory.ForeColor = Color.White;
+                    }
+                }
+                else
+                {
+                    lblFoodCategory.Text = "Güncellemek için bir Yemek Kategorisi seçin.";
+                    lblFoodCategory.BackColor = Color.Red;
+                    lblFoodCategory.ForeColor = Color.White;
+                }
+
+                lblFoodCategory.Visible = true;
+                FormClear(); // Formu temizle
             }
         }
     }

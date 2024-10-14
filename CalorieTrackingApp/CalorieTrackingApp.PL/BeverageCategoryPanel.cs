@@ -17,8 +17,8 @@ namespace CalorieTrackingApp.PL
 
     public partial class BeverageCategoryPanel : Form
     {
-        BeverageCategoryManager beverageCategoryManager = new BeverageCategoryManager();
         BeverageCategoryModel selectedCategory;
+
         public BeverageCategoryPanel()
         {
             InitializeComponent();
@@ -30,6 +30,11 @@ namespace CalorieTrackingApp.PL
             GetBeverageCategoryList();
         }
 
+        public void FormClear()
+        {
+            txtBeverageCategoryName.Clear();
+        }
+
         public void GetBeverageCategoryList()
         {         
             using (BeverageCategoryManager beverageCategoryManager = new BeverageCategoryManager())
@@ -38,12 +43,16 @@ namespace CalorieTrackingApp.PL
             }
 
         }
-
+        private void dgvBeveragesCategory_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedCategory = (BeverageCategoryModel)dgvBeveragesCategory.SelectedRows[0].DataBoundItem;
+            txtBeverageCategoryName.Text = selectedCategory.BeverageCategoryName;
+        }
         private void btnBeveragesCategoryAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtBeverageCategoryName.Text))
             {
-                MessageBox.Show("Lütfen 'Öğün Adı' kısmınızı doldurunuz.");
+                MessageBox.Show("Lütfen 'İçecek Kategori Adı' kısmınızı doldurunuz.");
                 return;
             }
             else
@@ -58,25 +67,23 @@ namespace CalorieTrackingApp.PL
 
                     if (beverageCategoryManager.Save() > 0)
                     {
-                        lblBeverageMessage.Text = "Öğün Kategorisi Eklendi.";
-                        lblBeverageMessage.Visible = true;
+                        lblBeverageCategory.Text = "İçecek Kategorisi Eklendi.";
+                        lblBeverageCategory.BackColor = Color.Green;
+                        lblBeverageCategory.ForeColor = Color.White;
+                        lblBeverageCategory.Visible = true;
                         GetBeverageCategoryList();
                     }
                     else
                     {
-                        lblBeverageMessage.Text = "Öğün Kategorisi Oluşturulamadı!!";
-                        lblBeverageMessage.BackColor = Color.Red;
-                        lblBeverageMessage.Visible = true;
+                        lblBeverageCategory.Text = "İçecek Kategorisi Eklenemedi.";
+                        lblBeverageCategory.BackColor = Color.Red;
+                        lblBeverageCategory.ForeColor= Color.White;
+                        lblBeverageCategory.Visible = true;
                     }
                     FormClear();
                 }
             }
             
-        }
-
-        public void FormClear()
-        {
-            txtBeverageCategoryName.Clear();
         }
 
         private void btnBeveragesCategoryDelete_Click(object sender, EventArgs e)
@@ -88,17 +95,20 @@ namespace CalorieTrackingApp.PL
 
                 if (beverageCategoryManager.Save() > 0)
                 {
-                    lblBeverageMessage.Text = "İçecek Kategorisi Eklendi";
+                    lblBeverageCategory.Text = "İçecek Kategorisi Silindi.";
+                    lblBeverageCategory.BackColor = Color.Green;
+                    lblBeverageCategory.ForeColor = Color.White;
                     selectedCategory = null;
-                    lblBeverageMessage.Visible = true;
+                    lblBeverageCategory.Visible = true;
 
                     GetBeverageCategoryList();
                 }
                 else
                 {
-                    lblBeverageMessage.Text = "İçecek Kategorisi Olmadı:(!!";
-                    lblBeverageMessage.BackColor = Color.Red;
-                    lblBeverageMessage.Visible = true;
+                    lblBeverageCategory.Text = "İçecek Kategorisi Silinemedi.";
+                    lblBeverageCategory.BackColor = Color.Red;
+                    lblBeverageCategory.ForeColor = Color.White;
+                    lblBeverageCategory.Visible = true;
                 }
 
                 FormClear();
@@ -106,88 +116,44 @@ namespace CalorieTrackingApp.PL
             }
         }
 
-        private void dgvBeveragesCategory_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            selectedCategory = (BeverageCategoryModel)dgvBeveragesCategory.SelectedRows[0].DataBoundItem;
-            lblBeverageMessage.Text =selectedCategory.BeverageCategoryName;
-            txtBeverageCategoryName.Text = selectedCategory.BeverageCategoryName;
-        }
-
-       
         private void btnBeveragesCategoryUpdate_Click(object sender, EventArgs e)
         {
-            
             using (BeverageCategoryManager beverageCategoryManager = new BeverageCategoryManager())
             {
-                
+                // Kullanıcıdan alınan yeni kategori adı
+                string newBeverageCategoryName = txtBeverageCategoryName.Text;
 
-                BeverageCategoryModel beverageCategoryModel = new BeverageCategoryModel();
-                beverageCategoryModel.BeverageCategoryName = txtBeverageCategoryName.Text;
-                beverageCategoryManager.Update(selectedCategory);
-
-                if (dgvBeveragesCategory.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(txtBeverageCategoryName.Text))
+                if (dgvBeveragesCategory.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(newBeverageCategoryName))
                 {
+                    // Seçilen kategori üzerinde güncellemeler yapılıyor
+                    selectedCategory.BeverageCategoryName = newBeverageCategoryName; // Var olan kategori nesnesini güncelle
 
-                    //dgvBeveragesCategory.SelectedRows[0].Cells[0].Value = txtBeverageCategoryName.Text;
+                    // Güncelleme işlemini gerçekleştir
+                    beverageCategoryManager.Update(selectedCategory);
 
-                   
                     if (beverageCategoryManager.Save() > 0)
                     {
                         GetBeverageCategoryList(); // Listeyi yenile
-                        lblBeverageMessage.Text = "İçecek Kategorisi Güncellendi";
-                        selectedCategory = null;
-                        lblBeverageMessage.BackColor = Color.Green; // Başarılı güncelleme için yeşil arka plan
+                        lblBeverageCategory.Text = "İçecek Kategorisi Güncellendi";
+                        lblBeverageCategory.BackColor = Color.Green; // Başarılı güncelleme için yeşil arka plan
+                        lblBeverageCategory.ForeColor = Color.White;
                     }
                     else
                     {
-                        lblBeverageMessage.Text = "Güncelleme sırasında bir hata oluştu.";
-                        lblBeverageMessage.BackColor = Color.Red; // Hata durumu için kırmızı arka plan
+                        lblBeverageCategory.Text = "Güncelleme sırasında bir hata oluştu.";
+                        lblBeverageCategory.BackColor = Color.Red; // Hata durumu için kırmızı arka plan
+                        lblBeverageCategory.ForeColor = Color.White;
                     }
                 }
                 else
                 {
-                    lblBeverageMessage.Text = " Güncellemek için bir İçecek Kategorisi seçin ve yeni İçecek Kategorisi adı girin.";
-                    lblBeverageMessage.BackColor = Color.Red;
-                    lblBeverageMessage.Visible = true;
+                    lblBeverageCategory.Text = "Güncellemek için bir İçecek Kategorisi seçiniz.";
+                    lblBeverageCategory.BackColor = Color.Red;
                 }
 
-                FormClear();
+                lblBeverageCategory.Visible = true;
+                FormClear(); // Formu temizle
             }
-
-            //using (BeverageCategoryManager beverageCategoryManager = new BeverageCategoryManager())
-            //{
-            //    // Kullanıcıdan alınan yeni kategori adı
-            //    string newCategoryName = txtBeverageCategoryName.Text;
-
-            //    if (dgvBeveragesCategory.SelectedRows.Count > 0 && !string.IsNullOrWhiteSpace(newCategoryName))
-            //    {
-            //        // Seçilen kategori üzerinde güncellemeler yapılıyor
-            //        selectedCategory.BeverageCategoryName = newCategoryName; // Var olan kategori nesnesini güncelle
-
-            //        // Güncelleme işlemini gerçekleştir
-            //        beverageCategoryManager.Update(selectedCategory);
-
-            //        if (beverageCategoryManager.Save() > 0)
-            //        {
-            //            GetBeverageCategoryList(); // Listeyi yenile
-            //            lblBeverageMessage.Text = "İçecek Kategorisi Güncellendi";
-            //            lblBeverageMessage.BackColor = Color.Green; // Başarılı güncelleme için yeşil arka plan
-            //        }
-            //        else
-            //        {
-            //            lblBeverageMessage.Text = "Güncelleme sırasında bir hata oluştu.";
-            //            lblBeverageMessage.BackColor = Color.Red; // Hata durumu için kırmızı arka plan
-            //        }
-            //    }
-            //    else
-            //    {
-            //        lblBeverageMessage.Text = "Güncellemek için bir İçecek Kategorisi seçin ve yeni İçecek Kategorisi adı girin.";
-            //        lblBeverageMessage.BackColor = Color.Red;
-            //    }
-
-            //    lblBeverageMessage.Visible = true;
-            //    FormClear(); // Formu temizle
-            //}
         }
     }
 }

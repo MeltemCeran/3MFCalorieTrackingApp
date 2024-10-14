@@ -30,7 +30,7 @@
         {
             dgvMeal = new DataGridView();
             grpbMeal = new GroupBox();
-            lblMealMessage = new Label();
+            lblMeal = new Label();
             txtMealName = new TextBox();
             btnMealUpdate = new Button();
             btnMealDelete = new Button();
@@ -43,59 +43,54 @@
             // dgvMeal
             // 
             dgvMeal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMeal.Location = new Point(245, 30);
-            dgvMeal.Margin = new Padding(3, 2, 3, 2);
+            dgvMeal.Location = new Point(280, 40);
             dgvMeal.Name = "dgvMeal";
             dgvMeal.RowHeadersWidth = 51;
             dgvMeal.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMeal.Size = new Size(551, 315);
+            dgvMeal.Size = new Size(630, 420);
             dgvMeal.TabIndex = 0;
             dgvMeal.CellClick += dgvMeal_CellClick;
             // 
             // grpbMeal
             // 
-            grpbMeal.Controls.Add(lblMealMessage);
+            grpbMeal.Controls.Add(lblMeal);
             grpbMeal.Controls.Add(txtMealName);
             grpbMeal.Controls.Add(btnMealUpdate);
             grpbMeal.Controls.Add(btnMealDelete);
             grpbMeal.Controls.Add(btnMealAdd);
             grpbMeal.Controls.Add(lblAdminName);
             grpbMeal.Controls.Add(dgvMeal);
-            grpbMeal.Location = new Point(10, 9);
-            grpbMeal.Margin = new Padding(3, 2, 3, 2);
+            grpbMeal.Location = new Point(11, 12);
             grpbMeal.Name = "grpbMeal";
-            grpbMeal.Padding = new Padding(3, 2, 3, 2);
-            grpbMeal.Size = new Size(816, 396);
+            grpbMeal.Size = new Size(933, 528);
             grpbMeal.TabIndex = 1;
             grpbMeal.TabStop = false;
             // 
-            // lblMealMessage
+            // lblMeal
             // 
-            lblMealMessage.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblMealMessage.Location = new Point(14, 267);
-            lblMealMessage.Name = "lblMealMessage";
-            lblMealMessage.Size = new Size(199, 55);
-            lblMealMessage.TabIndex = 6;
-            lblMealMessage.Text = "Durum :";
-            lblMealMessage.Visible = false;
+            lblMeal.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblMeal.Location = new Point(16, 356);
+            lblMeal.Name = "lblMeal";
+            lblMeal.Size = new Size(227, 73);
+            lblMeal.TabIndex = 6;
+            lblMeal.Text = "Durum :";
+            lblMeal.Visible = false;
             // 
             // txtMealName
             // 
             txtMealName.BorderStyle = BorderStyle.FixedSingle;
-            txtMealName.Location = new Point(14, 101);
-            txtMealName.Margin = new Padding(3, 2, 3, 2);
+            txtMealName.Location = new Point(16, 135);
             txtMealName.Name = "txtMealName";
             txtMealName.PlaceholderText = " Öğün Adı";
-            txtMealName.Size = new Size(199, 23);
+            txtMealName.Size = new Size(227, 27);
             txtMealName.TabIndex = 5;
             // 
             // btnMealUpdate
             // 
             btnMealUpdate.FlatStyle = FlatStyle.Flat;
-            btnMealUpdate.Location = new Point(14, 217);
-            btnMealUpdate.Margin = new Padding(3, 2, 3, 2);
+            btnMealUpdate.Location = new Point(16, 289);
             btnMealUpdate.Name = "btnMealUpdate";
-            btnMealUpdate.Size = new Size(199, 38);
+            btnMealUpdate.Size = new Size(227, 51);
             btnMealUpdate.TabIndex = 4;
             btnMealUpdate.Text = "Öğün Güncelle";
             btnMealUpdate.UseVisualStyleBackColor = true;
@@ -104,10 +99,9 @@
             // btnMealDelete
             // 
             btnMealDelete.FlatStyle = FlatStyle.Flat;
-            btnMealDelete.Location = new Point(14, 175);
-            btnMealDelete.Margin = new Padding(3, 2, 3, 2);
+            btnMealDelete.Location = new Point(16, 233);
             btnMealDelete.Name = "btnMealDelete";
-            btnMealDelete.Size = new Size(199, 38);
+            btnMealDelete.Size = new Size(227, 51);
             btnMealDelete.TabIndex = 3;
             btnMealDelete.Text = "Öğün Sil";
             btnMealDelete.UseVisualStyleBackColor = true;
@@ -116,10 +110,9 @@
             // btnMealAdd
             // 
             btnMealAdd.FlatStyle = FlatStyle.Flat;
-            btnMealAdd.Location = new Point(14, 133);
-            btnMealAdd.Margin = new Padding(3, 2, 3, 2);
+            btnMealAdd.Location = new Point(16, 177);
             btnMealAdd.Name = "btnMealAdd";
-            btnMealAdd.Size = new Size(199, 38);
+            btnMealAdd.Size = new Size(227, 51);
             btnMealAdd.TabIndex = 2;
             btnMealAdd.Text = "Öğün Ekle";
             btnMealAdd.UseVisualStyleBackColor = true;
@@ -128,19 +121,18 @@
             // lblAdminName
             // 
             lblAdminName.AutoSize = true;
-            lblAdminName.Location = new Point(5, 0);
+            lblAdminName.Location = new Point(6, 0);
             lblAdminName.Name = "lblAdminName";
-            lblAdminName.Size = new Size(60, 15);
+            lblAdminName.Size = new Size(75, 20);
             lblAdminName.TabIndex = 1;
             lblAdminName.Text = "Merhaba: ";
             // 
             // MealPanel
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(859, 415);
+            ClientSize = new Size(982, 553);
             Controls.Add(grpbMeal);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "MealPanel";
             Text = "Öğünler";
             Load += MealPanel_Load;
@@ -159,6 +151,6 @@
         private Button btnMealUpdate;
         private Button btnMealDelete;
         private TextBox txtMealName;
-        private Label lblMealMessage;
+        private Label lblMeal;
     }
 }
